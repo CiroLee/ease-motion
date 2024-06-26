@@ -1,5 +1,5 @@
 {
-  "name": "puppy-motion",
+  "name": "animate-motion",
   "version": "0.0.1-beta",
   "description": "simple and useful react hooks for animations using Web Animation API",
   "browser": "lib/index.js",
@@ -20,6 +20,14 @@
     "lib"
   ],
   "author": "CiroLee<https://github.com/CiroLee>",
+  "homepage": "https://github.com/CiroLee/animate-motion",
+  "bugs": {
+    "url": "https://github.com/CiroLee/animate-motion/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CiroLee/animate-motion.git"
+  },
   "license": "MIT",
   "peerDependencies": {
     "react": "^18.3.1",
