@@ -1,6 +1,6 @@
 {
   "name": "puppy-motion",
-  "version": "0.0.1",
+  "version": "0.0.1-beta",
   "description": "simple and useful react hooks for animations using Web Animation API",
   "browser": "lib/index.js",
   "types": "lib/index.d.ts",
