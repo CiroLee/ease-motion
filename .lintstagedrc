@@ -1,0 +1,6 @@
+{
+  "hooks/**/*.{js,jsx,ts,tsx}": ["prettier --write", "eslint --fix", "eslint"],
+  "hooks/**/*.{json,css,md}": ["prettier --write"],
+  "playground/src/**/*.{js,jsx,ts,tsx}": ["prettier --write", "eslint --fix", "eslint"],
+  "playground/src/**/*.{json,css,md}": ["prettier --write"]
+}

@@ -1,0 +1,44 @@
+{
+  "name": "puppy-motion",
+  "version": "0.0.1",
+  "description": "simple and useful react hooks for animations using Web Animation API",
+  "browser": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "animation",
+    "hook",
+    "Web Animation API",
+    "motion"
+  ],
+  "files": [
+    "lib"
+  ],
+  "author": "CiroLee<https://github.com/CiroLee>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^19.2.2",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "commitlint": "^19.3.0",
+    "eslint": "^8",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.34.1",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.3.2",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5"
+  }
+}
