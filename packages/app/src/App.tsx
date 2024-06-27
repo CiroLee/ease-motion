@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <div className="text-red-500 font-semibold" ref={ref}>
-        app demo
+        test
       </div>
       <button
         onClick={() => {
