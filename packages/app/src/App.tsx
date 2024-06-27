@@ -5,14 +5,15 @@ function App() {
 
   return (
     <>
-      <div
-        className="text-red-500 font-semibold"
-        ref={ref}
+      <div className="text-red-500 font-semibold" ref={ref}>
+        app demo
+      </div>
+      <button
         onClick={() => {
           motion('fadeOut');
         }}>
-        app demo
-      </div>
+        fade-out
+      </button>
     </>
   );
 }
