@@ -1,15 +1,20 @@
 {
   "name": "animate-motion",
-  "version": "0.0.1-beta",
+  "version": "0.0.2-beta",
   "description": "simple and useful react hooks for animations using Web Animation API",
-  "browser": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "browser": "packages/lib/dist/index.js",
+  "types": "packages/lib/dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
+    "dev:app": "pnpm --filter app run dev",
+    "dev:lib": "pnpm --filter lib run dev",
+    "build:app": "pnpm --filter app run build",
+    "build:lib": "pnpm --filter lib run build",
     "prepare": "husky"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "keywords": [
     "animation",
     "hook",
@@ -17,7 +22,7 @@
     "motion"
   ],
   "files": [
-    "lib"
+    "packages/lib/dist"
   ],
   "author": "CiroLee<https://github.com/CiroLee>",
   "homepage": "https://github.com/CiroLee/animate-motion",
@@ -29,14 +34,8 @@
     "url": "https://github.com/CiroLee/animate-motion.git"
   },
   "license": "MIT",
-  "peerDependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
   "devDependencies": {
     "@commitlint/config-conventional": "^19.2.2",
-    "@types/react": "^18.3.1",
-    "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@typescript-eslint/parser": "^7.8.0",
     "commitlint": "^19.3.0",
@@ -46,7 +45,6 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.3.2",
-    "tsup": "^8.1.0",
     "typescript": "^5.4.5"
   }
 }
