@@ -6,12 +6,12 @@ function App() {
   return (
     <>
       <div
-        className="text-red-500"
+        className="text-red-500 font-semibold"
         ref={ref}
         onClick={() => {
           motion('fadeOut');
         }}>
-        app
+        app demo
       </div>
     </>
   );
