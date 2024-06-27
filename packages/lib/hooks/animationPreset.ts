@@ -1,4 +1,6 @@
+import * as React from 'react';
 import { AnimationOptions } from './types';
+import { checkRef } from './utils';
 const fadeKeyframes = [
   {
     opacity: 0
@@ -12,17 +14,12 @@ export default class AnimationPreset {
     duration: 500,
     fill: 'forwards'
   };
-  private check(ref: React.RefObject<HTMLElement>) {
-    if (!ref.current) {
-      throw new Error('ref is not valid');
-    }
-  }
   public fadeIn<T extends HTMLElement>(ref: React.RefObject<T>, options: AnimationOptions = this.defaultOptions) {
-    this.check(ref);
+    checkRef(ref);
     return ref.current!.animate(fadeKeyframes, options);
   }
   public fadeOut<T extends HTMLElement>(ref: React.RefObject<T>, options: AnimationOptions = this.defaultOptions) {
-    this.check(ref);
+    checkRef(ref);
     const opt = typeof options === 'number' ? { duration: options } : options;
     return ref.current!.animate(fadeKeyframes, {
       ...opt,
@@ -37,3 +34,11 @@ type MethodNames<T> = {
 };
 
 export type MotionName = keyof MethodNames<AnimationPreset>;
+
+const allMethodNames = Object.getOwnPropertyNames(AnimationPreset.prototype);
+
+// 过滤出公共方法名
+export const presetMotionNames = allMethodNames.filter((key) => {
+  const descriptor = Object.getOwnPropertyDescriptor(AnimationPreset.prototype, key);
+  return typeof descriptor?.value === 'function' && key !== 'constructor' && !key.startsWith('_');
+});
