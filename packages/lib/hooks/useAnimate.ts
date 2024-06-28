@@ -1,6 +1,4 @@
 import { useRef } from 'react';
-import AnimationPreset, { type MotionName } from './animationPreset';
-const animationPreset = new AnimationPreset();
 import type { AnimationOptions } from './types';
 import { checkRef } from './utils';
 export function useAnimation<T extends HTMLElement>() {
@@ -11,13 +9,8 @@ export function useAnimation<T extends HTMLElement>() {
     return ref.current!.animate(keyframes, options);
   }
 
-  function motion(motionName: MotionName, options?: AnimationOptions): Animation {
-    return animationPreset[motionName](ref, options);
-  }
-
   return {
     ref,
-    animate,
-    motion
+    animate
   };
 }

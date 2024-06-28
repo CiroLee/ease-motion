@@ -1,3 +1,3 @@
-export * from './animation';
-export { presetMotionNames } from './animationPreset';
+export * from './useAnimate';
+export * from './useMotion';
 export * from './types';

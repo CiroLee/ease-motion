@@ -5,3 +5,9 @@
 :root {
   --nav-height: 64px;
 }
+
+@layer base {
+  body {
+    @apply text-[#333];
+  }
+}
