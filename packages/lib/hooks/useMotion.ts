@@ -14,7 +14,7 @@ const fadeKeyframes = [
 class MotionPreset {
   public defaultOptions: KeyframeAnimationOptions = {
     duration: 500,
-    fill: 'forwards'
+    fill: 'none'
   };
   private _combineOPtions(options: AnimationOptions = {}) {
     if (typeof options === 'number') {
@@ -148,15 +148,10 @@ class MotionPreset {
   public flash<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       {
-        opacity: [1, 1],
-        offset: [0, 0.25, 0.75, 1]
+        opacity: [1, 0, 1, 0, 1],
+        offset: [0, 0.25, 0.5, 0.75, 1]
       },
-      {
-        ...this._combineOPtions(options),
-        fill: 'backwards',
-        iterations: 2,
-        easing: 'ease'
-      }
+      this._combineOPtions(options)
     );
   }
   public pulse<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
