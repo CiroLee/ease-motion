@@ -2,14 +2,6 @@ import { useRef } from 'react';
 import { checkRef } from './utils';
 import type { AnimationOptions } from './types';
 
-const fadeKeyframes = [
-  {
-    opacity: 0
-  },
-  {
-    opacity: 1
-  }
-];
 // preset class
 class MotionPreset {
   public defaultOptions: KeyframeAnimationOptions = {
@@ -28,8 +20,16 @@ class MotionPreset {
       ...options
     };
   }
+  /**
+   * fade effects
+   */
   public fadeIn<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(fadeKeyframes, this._combineOPtions(options));
+    return ref.current!.animate(
+      {
+        opacity: [0, 1]
+      },
+      this._combineOPtions(options)
+    );
   }
   public fadeInDown<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
@@ -69,11 +69,7 @@ class MotionPreset {
     );
   }
   public fadeOut<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    const opt = this._combineOPtions(options);
-    return ref.current!.animate(fadeKeyframes, {
-      ...opt,
-      direction: 'reverse'
-    });
+    return ref.current!.animate({ opacity: [1, 0] }, this._combineOPtions(options));
   }
 
   public fadeOutDown<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
@@ -113,31 +109,36 @@ class MotionPreset {
       this._combineOPtions(options)
     );
   }
-
-  public slideLeft<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      [{ transform: 'translateX(-100%)' }, { transform: 'translateX(0)' }],
-      this._combineOPtions(options)
-    );
+  /**
+   * slide effects
+   */
+  public slideInLeft<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate({ transform: ['translateX(-100%)', 'translateX(0)'] }, this._combineOPtions(options));
   }
-  public slideRight<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      [{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }],
-      this._combineOPtions(options)
-    );
+  public slideInRight<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate({ transform: ['translateX(100%)', 'translateX(0)'] }, this._combineOPtions(options));
   }
-  public slideUp<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      [{ transform: 'translateY(-100%)' }, { transform: 'translateY(0)' }],
-      this._combineOPtions(options)
-    );
+  public slideInUp<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate({ transform: ['translateY(100%)', 'translateY(0)'] }, this._combineOPtions(options));
   }
-  public slideDown<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      [{ transform: 'translateY(100%)' }, { transform: 'translateY(0)' }],
-      this._combineOPtions(options)
-    );
+  public slideInDown<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate({ transform: ['translateY(-100%)', 'translateY(0)'] }, this._combineOPtions(options));
   }
+  public slideOutLeft<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate({ transform: ['translateX(0)', 'translateX(-100%)'] }, this._combineOPtions(options));
+  }
+  public slideOutRight<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate({ transform: ['translateX(0)', 'translateX(100%)'] }, this._combineOPtions(options));
+  }
+  public slideOutUp<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate({ transform: ['translateY(0)', 'translateY(-100%)'] }, this._combineOPtions(options));
+  }
+  public slideOutDown<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate({ transform: ['translateY(0)', 'translateY(100%)'] }, this._combineOPtions(options));
+  }
+  /**
+   * zoom effects
+   */
   public zoomIn<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate([{ transform: 'scale(0)' }, { transform: 'scale(1)' }], this._combineOPtions(options));
   }

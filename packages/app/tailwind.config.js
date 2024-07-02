@@ -12,7 +12,9 @@ export default {
         }
       },
       spacing: {
-        nav: '64px'
+        nav: '64px',
+        sidebar: '300px',
+        content: 'calc(100% - 600px)'
       }
     }
   },
