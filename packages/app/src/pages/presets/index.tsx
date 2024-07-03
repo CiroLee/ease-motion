@@ -8,8 +8,7 @@ import CodeDrawer from '@/components/CodeDrawer';
 
 export default function Presets() {
   const { ref, motion } = useMotion<HTMLDivElement>();
-  const { ref: codeDrawerRef, motion: codeDrawerMotion } = useMotion<HTMLDivElement>();
-  const btnBoxRef = useRef<HTMLDivElement>(null);
+  const [showCode, setShowCode] = useState(false);
   const [motionName, setMotionName] = useState(presetMotionNames[0]);
   const [easing, setEasing] = useState<EaseFunctionType>('linear');
   const [duration, setDuration] = useState(500);
@@ -17,10 +16,10 @@ export default function Presets() {
   const [fill, setFill] = useState<FillMode>('none');
   const [iterations, setIterations] = useState(1);
   const [direction, setDirection] = useState<PlaybackDirection>('normal');
+  const btnBoxRef = useRef<HTMLDivElement>(null);
   const animation = useRef<Animation>();
 
   const handlePlay = () => {
-    console.log(fill);
     animation.current = motion(motionName, {
       fill,
       duration,
@@ -54,18 +53,11 @@ export default function Presets() {
           <Button className="h-[48px] text-xl" block onClick={handlePlay}>
             play
           </Button>
-          <Button
-            className="h-[48px]"
-            onClick={() => codeDrawerMotion('slideInUp', { fill: 'forwards', duration: 200 })}>
+          <Button className="h-[48px]" onClick={() => setShowCode(true)}>
             <IconCode />
           </Button>
         </div>
-        <CodeDrawer
-          onHide={() => codeDrawerMotion('slideOutDown', { fill: 'forwards', duration: 200 })}
-          ref={codeDrawerRef}
-          className="absolute bottom-0 translate-y-full"
-          code={code}
-        />
+        <CodeDrawer show={showCode} className="absolute bottom-0" code={code} onClose={() => setShowCode(false)} />
       </div>
       <PropertyList
         onSetDelay={setDelay}
