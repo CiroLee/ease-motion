@@ -7,8 +7,8 @@ export default {
     extend: {
       colors: {
         brand: {
-          DEFAULT: '#845EF7',
-          600: '#7239ee'
+          DEFAULT: '#0ebfba',
+          600: '#089998'
         }
       },
       spacing: {

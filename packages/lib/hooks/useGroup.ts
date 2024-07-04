@@ -1,109 +1,58 @@
+/**
+ * @description advanced use. manage a group of elements using the same animation parameters
+ */
 import { useRef, useEffect, useCallback } from 'react';
-import { checkRef, getType, combine } from './utils';
-import type { AnimationOptions, AnimateControls } from './types';
-interface GroupOptions<T> {
-  ref: React.MutableRefObject<T | null>;
-  keyframes?: Keyframe[] | PropertyIndexedKeyframes;
-  options?: AnimationOptions;
-}
+import * as groupController from './controller';
+import type { AnimationOptions } from './types';
 
-interface UseGroupProps<T> {
-  baseOptions?: AnimationOptions;
-  baseKeyframes?: Keyframe[] | PropertyIndexedKeyframes;
-  options: GroupOptions<T>[];
-  onComplete?: () => void;
+interface useGroupProps<T extends HTMLElement> {
+  refs: React.MutableRefObject<T | null>[];
+  keyframes: Keyframe[] | PropertyIndexedKeyframes;
+  options?: AnimationOptions;
+  onComplete?: (trigger?: 'play' | 'reverse') => void;
   onStart?: () => void;
   onPause?: () => void;
   onCancel?: () => void;
 }
 
-function combineOptions(baseOptions?: AnimationOptions, options?: AnimationOptions) {
-  if (typeof baseOptions === 'number' && typeof options === 'number') {
-    return options;
-  }
-  if (typeof baseOptions === 'number' && getType(options) === 'object') {
-    return {
-      duration: baseOptions,
-      ...(options as KeyframeAnimationOptions)
-    };
-  }
-  if (getType(baseOptions) === 'object' && typeof options === 'number') {
-    return {
-      ...(baseOptions as KeyframeAnimationOptions),
-      duration: options
-    };
-  }
-  if (getType(baseOptions) === 'object' && getType(options) === 'object') {
-    return combine(baseOptions, options);
-  }
-
-  return baseOptions || options || {};
-}
-
-function combineKeyframes(
-  baseKeyframes?: Keyframe[] | PropertyIndexedKeyframes,
-  keyframes?: Keyframe[] | PropertyIndexedKeyframes
-) {
-  if (!baseKeyframes && !keyframes) {
-    return [];
-  }
-  if (getType(baseKeyframes) === getType(keyframes)) {
-    return baseKeyframes;
-  }
-  return keyframes || [];
-}
-export function useGroup<T extends HTMLElement>({
-  baseKeyframes,
-  baseOptions,
-  options,
-  onStart,
-  onCancel,
-  onComplete,
-  onPause
-}: UseGroupProps<T>): AnimateControls {
-  const animations = useRef<Animation[]>([]);
+export function useGroup<T extends HTMLElement>(props: useGroupProps<T>, deps: any[]) {
+  const { refs, keyframes, options, onComplete, onStart, onPause, onCancel } = props;
+  const animations = useRef<(Animation | undefined)[]>([]);
 
   useEffect(() => {
-    animations.current = options.map(({ ref, keyframes, options }) => {
-      checkRef(ref);
-      const _keyframes = combineKeyframes(baseKeyframes, keyframes);
-      const _options = combineOptions(baseOptions, options);
-
-      const animation = ref.current!.animate(_keyframes || [], _options);
-      animation.pause();
+    animations.current = refs.map((ref) => {
+      const animation = ref.current!.animate(keyframes, options);
+      animation.cancel();
       return animation;
     });
-  }, [baseKeyframes, options]);
 
-  const allFinished = () => {
-    Promise.all(animations.current.map((animation) => animation.finished)).then(onComplete);
+    return () => clear();
+  }, deps);
+
+  const clear = () => {
+    refs.forEach((ref) => {
+      ref.current?.getAnimations().forEach((animation) => animation.cancel());
+    });
   };
 
   const play = useCallback(() => {
+    clear();
     onStart?.();
-    animations.current.forEach((animation) => {
-      animation.playbackRate = 1;
-      animation.play();
-    });
-    allFinished();
+    groupController.play(animations.current, onComplete);
   }, [onStart]);
 
   const pause = useCallback(() => {
     onPause?.();
-    animations.current.forEach((animation) => animation.pause());
+    groupController.pause(animations.current);
   }, []);
 
   const cancel = useCallback(() => {
-    animations.current.forEach((animation) => animation.cancel());
     onCancel?.();
+    groupController.cancel(animations.current);
   }, [onCancel]);
 
   const reverse = useCallback(() => {
-    animations.current.forEach((animation) => {
-      animation.playbackRate = -1;
-      animation.play();
-    });
-    allFinished();
+    groupController.reverse(animations.current, onComplete);
   }, []);
 
   return { play, pause, cancel, reverse };

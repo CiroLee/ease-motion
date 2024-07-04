@@ -1,5 +1,6 @@
 export type AnimationOptions = number | KeyframeAnimationOptions;
-export interface AnimateControls {
+export type Animations = (Animation | undefined)[];
+export interface AnimateController {
   play: () => void;
   pause: () => void;
   cancel: () => void;

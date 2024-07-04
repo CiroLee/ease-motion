@@ -1,6 +1,6 @@
 # animate-motion
 
-high-performance animations for react hooks using Web Animations API
+extensions of Web Animation API via react hooks with high performance
 
 🚧 it's still in development
 
@@ -17,12 +17,15 @@ use the preset motions
 ```ts
 // App.tsx
 import { useMotion } from 'animate-motion';
-const { ref, motion } = useMotion<HTMLDivElement>()
 
-return (
-  <div>
-    <div ref={ref} className="text-3xl">animate-motion</div>
-    <button onClick={() => motion('swing')}>play</button>
-  </div>
-)
+export default function App() {
+  const { ref, motion } = useMotion<HTMLDivElement>()
+
+  return (
+    <div>
+      <div ref={ref} className="text-3xl">animate-motion</div>
+      <button onClick={() => motion('swing')}>play</button>
+    </div>
+  )
+}
 ```

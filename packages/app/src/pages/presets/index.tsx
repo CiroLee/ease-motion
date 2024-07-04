@@ -31,11 +31,16 @@ export default function Presets() {
   };
 
   const code = useMemo(() => {
-    return `useEffect(() => {
-    animation.current?.cancel();
-    handlePlay();
-  }, [motionName, easing, iterations, direction, fill, duration, delay]);`;
-  }, []);
+    const tpl = `motion('${motionName}', {
+  fill: '${fill}',
+  duration: ${duration},
+  delay: ${delay},
+  iterations: ${iterations},
+  direction: '${direction}',
+  easing: '${easing}'
+})`;
+    return tpl;
+  }, [fill, duration, delay, iterations, direction, easing, motionName]);
 
   useEffect(() => {
     animation.current?.cancel();
@@ -57,7 +62,7 @@ export default function Presets() {
             <IconCode />
           </Button>
         </div>
-        <CodeDrawer show={showCode} className="absolute bottom-0" code={code} onClose={() => setShowCode(false)} />
+        <CodeDrawer show={showCode} code={code} onClose={() => setShowCode(false)} />
       </div>
       <PropertyList
         onSetDelay={setDelay}
