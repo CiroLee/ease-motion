@@ -1,6 +1,6 @@
 # animate-motion
 
-extensions of Web Animation API via react hooks with high performance
+The high-performance extension of Web Animation API for React Hooks
 
 🚧 it's still in development
 
