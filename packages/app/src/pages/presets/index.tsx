@@ -4,13 +4,16 @@ import { useMotion, presetMotionNames, type EaseFunctionType } from 'animate-mot
 import Button from '@/components/Button';
 import MotionList from '@/components/MotionList';
 import PropertyList from '@/components/PropertyList';
-import CodeDrawer from '@/components/CodeDrawer';
+import CodeModal from '@/components/CodeModal';
 
 export default function Presets() {
   const { ref, motion } = useMotion<HTMLDivElement>();
   const [showCode, setShowCode] = useState(false);
   const [motionName, setMotionName] = useState(presetMotionNames[0]);
-  const [easing, setEasing] = useState<EaseFunctionType>('linear');
+  const [easingObj, setEasing] = useState<{ name: string; value: EaseFunctionType }>({
+    name: 'linear',
+    value: 'linear'
+  });
   const [duration, setDuration] = useState(500);
   const [delay, setDelay] = useState(0);
   const [fill, setFill] = useState<FillMode>('none');
@@ -26,26 +29,28 @@ export default function Presets() {
       delay,
       iterations,
       direction,
-      easing: easing
+      easing: easingObj.value
     });
   };
 
   const code = useMemo(() => {
-    const tpl = `motion('${motionName}', {
-  fill: '${fill}',
-  duration: ${duration},
-  delay: ${delay},
-  iterations: ${iterations},
-  direction: '${direction}',
-  easing: '${easing}'
-})`;
+    const tpl = `import { EASING_FUNCTIONS } from 'animate-motion';
+    
+  motion('${motionName}', {
+    fill: '${fill}',
+    duration: ${duration},
+    delay: ${delay},
+    iterations: ${iterations},
+    direction: '${direction}',
+    easing: EASING_FUNCTIONS.${easingObj.name}
+  })`;
     return tpl;
-  }, [fill, duration, delay, iterations, direction, easing, motionName]);
+  }, [fill, duration, delay, iterations, direction, easingObj, motionName]);
 
   useEffect(() => {
     animation.current?.cancel();
     handlePlay();
-  }, [motionName, easing, iterations, direction, fill, duration, delay]);
+  }, [motionName, easingObj, iterations, direction, fill, duration, delay]);
 
   return (
     <div className="relative flex h-full overflow-hidden bg-polka">
@@ -62,13 +67,15 @@ export default function Presets() {
             <IconCode />
           </Button>
         </div>
-        <CodeDrawer show={showCode} code={code} onClose={() => setShowCode(false)} />
+        <CodeModal show={showCode} code={code} onClose={() => setShowCode(false)} />
       </div>
       <PropertyList
         onSetDelay={setDelay}
         onSetDirection={setDirection}
         onSetDuration={setDuration}
-        onSetEasing={setEasing}
+        onSetEasing={(key, value) => {
+          setEasing({ name: key, value });
+        }}
         onSetFill={setFill}
         onSetIterations={setIterations}
       />

@@ -18,6 +18,9 @@ export default {
       },
       zIndex: {
         popup: 999
+      },
+      backgroundImage: {
+        streamer: `radial-gradient(50% 50% at 50% 50%, #F6B065 0%, #F1A554 31%, #B97731 63%, #985B1B 100%)`
       }
     }
   },
@@ -30,6 +33,9 @@ export default {
           backgroundImage: `radial-gradient(#383838 0.7px, transparent 0.7px), radial-gradient(#383838 0.7px, #ffffff 0.7px)`,
           backgroundSize: '28px 28px',
           backgroundPosition: '0 0,14px 14px'
+        },
+        '.offset-rect': {
+          offsetPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'
         }
       });
       addComponents({

@@ -8,7 +8,7 @@
 
 @layer base {
   body {
-    @apply text-[#333];
+    @apply bg-[#f9fefe] text-[#333];
   }
   input[type='number']::-webkit-outer-spin-button,
   input[type='number']::-webkit-inner-spin-button {

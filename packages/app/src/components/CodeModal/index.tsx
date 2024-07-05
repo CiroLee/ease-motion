@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { IconXboxXFilled, IconCopy } from '@tabler/icons-react';
 import { type AnimationOptions, useMultiple } from 'animate-motion';
 import { cn } from '@/utils/utils';
 import Code from '../Code';
@@ -8,7 +9,7 @@ interface CodeDrawerProps {
   code: string;
   lang?: string;
   className?: string;
-  onClose?: () => void;
+  onClose: () => void;
 }
 const options: AnimationOptions = {
   duration: 200,
@@ -63,11 +64,17 @@ const CodeDrawer = (props: CodeDrawerProps) => {
     <>
       {visible ? (
         <div className={cn('fixed inset-0 z-popup flex size-full flex-center', className)}>
-          <div ref={maskRef} className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={handleOnClose}></div>
-          <div
-            ref={codeRef}
-            className="relative flex min-h-[220px] items-center overflow-hidden rounded-xl bg-white p-5">
-            <div className={cn('scrollbar relative min-w-[440px] overflow-auto rounded-lg')}>
+          <div ref={maskRef} className="absolute inset-0 bg-black/10 backdrop-blur-sm" onClick={handleOnClose}></div>
+          <div ref={codeRef} className="relative flex min-h-[220px] items-center rounded-md bg-white p-4 shadow-lg">
+            <IconXboxXFilled
+              size={26}
+              className="absolute -right-[10px] -top-[10px] cursor-pointer"
+              onClick={handleOnClose}
+            />
+            <div className={cn('scrollbar relative mt-[32px] min-w-[540px] overflow-auto rounded-md')}>
+              <div className="absolute right-2 top-2 z-10 flex size-[32px] cursor-pointer rounded-md transition flex-center hover:bg-white/10">
+                <IconCopy size={18} className="text-white/50" />
+              </div>
               <Code className="size-full text-sm [&_pre]:min-w-fit [&_pre]:p-3" code={code} lang={lang} />
             </div>
           </div>

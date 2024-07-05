@@ -12,7 +12,7 @@ const item = cva('cursor-pointer rounded-sm border border-brand/20 px-2 py-3 tra
   }
 });
 interface PropertyListProps {
-  onSetEasing: (easing: EaseFunctionType) => void;
+  onSetEasing: (key: string, easing: EaseFunctionType) => void;
   onSetDuration: (duration: number) => void;
   onSetDelay: (delay: number) => void;
   onSetFill: (fill: FillMode) => void;
@@ -28,8 +28,6 @@ export default function PropertyList({
   onSetDirection
 }: PropertyListProps) {
   const [easing, setEasing] = useState<EaseFunctionType>('linear');
-  // const [duration, setDuration] = useState(500);
-  // const [delay, setDelay] = useState(0);
   const [fill, setFill] = useState<FillMode>('none');
   const [iterations, setIterations] = useState(1);
   const [direction, setDirection] = useState<PlaybackDirection>('normal');
@@ -38,13 +36,7 @@ export default function PropertyList({
   const iterationsInputRef = useRef<HTMLInputElement>(null);
 
   const handleResetAll = () => {
-    // setEasing('linear');
-    // setDuration(500);
-    // setDelay(0);
-    // setFill('none');
-    // setIterations(1);
-
-    handleOnSetEasing('linear');
+    handleOnSetEasing('linear', 'linear');
     handleOnSetDuration(500);
     handleOnSetDelay(0);
     handleOnSetFill('none');
@@ -57,9 +49,9 @@ export default function PropertyList({
     }
   };
 
-  const handleOnSetEasing = (easing: EaseFunctionType) => {
+  const handleOnSetEasing = (key: string, easing: EaseFunctionType) => {
     setEasing(easing);
-    onSetEasing(easing);
+    onSetEasing(key, easing);
   };
 
   const handleOnSetFill = (fill: FillMode) => {
@@ -68,12 +60,10 @@ export default function PropertyList({
   };
 
   const handleOnSetDuration = (duration: number) => {
-    // setDuration(duration);
     onSetDuration(duration);
   };
 
   const handleOnSetDelay = (delay: number) => {
-    // setDelay(delay);
     onSetDelay(delay);
   };
 
@@ -101,7 +91,7 @@ export default function PropertyList({
               key={key}
               className={cn(item({ active: easing === value, className: 'flex flex-col flex-center' }))}
               onClick={() => {
-                handleOnSetEasing(value as EaseFunctionType);
+                handleOnSetEasing(key, value as EaseFunctionType);
               }}>
               <EaseIcon className="size-[36px] text-gray-400" name={key as EaseFunctionType} key={key} />
               <span className="mt-2 text-[12px]">{key}</span>
@@ -176,7 +166,7 @@ export default function PropertyList({
             className={cn('flex h-[40px] flex-1 cursor-pointer border border-brand/10 flex-center', {
               'border-brand': iterations === Infinity
             })}
-            onClick={() => setIterations(Infinity)}>
+            onClick={() => handleOnSetIterations(Infinity)}>
             infinite
           </div>
         </div>

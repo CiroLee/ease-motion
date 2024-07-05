@@ -1,6 +1,6 @@
 {
   "name": "animate-motion",
-  "version": "0.0.2-beta",
+  "version": "0.0.3-beta",
   "description": "simple and useful react hooks for animations using Web Animation API",
   "browser": "packages/lib/dist/index.js",
   "types": "packages/lib/dist/index.d.ts",
@@ -17,9 +17,10 @@
   ],
   "keywords": [
     "animation",
-    "hook",
+    "hooks",
     "Web Animation API",
-    "motion"
+    "motion",
+    "animate-motion"
   ],
   "files": [
     "packages/lib/dist"
