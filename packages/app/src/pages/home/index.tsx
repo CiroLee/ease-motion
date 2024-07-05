@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAnimate } from 'animate-motion';
 import Button from '@/components/Button';
+import CopyButton from '@/components/CopyButton';
 export default function Home() {
   const { ref, animate } = useAnimate<HTMLDivElement>();
   useEffect(() => {
@@ -19,8 +20,9 @@ export default function Home() {
     <div className="flex h-full flex-col flex-center">
       <h1 className="text-5xl font-bold">animate-motion</h1>
       <div className="relative mt-12 box-border h-[44px] overflow-hidden rounded-[8px] bg-[#636363] p-[2px] shadow-[0_2px_20px_2px] shadow-[rgba(53,23,1,0.3)]">
-        <div className="relative z-10 flex size-full items-center rounded-[6px] bg-[#242323] px-4 text-white">
-          npm install animate-notion
+        <div className="relative z-10 flex size-full items-center rounded-[6px] bg-[#242323] pl-4 pr-[6px] text-white">
+          <span>npm install animate-notion</span>
+          <CopyButton text="npm install animate-notion" className="ml-2" />
         </div>
         <div
           ref={ref}
