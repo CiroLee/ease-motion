@@ -8,6 +8,7 @@ import CodeModal from '@/components/CodeModal';
 
 export default function Presets() {
   const { ref, motion } = useMotion<HTMLDivElement>();
+
   const [showCode, setShowCode] = useState(false);
   const [motionName, setMotionName] = useState(presetMotionNames[0]);
   const [easingObj, setEasing] = useState<{ name: string; value: EaseFunctionType }>({
@@ -34,16 +35,14 @@ export default function Presets() {
   };
 
   const code = useMemo(() => {
-    const tpl = `import { EASING_FUNCTIONS } from 'animate-motion';
-    
-  motion('${motionName}', {
-    fill: '${fill}',
-    duration: ${duration},
-    delay: ${delay},
-    iterations: ${iterations},
-    direction: '${direction}',
-    easing: EASING_FUNCTIONS.${easingObj.name}
-  })`;
+    const tpl = `motion('${motionName}', {
+  fill: '${fill}',
+  duration: ${duration},
+  delay: ${delay},
+  iterations: ${iterations},
+  direction: '${direction}',
+  easing: EASING_FUNCTIONS.${easingObj.name}
+})`;
     return tpl;
   }, [fill, duration, delay, iterations, direction, easingObj, motionName]);
 
@@ -72,7 +71,13 @@ export default function Presets() {
       <PropertyList
         onSetDelay={setDelay}
         onSetDirection={setDirection}
-        onSetDuration={setDuration}
+        onSetDuration={(duration) => {
+          if (duration) {
+            setDuration(duration);
+          } else {
+            setDuration(500);
+          }
+        }}
         onSetEasing={(key, value) => {
           setEasing({ name: key, value });
         }}
