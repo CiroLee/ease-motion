@@ -249,7 +249,10 @@ export const presetMotionNames = allMethodNames.filter((key) => {
 
 // hooks
 const animationPreset = new MotionPreset();
-export function useMotion<T extends HTMLElement>() {
+export function useMotion<T extends HTMLElement>(): [
+  React.RefObject<T>,
+  (name: MotionName, options?: AnimationOptions) => Animation
+] {
   const ref = useRef<T>(null);
 
   function motion(name: MotionName, options?: AnimationOptions): Animation {
@@ -257,8 +260,5 @@ export function useMotion<T extends HTMLElement>() {
     return animationPreset[name](ref, options);
   }
 
-  return {
-    ref,
-    motion
-  };
+  return [ref, motion];
 }

@@ -7,7 +7,7 @@ import PropertyList from '@/components/PropertyList';
 import CodeModal from '@/components/CodeModal';
 
 export default function Presets() {
-  const { ref, motion } = useMotion<HTMLDivElement>();
+  const [ref, motion] = useMotion<HTMLDivElement>();
 
   const [showCode, setShowCode] = useState(false);
   const [motionName, setMotionName] = useState(presetMotionNames[0]);

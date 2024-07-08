@@ -4,7 +4,7 @@ import { useAnimate } from 'animate-motion';
 import Button from '@/components/Button';
 import CopyButton from '@/components/CopyButton';
 export default function Home() {
-  const { ref, animate } = useAnimate<HTMLDivElement>();
+  const [ref, animate] = useAnimate<HTMLDivElement>();
   useEffect(() => {
     animate(
       {
