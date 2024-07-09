@@ -2,7 +2,7 @@
  * @description advanced use. Manage multiple elements and use independent animations or the same animation parameters
  */
 import { useRef, useEffect, useCallback } from 'react';
-import * as groupController from './controller';
+import * as controller from './controller';
 import { getType, combine } from './utils';
 import type { AnimationOptions, AnimateController } from './types';
 interface MultipleOptions<T> {
@@ -19,6 +19,7 @@ interface useMultipleProps<T> {
   onStart?: () => void;
   onPause?: () => void;
   onCancel?: () => void;
+  onResume?: () => void;
 }
 
 function combineOptions(baseOptions?: AnimationOptions, options?: AnimationOptions) {
@@ -57,8 +58,9 @@ function combineKeyframes(
   return keyframes || [];
 }
 export function useMultiple<T extends HTMLElement>(props: useMultipleProps<T>, deps: any[]): AnimateController {
+  const { baseKeyframes, baseOptions, options, onStart, onCancel, onComplete, onPause, onResume } = props;
   const animations = useRef<(Animation | undefined)[]>([]);
-  const { baseKeyframes, baseOptions, options, onStart, onCancel, onComplete, onPause } = props;
+  const animationTimes = useRef<CSSNumberish[]>([]);
 
   useEffect(() => {
     animations.current = options.map(({ ref, keyframes, options }) => {
@@ -81,22 +83,27 @@ export function useMultiple<T extends HTMLElement>(props: useMultipleProps<T>, d
   const play = useCallback(() => {
     clear();
     onStart?.();
-    groupController.play(animations.current, onComplete);
+    controller.play(animations.current, onComplete);
   }, [onStart]);
 
   const pause = useCallback(() => {
     onPause?.();
-    groupController.pause(animations.current);
+    animationTimes.current = controller.pause(animations.current);
   }, []);
 
   const cancel = useCallback(() => {
     onCancel?.();
-    groupController.cancel(animations.current);
+    controller.cancel(animations.current);
   }, [onCancel]);
 
   const reverse = useCallback(() => {
-    groupController.reverse(animations.current, onComplete);
+    controller.reverse(animations.current, onComplete);
   }, []);
 
-  return { play, pause, cancel, reverse };
+  const resume = useCallback(() => {
+    onResume?.();
+    controller.resume(animations.current, animationTimes.current);
+  }, [onResume]);
+
+  return { play, pause, cancel, reverse, resume };
 }

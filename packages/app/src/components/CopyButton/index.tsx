@@ -16,9 +16,16 @@ export default function CopyButton({ text, className }: { text: string; classNam
   };
   return (
     <div
-      className={cn('flex size-[32px] cursor-pointer rounded-md transition flex-center hover:bg-white/10', className)}
+      className={cn(
+        'group flex size-[32px] cursor-pointer rounded-md transition flex-center hover:bg-white/10',
+        className
+      )}
       onClick={() => handleCopyCode(text)}>
-      {copied ? <IconCheck className="text-white" size={18} /> : <IconCopy size={18} className="text-white/50" />}
+      {copied ? (
+        <IconCheck className="text-white" size={18} />
+      ) : (
+        <IconCopy size={18} className="text-white/20 transition group-hover:text-white/70" />
+      )}
     </div>
   );
 }

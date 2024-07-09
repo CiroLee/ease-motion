@@ -17,9 +17,16 @@ export function allFinish(animations: Animations, trigger: 'play' | 'reverse', c
   }
 }
 
-export function pause(animations: Animations) {
-  animations.forEach((animation) => animation?.pause());
-}
+export const pause = (animations: (Animation | undefined)[]): CSSNumberish[] => {
+  const times = animations.map((animation) => {
+    if (animation) {
+      animation.pause();
+      return animation.currentTime || 0;
+    }
+    return 0;
+  });
+  return times;
+};
 
 export function cancel(animations: Animations) {
   animations.forEach((animation) => animation?.cancel());
@@ -34,3 +41,13 @@ export function reverse(animations: Animations, cb?: (...args: any[]) => void) {
     allFinish(animations, 'reverse', cb);
   }
 }
+
+export const resume = (animations: Animations, times: CSSNumberish[]) => {
+  animations.forEach((animation, index) => {
+    if (animation) {
+      animation.pause();
+      animation.currentTime = times[index];
+      animation.play();
+    }
+  });
+};

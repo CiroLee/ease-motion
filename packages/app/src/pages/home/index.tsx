@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAnimate } from 'animate-motion';
-import Button from '@/components/Button';
+import Button from '@/ui/Button';
 import CopyButton from '@/components/CopyButton';
 export default function Home() {
   const [ref, animate] = useAnimate<HTMLDivElement>();
@@ -28,9 +28,14 @@ export default function Home() {
           ref={ref}
           className="absolute -top-1/2 z-[1] size-[50px] rounded-full bg-streamer blur-sm offset-rect"></div>
       </div>
-      <Link to="motion-presets">
-        <Button className="mt-20 h-[52px] px-5 text-[18px]">START</Button>
-      </Link>
+      <div className="mt-12 space-x-4">
+        <Link to="docs">
+          <Button size="lg">VIEW DOCS</Button>
+        </Link>
+        <Link to="motion-presets">
+          <Button size="lg">VIEW PRESETS</Button>
+        </Link>
+      </div>
     </div>
   );
 }

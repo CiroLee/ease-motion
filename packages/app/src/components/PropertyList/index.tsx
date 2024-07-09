@@ -41,6 +41,7 @@ export default function PropertyList({
     handleOnSetDelay(0);
     handleOnSetFill('none');
     handleOnSetIterations(1);
+    handleOnSetDirections('normal');
 
     if (durationInputRef.current && delayInputRef.current && iterationsInputRef.current) {
       durationInputRef.current.value = '';

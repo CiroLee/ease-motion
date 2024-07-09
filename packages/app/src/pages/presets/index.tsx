@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useMemo } from 'react';
 import { IconCode } from '@tabler/icons-react';
 import { useMotion, presetMotionNames, type EaseFunctionType } from 'animate-motion';
-import Button from '@/components/Button';
+import Button from '@/ui/Button';
 import MotionList from '@/components/MotionList';
 import PropertyList from '@/components/PropertyList';
 import CodeModal from '@/components/CodeModal';

@@ -22,6 +22,40 @@ export const router = createBrowserRouter([
         path: 'docs',
         id: 'documents',
         Component: lazy(() => import('../pages/docs')),
+        children: [
+          {
+            path: 'overview',
+            id: 'overview',
+            Component: lazy(() => import('../pages/docs/overview')),
+            meta: {
+              name: 'overview'
+            }
+          },
+          {
+            path: 'use-animate',
+            id: 'use-animate',
+            Component: lazy(() => import('../pages/docs/useAnimate.doc')),
+            meta: {
+              name: 'useAnimate'
+            }
+          },
+          {
+            path: 'use-group',
+            id: 'use-group',
+            Component: lazy(() => import('../pages/docs/useGroup.doc')),
+            meta: {
+              name: 'useGroup'
+            }
+          },
+          {
+            path: 'use-multiple',
+            id: 'use-multiple',
+            Component: lazy(() => import('../pages/docs/useMultiple.doc')),
+            meta: {
+              name: 'useMultiple'
+            }
+          }
+        ],
         meta: {
           name: 'docs',
           visible: true

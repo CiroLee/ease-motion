@@ -6,18 +6,33 @@ interface CodeProps {
   lang?: string;
   className?: string;
   style?: React.CSSProperties;
+  highlightLines?: number[];
+  highlightRange?: number[][];
 }
 export default function Code(props: CodeProps) {
-  const { code, lang, ...rest } = props;
+  const { code, lang, highlightLines = [], highlightRange = [[]], ...rest } = props;
   const [html, setHtml] = useState('');
   const parseCode = async (code: string, lang = 'typescript') => {
     const highlighter = await createHighlighter({
-      langs: ['typescript', 'javascript', 'html', 'css'],
+      langs: ['typescript', 'javascript', 'html', 'css', 'bash'],
       themes: ['one-dark-pro']
     });
     const data = highlighter.codeToHtml(code, {
       lang,
-      theme: 'one-dark-pro'
+      theme: 'one-dark-pro',
+      transformers: [
+        {
+          line(node, line) {
+            node.properties['data-line'] = line;
+            if (highlightLines.includes(line)) this.addClassToHast(node, 'highlight-line');
+            highlightRange.forEach((arr) => {
+              if (line >= arr[0] && line <= arr[arr.length - 1]) {
+                this.addClassToHast(node, 'highlight-line');
+              }
+            });
+          }
+        }
+      ]
     });
 
     setHtml(data);

@@ -20,3 +20,25 @@
     list-style: none;
   }
 }
+
+code {
+  counter-reset: line;
+}
+
+code > span.line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1rem;
+  text-align: right;
+  @apply text-zinc-500;
+}
+
+code > span.line::before {
+  width: w-fit;
+}
+
+.highlight-line {
+  @apply inline-block w-full bg-[#1d2027];
+}

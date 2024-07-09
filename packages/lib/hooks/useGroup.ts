@@ -2,8 +2,8 @@
  * @description advanced use. manage a group of elements using the same animation parameters
  */
 import { useRef, useEffect, useCallback } from 'react';
-import * as groupController from './controller';
-import type { AnimationOptions } from './types';
+import * as controller from './controller';
+import type { AnimationOptions, AnimateController } from './types';
 
 interface useGroupProps<T extends HTMLElement> {
   refs: React.MutableRefObject<T | null>[];
@@ -13,11 +13,13 @@ interface useGroupProps<T extends HTMLElement> {
   onStart?: () => void;
   onPause?: () => void;
   onCancel?: () => void;
+  onResume?: () => void;
 }
 
-export function useGroup<T extends HTMLElement>(props: useGroupProps<T>, deps: any[]) {
-  const { refs, keyframes, options, onComplete, onStart, onPause, onCancel } = props;
+export function useGroup<T extends HTMLElement>(props: useGroupProps<T>, deps: any[]): AnimateController {
+  const { refs, keyframes, options, onComplete, onStart, onPause, onCancel, onResume } = props;
   const animations = useRef<(Animation | undefined)[]>([]);
+  const animationTimes = useRef<CSSNumberish[]>([]);
 
   useEffect(() => {
     animations.current = refs.map((ref) => {
@@ -38,22 +40,27 @@ export function useGroup<T extends HTMLElement>(props: useGroupProps<T>, deps: a
   const play = useCallback(() => {
     clear();
     onStart?.();
-    groupController.play(animations.current, onComplete);
+    controller.play(animations.current, onComplete);
   }, [onStart]);
 
   const pause = useCallback(() => {
     onPause?.();
-    groupController.pause(animations.current);
+    animationTimes.current = controller.pause(animations.current);
   }, []);
 
   const cancel = useCallback(() => {
     onCancel?.();
-    groupController.cancel(animations.current);
+    controller.cancel(animations.current);
   }, [onCancel]);
 
   const reverse = useCallback(() => {
-    groupController.reverse(animations.current, onComplete);
+    controller.reverse(animations.current, onComplete);
   }, []);
 
-  return { play, pause, cancel, reverse };
+  const resume = useCallback(() => {
+    onResume?.();
+    controller.resume(animations.current, animationTimes.current);
+  }, [onResume]);
+
+  return { play, pause, cancel, reverse, resume };
 }
