@@ -19,7 +19,7 @@ use the preset motions
 import { useMotion } from 'animate-motion';
 
 export default function App() {
-  const { ref, motion } = useMotion<HTMLDivElement>()
+  const [ ref, motion ] = useMotion<HTMLDivElement>()
 
   return (
     <div>
