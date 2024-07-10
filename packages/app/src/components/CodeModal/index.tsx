@@ -26,7 +26,7 @@ const CodeDrawer = (props: CodeDrawerProps) => {
   const controller = useMultiple(
     {
       baseOptions: options,
-      options: [
+      config: [
         {
           ref: maskRef,
           keyframes: {

@@ -5,7 +5,7 @@ import { useRef, useEffect, useCallback } from 'react';
 import * as controller from './controller';
 import { getType, combine } from './utils';
 import type { AnimationOptions, AnimateController } from './types';
-interface MultipleOptions<T> {
+interface MultipleConfig<T> {
   ref: React.MutableRefObject<T | null>;
   keyframes?: Keyframe[] | PropertyIndexedKeyframes;
   options?: AnimationOptions;
@@ -14,7 +14,7 @@ interface MultipleOptions<T> {
 interface useMultipleProps<T> {
   baseOptions?: AnimationOptions;
   baseKeyframes?: Keyframe[] | PropertyIndexedKeyframes;
-  options: MultipleOptions<T>[];
+  config: MultipleConfig<T>[];
   onComplete?: (trigger?: 'play' | 'reverse') => void;
   onStart?: () => void;
   onPause?: () => void;
@@ -58,12 +58,12 @@ function combineKeyframes(
   return keyframes || [];
 }
 export function useMultiple<T extends HTMLElement>(props: useMultipleProps<T>, deps: any[]): AnimateController {
-  const { baseKeyframes, baseOptions, options, onStart, onCancel, onComplete, onPause, onResume } = props;
+  const { baseKeyframes, baseOptions, config, onStart, onCancel, onComplete, onPause, onResume } = props;
   const animations = useRef<(Animation | undefined)[]>([]);
   const animationTimes = useRef<CSSNumberish[]>([]);
 
   useEffect(() => {
-    animations.current = options.map(({ ref, keyframes, options }) => {
+    animations.current = config.map(({ ref, keyframes, options }) => {
       const _keyframes = combineKeyframes(baseKeyframes, keyframes);
       const _options = combineOptions(baseOptions, options);
       const animation = ref.current?.animate(_keyframes || [], _options);
@@ -75,7 +75,7 @@ export function useMultiple<T extends HTMLElement>(props: useMultipleProps<T>, d
   }, deps);
 
   const clear = () => {
-    options.forEach(({ ref }) => {
+    config.forEach(({ ref }) => {
       ref.current?.getAnimations().forEach((animation) => animation.cancel());
     });
   };
