@@ -19,7 +19,8 @@ export default function App() {
           animate(
             {
               transform: ['translateX(0)', 'translateX(100px)'],
-              borderRadius: ['8px', '50%']
+              borderRadius: ['8px', '50%'],
+              backgroundColor: ['rgb(59 130 246)', 'rgb(246 154 59)']
             },
             {
               duration: 800,
@@ -52,12 +53,14 @@ export default function UseAnimateDoc() {
       <div className="relative mb-3 flex h-[240px] overflow-hidden rounded-md border flex-center bg-polka">
         <div ref={ref} className="size-[120px] rounded-lg bg-blue-500"></div>
         <Button
+          size="sm"
           className="absolute bottom-3 right-3"
           onClick={() => {
             animate(
               {
                 transform: ['translateX(0)', 'translateX(100px)'],
-                borderRadius: ['8px', '50%']
+                borderRadius: ['8px', '50%'],
+                backgroundColor: ['rgb(59 130 246)', 'rgb(246 154 59)']
               },
               {
                 duration: 800,
@@ -73,14 +76,11 @@ export default function UseAnimateDoc() {
       <Heading as="h4" className="my-4">
         Signature
       </Heading>
-      <CodeBlock
-        showExpandButton={false}
-        code="function useAnimate<T extends HTMLElement>(): [React.RefObject<T>, AnimationController]"
-      />
+      <CodeBlock code="function useAnimate<T extends HTMLElement>(): [React.RefObject<T>, AnimationController]" />
       <Heading as="h4" className="my-4">
         ReturnType
       </Heading>
-      <ApiTable rows={returnRows} omitHeads={['Required', 'Default']} />
+      <ApiTable rows={returnRows} styles={{ description: { width: 440 } }} omitHeads={['Required', 'Default']} />
       <div className="my-12 flex justify-between">
         <PageNavigate direction="prev" path="/docs/overview">
           overview

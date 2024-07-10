@@ -7,16 +7,26 @@ import Tag from '@/ui/Tag';
 export interface ApiTableRow {
   name: React.ReactNode;
   desc?: React.ReactNode;
-  type: string;
+  type: React.ReactNode;
   required?: boolean | string;
   default?: boolean | string | number;
 }
 export interface ApiTableProps {
   rows: ApiTableRow[];
   omitHeads?: string[];
+  styles?: {
+    name?: React.CSSProperties;
+    description?: React.CSSProperties;
+    type?: React.CSSProperties;
+    required?: React.CSSProperties;
+    default?: React.CSSProperties;
+  };
 }
-const header = ['Name', 'Description', 'Type', 'Required', 'Default'];
-function renderType(type: string) {
+const header = ['Name', 'Type', 'Description', 'Required', 'Default'];
+function renderType(type: React.ReactNode) {
+  if (typeof type !== 'string') {
+    return type;
+  }
   if (type.startsWith('tag')) {
     const tags = type.replace(/^tag:/, '').split('|');
     return (
@@ -38,24 +48,30 @@ function renderType(type: string) {
   }
   return type;
 }
-const ApiTable: FC<ApiTableProps> = ({ rows, omitHeads = [] }) => {
+const ApiTable: FC<ApiTableProps> = ({
+  rows,
+  omitHeads = [],
+  styles = { name: {}, default: {}, description: {}, required: {} }
+}) => {
   const _header = header.filter((item) => !omitHeads.includes(item));
   console.log(_header);
   return (
     <Table border>
       <TableHeader>
         {_header.map((item) => (
-          <TableHeaderCell key={item}>{item}</TableHeaderCell>
+          <TableHeaderCell key={item} style={styles[item.toLowerCase() as keyof ApiTableProps['styles']]}>
+            {item}
+          </TableHeaderCell>
         ))}
       </TableHeader>
       <TableBody>
         {rows.map((item, index) => (
           <TableRow key={index}>
             {item.name !== undefined ? <TableDataCell>{item.name}</TableDataCell> : null}
-            {item.desc !== undefined ? <TableDataCell>{item.desc}</TableDataCell> : null}
             {item.type !== undefined ? (
               <TableDataCell className="text-brand-800">{renderType(item.type)}</TableDataCell>
             ) : null}
+            {item.desc !== undefined ? <TableDataCell>{item.desc}</TableDataCell> : null}
             {item.required !== undefined ? <TableDataCell>{item.required.toString()}</TableDataCell> : null}
             {item.default !== undefined ? <TableDataCell>{item.default?.toString()}</TableDataCell> : null}
           </TableRow>

@@ -53,14 +53,15 @@ const TableBody = forwardRef<HTMLTableSectionElement, TableBaseType>(({ classNam
 
 TableBody.displayName = 'TableBody';
 
-const TableHeaderCell = forwardRef<HTMLTableCellElement, TableBaseType>(({ className, children }, ref) => {
+const TableHeaderCell = forwardRef<HTMLTableCellElement, TableBaseType>(({ className, children, ...rest }, ref) => {
   return (
     <th
       ref={ref}
       className={cn(
         `relative p-[14px] text-start font-semibold after:absolute after:right-0 after:top-[50%] after:mr-1 after:h-[40%] after:w-px after:translate-y-[-50%] after:bg-gray-200 after:content-[''] last:after:content-[unset]`,
         className
-      )}>
+      )}
+      {...rest}>
       {children}
     </th>
   );

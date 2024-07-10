@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Code from '../Code';
 import CopyButton from '../CopyButton';
 import Button from '@/ui/Button';
@@ -7,13 +7,23 @@ interface CodeBlockProps {
   code: string;
   lang?: string;
   className?: string;
-  showExpandButton?: boolean;
   highlightLines?: number[];
   highlightRange?: number[][];
+  diffAddLines?: number[];
+  diffRemoveLines?: number[];
 }
 export default function CodeBlock(props: CodeBlockProps) {
-  const { code, lang, highlightLines, highlightRange, showExpandButton = true, className } = props;
+  const { code, lang, highlightLines, highlightRange, diffAddLines, diffRemoveLines, className } = props;
+  const ref = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
+  const [showExpandButton, setShowExpandButton] = useState(false);
+
+  const handleOnCodeRendered = () => {
+    if (ref.current) {
+      const { height } = ref.current.getBoundingClientRect();
+      setShowExpandButton(height > 220);
+    }
+  };
   return (
     <div
       className={cn(
@@ -22,10 +32,14 @@ export default function CodeBlock(props: CodeBlockProps) {
         className
       )}>
       <Code
+        ref={ref}
         code={code}
         lang={lang}
+        rendered={handleOnCodeRendered}
         highlightLines={highlightLines}
         highlightRange={highlightRange}
+        diffAddLines={diffAddLines}
+        diffRemoveLines={diffRemoveLines}
         className="scrollbar overflow-x-auto text-sm [&_pre]:min-w-fit [&_pre]:p-3"
       />
       <CopyButton text={code} className="absolute right-2 top-2" />
