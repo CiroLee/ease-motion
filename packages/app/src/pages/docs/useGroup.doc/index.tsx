@@ -95,8 +95,11 @@ export default function UseGroupDoc() {
       <Heading as="h4" className="mb-2">
         delay
       </Heading>
-      <p className="mb-4 text-zinc-400">
-        <Tag size="sm">delay</Tag> can accept a number type value or a function that returns number type
+      <p className="mb-2">
+        <Tag size="sm" variant="code">
+          delay
+        </Tag>{' '}
+        can accept a number type value or a function that returns number type
       </p>
       <Playground className="mb-4 flex flex-col justify-center gap-2 px-8">
         <div ref={ballRef4} className="size-[40px] bg-blue-500"></div>
@@ -117,13 +120,23 @@ export default function UseGroupDoc() {
         Types
       </Heading>
       <CodeBlock code={types} />
-      <Heading as="h4" className="my-4">
+      <Heading as="h4" className="mb-2 mt-4">
         Props
       </Heading>
+      <p>
+        <Tag size="sm" variant="code">
+          deps
+        </Tag>{' '}
+        is dependencies array, used like useEffect, and{' '}
+        <Tag className="mb-2" size="sm" variant="code">{`UseGroupProps<T>`}</Tag> type below
+      </p>
       <ApiTable rows={propsRows} />
-      <Heading as="h4" className="my-4">
+      <Heading as="h4" className="mb-2 mt-4">
         ReturnType
       </Heading>
+      <Tag className="mb-2" size="sm" variant="code">
+        AnimateController
+      </Tag>
       <ApiTable rows={controllerRows} omitHeads={['Required', 'Default']} />
       <div className="my-12 flex justify-between">
         <PageNavigate direction="prev" path="/docs/use-animate">

@@ -1,16 +1,21 @@
 import { forwardRef } from 'react';
 import { cn } from '@/utils/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
-const tag = cva('inline-flex items-center bg-brand/10 rounded border border-brand/30 text-brand-800', {
+const tag = cva('inline-flex items-center rounded border', {
   variants: {
     size: {
-      default: 'h-7 px-2',
-      sm: 'h-6 px-1 text-sm',
-      lg: 'h-8 px-3'
+      default: 'min-h-7 px-2',
+      sm: 'min-h-6 px-1 text-sm rounded-[3px]',
+      lg: 'min-h-8 px-3'
+    },
+    variant: {
+      code: 'bg-gray-100 border-[#cdcdcd] text-[##3e3e3e]',
+      default: 'bg-brand/10 border-brand/30 text-brand-800'
     }
   },
   defaultVariants: {
-    size: 'default'
+    size: 'default',
+    variant: 'default'
   }
 });
 
@@ -21,8 +26,8 @@ interface TagProps extends TagVariants, React.HTMLAttributes<HTMLDivElement> {
   style?: React.CSSProperties;
 }
 const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
-  const { size, className, ...rest } = props;
-  return <span ref={ref} className={cn(tag({ size, className }))} {...rest}></span>;
+  const { size, className, variant, ...rest } = props;
+  return <span ref={ref} className={cn(tag({ size, variant, className }))} {...rest}></span>;
 });
 
 Tag.displayName = 'Tag';

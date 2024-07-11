@@ -106,7 +106,8 @@ export default function App() {
   )
 }`;
 
-export const types = `export type SpecialAnimationOptions = number | SpecialKeyframeAnimationOptions;
+export const types = `// SpecialAnimationOptions
+export type SpecialAnimationOptions = number | SpecialKeyframeAnimationOptions;
 type SpecialKeyframeAnimationOptions = Omit<KeyframeAnimationOptions, 'delay' | 'endDelay'> & {
   delay?: number | DelayFunction;
   endDelay?: number | DelayFunction;
