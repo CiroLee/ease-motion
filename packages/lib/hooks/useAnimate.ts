@@ -1,7 +1,7 @@
 import { useRef } from 'react';
-import type { AnimationOptions } from './types';
+import type { AnimationOptions, AnimationController } from './types';
 import { checkRef } from './utils';
-export function useAnimate<T extends HTMLElement>() {
+export function useAnimate<T extends HTMLElement>(): [React.RefObject<T>, AnimationController] {
   const ref = useRef<T>(null);
 
   function animate(keyframes: Keyframe[] | PropertyIndexedKeyframes, options?: AnimationOptions): Animation {
@@ -9,8 +9,5 @@ export function useAnimate<T extends HTMLElement>() {
     return ref.current!.animate(keyframes, options);
   }
 
-  return {
-    ref,
-    animate
-  };
+  return [ref, animate];
 }

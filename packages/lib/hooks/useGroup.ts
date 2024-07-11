@@ -2,26 +2,42 @@
  * @description advanced use. manage a group of elements using the same animation parameters
  */
 import { useRef, useEffect, useCallback } from 'react';
-import * as groupController from './controller';
-import type { AnimationOptions } from './types';
+import * as controller from './controller';
+import { getType } from './utils';
+import type { AnimateController, SpecialAnimationOptions } from './types';
 
 interface useGroupProps<T extends HTMLElement> {
   refs: React.MutableRefObject<T | null>[];
   keyframes: Keyframe[] | PropertyIndexedKeyframes;
-  options?: AnimationOptions;
+  options?: SpecialAnimationOptions;
   onComplete?: (trigger?: 'play' | 'reverse') => void;
   onStart?: () => void;
   onPause?: () => void;
   onCancel?: () => void;
+  onResume?: () => void;
 }
 
-export function useGroup<T extends HTMLElement>(props: useGroupProps<T>, deps: any[]) {
-  const { refs, keyframes, options, onComplete, onStart, onPause, onCancel } = props;
+function combineOptions<T extends HTMLElement>(options: SpecialAnimationOptions, el: T, index: number, length: number) {
+  if (typeof options === 'number') {
+    return options;
+  }
+  if (getType(options) === 'object') {
+    return {
+      ...options,
+      delay: typeof options.delay === 'number' ? options.delay : options.delay?.(el, index, length),
+      endDelay: typeof options.endDelay === 'number' ? options.endDelay : options.endDelay?.(el, index, length)
+    };
+  }
+}
+
+export function useGroup<T extends HTMLElement>(props: useGroupProps<T>, deps: any[]): AnimateController {
+  const { refs, keyframes, options = 0, onComplete, onStart, onPause, onCancel, onResume } = props;
   const animations = useRef<(Animation | undefined)[]>([]);
+  const animationTimes = useRef<CSSNumberish[]>([]);
 
   useEffect(() => {
-    animations.current = refs.map((ref) => {
-      const animation = ref.current!.animate(keyframes, options);
+    animations.current = refs.map((ref, index, arr) => {
+      const animation = ref.current!.animate(keyframes, combineOptions(options, ref.current!, index, arr.length));
       animation.cancel();
       return animation;
     });
@@ -38,22 +54,27 @@ export function useGroup<T extends HTMLElement>(props: useGroupProps<T>, deps: a
   const play = useCallback(() => {
     clear();
     onStart?.();
-    groupController.play(animations.current, onComplete);
+    controller.play(animations.current, onComplete);
   }, [onStart]);
 
   const pause = useCallback(() => {
     onPause?.();
-    groupController.pause(animations.current);
+    animationTimes.current = controller.pause(animations.current);
   }, []);
 
   const cancel = useCallback(() => {
     onCancel?.();
-    groupController.cancel(animations.current);
+    controller.cancel(animations.current);
   }, [onCancel]);
 
   const reverse = useCallback(() => {
-    groupController.reverse(animations.current, onComplete);
+    controller.reverse(animations.current, onComplete);
   }, []);
 
-  return { play, pause, cancel, reverse };
+  const resume = useCallback(() => {
+    onResume?.();
+    controller.resume(animations.current, animationTimes.current);
+  }, [onResume]);
+
+  return { play, pause, cancel, reverse, resume };
 }

@@ -7,8 +7,16 @@ export default {
     extend: {
       colors: {
         brand: {
+          50: '#f0fdfb',
+          100: '#cafdf6',
+          200: '#96f9ee',
+          300: '#59efe4',
+          400: '#27dad3',
           DEFAULT: '#0ebfba',
-          600: '#089998'
+          600: '#089998',
+          700: '#0b7a7a',
+          800: '#0e6061',
+          900: '#022e31'
         }
       },
       spacing: {
@@ -29,8 +37,8 @@ export default {
     plugin(function ({ addUtilities, addComponents }) {
       addUtilities({
         '.bg-polka': {
-          backgroundColor: '#fff',
-          backgroundImage: `radial-gradient(#383838 0.7px, transparent 0.7px), radial-gradient(#383838 0.7px, #ffffff 0.7px)`,
+          backgroundColor: 'transparent',
+          backgroundImage: `radial-gradient(#383838 0.7px, transparent 0.7px), radial-gradient(#383838 0.7px, #f9fefe 0.7px)`,
           backgroundSize: '28px 28px',
           backgroundPosition: '0 0,14px 14px'
         },

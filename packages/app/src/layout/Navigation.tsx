@@ -3,13 +3,11 @@ import { cn } from '@/utils/utils';
 import { NavLink } from 'react-router-dom';
 import { IconBrandGithubFilled } from '@tabler/icons-react';
 import logoSvg from '@/assets/logo.svg';
-const navList = [
-  {
-    name: 'motion Presets',
-    path: 'motion-presets'
-  }
-];
+import { router, type CustomRouteObject } from '@/router';
+
 export default function Navigation() {
+  const children = router.routes.filter((item) => item.id === 'root')[0].children as CustomRouteObject[];
+  const list = children?.filter((item) => item.meta?.visible);
   return (
     <nav className="flex h-nav items-center justify-between bg-brand px-4 text-white">
       <Link to="/" className="flex items-center">
@@ -18,12 +16,12 @@ export default function Navigation() {
       </Link>
       <div className="flex items-center gap-3">
         <div className="space-x-3">
-          {navList.map((nav) => (
+          {list.map((nav) => (
             <NavLink
               className={({ isActive }) => cn('text-white', { underline: isActive })}
-              to={nav.path}
+              to={nav.path || ''}
               key={nav.path}>
-              {nav.name}
+              {nav.meta?.name}
             </NavLink>
           ))}
         </div>
