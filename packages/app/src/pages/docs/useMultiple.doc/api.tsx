@@ -1,4 +1,3 @@
-import Tag from '@/ui/Tag';
 import type { ApiTableRow } from '@/components/ApiTable';
 
 export const propsRows: ApiTableRow[] = [
@@ -23,31 +22,31 @@ export const propsRows: ApiTableRow[] = [
   },
   {
     name: 'onStart',
-    type: 'tag: () => void',
+    type: '() => void',
     desc: 'callback when the animation starts',
     required: false
   },
   {
     name: 'onPause',
-    type: 'tag: () => void',
+    type: '() => void',
     desc: 'callback when the animation pauses',
     required: false
   },
   {
     name: 'onCancel',
-    type: 'tag: () => void',
+    type: '() => void',
     desc: 'callback when the animation cancels',
     required: false
   },
   {
     name: 'onComplete',
-    type: <Tag>{`(trigger: "play" | "reverse") => void`}</Tag>,
+    type: '(trigger: "play" | "reverse") => void',
     desc: 'callback when the animation completes',
     required: false
   },
   {
     name: 'onResume',
-    type: 'tag: () => void',
+    type: '() => void',
     desc: 'callback when the animation resumes',
     required: false
   }

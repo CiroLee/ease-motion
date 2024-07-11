@@ -104,9 +104,12 @@ export default function UseMultipleDoc() {
         AnimateController
       </Tag>
       <ApiTable rows={controllerRows} omitHeads={['Required', 'Default']} />
-      <div className="my-12 flex">
+      <div className="my-12 flex justify-between">
         <PageNavigate direction="prev" path="/docs/use-group">
           useGroup
+        </PageNavigate>
+        <PageNavigate direction="next" path="/docs/use-value">
+          useValue
         </PageNavigate>
       </div>
     </div>

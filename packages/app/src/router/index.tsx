@@ -54,6 +54,14 @@ export const router = createBrowserRouter([
             meta: {
               name: 'useMultiple'
             }
+          },
+          {
+            path: 'use-value',
+            id: 'use-value',
+            Component: lazy(() => import('../pages/docs/useValue.doc')),
+            meta: {
+              name: 'useValue'
+            }
           }
         ],
         meta: {

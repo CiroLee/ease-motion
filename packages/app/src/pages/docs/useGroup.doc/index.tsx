@@ -68,7 +68,7 @@ export default function UseGroupDoc() {
       <Heading as="h2" className="mb-4">
         UseGroup
       </Heading>
-      <p className="text-zinc-400">useGroup can control multiple elements to animate with the same parameters</p>
+      <p className="text-zinc-400">useGroup is used to control multiple elements to animate with the same parameters</p>
       <Heading as="h4" className="my-4">
         basic
       </Heading>

@@ -44,7 +44,7 @@ export default function UseAnimateDoc() {
       <p className="mb-2 text-zinc-400">
         basic wrap of
         <OutLink url="https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API">
-          Web Animate API(WAAPI)
+          Web Animation API(WAAPI)
         </OutLink>
       </p>
       <Heading as="h5" className="mb-3">
