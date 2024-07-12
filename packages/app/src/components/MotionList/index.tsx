@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { presetMotionNames, type MotionName } from 'animate-motion';
 import { cn } from '@/utils/utils';
 import { cva } from 'class-variance-authority';
-const prefixes = ['fade', 'slide', 'zoom'];
+const prefixes = ['fade', 'slide', 'zoom', 'flip'];
 const item = cva('cursor-pointer rounded-sm border border-brand/20 px-2 py-3 transition hover:bg-brand/10', {
   variants: {
     active: {

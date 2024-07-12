@@ -1,14 +1,16 @@
 import { useEffect, useState, useRef, useMemo } from 'react';
-import { IconCode } from '@tabler/icons-react';
+import { IconCode, IconSquareFilled, IconH1, IconPhotoFilled } from '@tabler/icons-react';
 import { useMotion, presetMotionNames, type EaseFunctionType } from 'animate-motion';
 import Button from '@/ui/Button';
 import MotionList from '@/components/MotionList';
 import PropertyList from '@/components/PropertyList';
 import CodeModal from '@/components/CodeModal';
+import img from '@/assets/images/dog-photo.jpg';
 
 export default function Presets() {
   const [ref, motion] = useMotion<HTMLDivElement>();
 
+  const [target, setTarget] = useState<'text' | 'cube' | 'image'>('text');
   const [showCode, setShowCode] = useState(false);
   const [motionName, setMotionName] = useState(presetMotionNames[0]);
   const [easingObj, setEasing] = useState<{ name: string; value: EaseFunctionType }>({
@@ -55,16 +57,31 @@ export default function Presets() {
     <div className="relative flex h-full overflow-hidden bg-polka">
       <MotionList onClick={setMotionName} />
       <div className="flex flex-1 items-center justify-center overflow-hidden">
-        <div ref={ref} className="text-6xl font-bold">
-          animate-motion
+        <div ref={ref}>
+          {target === 'text' && <span className="text-6xl font-bold">animate-motion</span>}
+          {target === 'cube' && <div className="size-[200px] rounded-xl bg-brand"></div>}
+          {target === 'image' && <img src={img} className="aspect-[3/2] w-[340px] rounded-md" />}
         </div>
-        <div ref={btnBoxRef} className="absolute bottom-8 flex w-[240px] gap-2 px-3">
-          <Button className="h-[48px] text-xl" block onClick={handlePlay}>
-            play
-          </Button>
-          <Button className="h-[48px]" onClick={() => setShowCode(true)}>
-            <IconCode />
-          </Button>
+        <div ref={btnBoxRef} className="absolute bottom-8 flex gap-2 px-3">
+          <div className="mr-4 flex gap-1">
+            <Button size="lg" onClick={() => setTarget('text')}>
+              <IconH1 />
+            </Button>
+            <Button size="lg" onClick={() => setTarget('cube')}>
+              <IconSquareFilled />
+            </Button>
+            <Button size="lg" onClick={() => setTarget('image')}>
+              <IconPhotoFilled />
+            </Button>
+          </div>
+          <div className="flex gap-1">
+            <Button size="lg" className="w-[120px]" onClick={handlePlay}>
+              play
+            </Button>
+            <Button size="lg" onClick={() => setShowCode(true)}>
+              <IconCode />
+            </Button>
+          </div>
         </div>
         <CodeModal show={showCode} code={code} onClose={() => setShowCode(false)} />
       </div>

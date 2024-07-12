@@ -40,6 +40,14 @@ export const router = createBrowserRouter([
             }
           },
           {
+            path: 'use-motion',
+            id: 'use-motion',
+            Component: lazy(() => import('../pages/docs/useMotion.doc')),
+            meta: {
+              name: 'useMotion'
+            }
+          },
+          {
             path: 'use-group',
             id: 'use-group',
             Component: lazy(() => import('../pages/docs/useGroup.doc')),

@@ -6,7 +6,7 @@ import type { AnimationOptions, DOMElement } from './types';
 class MotionPreset {
   public defaultOptions: KeyframeAnimationOptions = {
     duration: 500,
-    fill: 'none'
+    fill: 'forwards'
   };
   private _combineOPtions(options: AnimationOptions = {}) {
     if (typeof options === 'number') {
@@ -24,12 +24,7 @@ class MotionPreset {
    * fade effects
    */
   public fadeIn<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      {
-        opacity: [0, 1]
-      },
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate({ opacity: [0, 1] }, this._combineOPtions(options));
   }
   public fadeInDown<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
@@ -145,7 +140,42 @@ class MotionPreset {
   public zoomOut<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate([{ transform: 'scale(1)' }, { transform: 'scale(0)' }], this._combineOPtions(options));
   }
-  // special effects
+  /**
+   * flip effects
+   */
+  public flipX<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate({ transform: ['rotateX(0deg)', 'rotateX(180deg)'] }, this._combineOPtions(options));
+  }
+  public flipY<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate({ transform: ['rotateY(0deg)', 'rotateY(180deg)'] }, this._combineOPtions(options));
+  }
+  public flipXTop<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate(
+      { transform: ['rotateX(0deg)', 'rotateX(180deg)'], transformOrigin: 'top' },
+      this._combineOPtions(options)
+    );
+  }
+  public flipXBottom<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate(
+      { transform: ['rotateX(0deg)', 'rotateX(180deg)'], transformOrigin: 'bottom' },
+      this._combineOPtions(options)
+    );
+  }
+  public flipYLeft<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate(
+      { transform: ['rotateY(0deg)', 'rotateY(180deg)'], transformOrigin: 'left' },
+      this._combineOPtions(options)
+    );
+  }
+  public flipYRight<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate(
+      { transform: ['rotateY(0deg)', 'rotateY(180deg)'], transformOrigin: 'right' },
+      this._combineOPtions(options)
+    );
+  }
+  /**
+   * special effects
+   */
   public flash<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       {

@@ -25,7 +25,8 @@ export default {
         content: 'calc(100% - 600px)'
       },
       zIndex: {
-        popup: 999
+        popup: 999,
+        loading: 1000
       },
       backgroundImage: {
         streamer: `radial-gradient(50% 50% at 50% 50%, #F6B065 0%, #F1A554 31%, #B97731 63%, #985B1B 100%)`
