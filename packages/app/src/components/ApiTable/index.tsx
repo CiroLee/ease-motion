@@ -54,7 +54,6 @@ const ApiTable: FC<ApiTableProps> = ({
   styles = { name: {}, default: {}, description: {}, required: {} }
 }) => {
   const _header = header.filter((item) => !omitHeads.includes(item));
-  console.log(_header);
   return (
     <Table border>
       <TableHeader>

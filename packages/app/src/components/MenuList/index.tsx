@@ -15,7 +15,7 @@ export default function MenuList() {
   const children = router.routes.find((item) => item.id === 'root')?.children;
   const docsChildren = children?.find((item) => item.id === 'documents')?.children as CustomRouteObject[];
   return (
-    <div className="flex h-full w-[200px] flex-col border-r">
+    <div className="flex h-full w-[260px] flex-col border-r">
       <p className="p-3 text-zinc-400">documents</p>
       {docsChildren.map((menu) => (
         <NavLink to={menu.path || ''} key={menu.id} className={({ isActive }) => cn(menuItem({ active: isActive }))}>
