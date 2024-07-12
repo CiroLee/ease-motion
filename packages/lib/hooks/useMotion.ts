@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { checkRef } from './utils';
-import type { AnimationOptions } from './types';
+import type { AnimationOptions, DOMElement } from './types';
 
 // preset class
 class MotionPreset {
@@ -23,7 +23,7 @@ class MotionPreset {
   /**
    * fade effects
    */
-  public fadeIn<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public fadeIn<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       {
         opacity: [0, 1]
@@ -31,7 +31,7 @@ class MotionPreset {
       this._combineOPtions(options)
     );
   }
-  public fadeInDown<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public fadeInDown<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       [
         { opacity: 0, transform: 'translateY(-100%)' },
@@ -40,7 +40,7 @@ class MotionPreset {
       this._combineOPtions(options)
     );
   }
-  public fadeInUp<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public fadeInUp<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       [
         { opacity: 0, transform: 'translateY(100%)' },
@@ -50,7 +50,7 @@ class MotionPreset {
     );
   }
 
-  public fadeInLeft<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public fadeInLeft<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       [
         { opacity: 0, transform: 'translateX(-100%)' },
@@ -59,7 +59,7 @@ class MotionPreset {
       this._combineOPtions(options)
     );
   }
-  public fadeInRight<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public fadeInRight<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       [
         { opacity: 0, transform: 'translateX(100%)' },
@@ -68,11 +68,11 @@ class MotionPreset {
       this._combineOPtions(options)
     );
   }
-  public fadeOut<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public fadeOut<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate({ opacity: [1, 0] }, this._combineOPtions(options));
   }
 
-  public fadeOutDown<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public fadeOutDown<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       [
         { opacity: 1, transform: 'translateY(0)' },
@@ -82,7 +82,7 @@ class MotionPreset {
     );
   }
 
-  public fadeOutUp<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public fadeOutUp<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       [
         { opacity: 1, transform: 'translateY(0)' },
@@ -91,7 +91,7 @@ class MotionPreset {
       this._combineOPtions(options)
     );
   }
-  public fadeOutLeft<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public fadeOutLeft<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       [
         { opacity: 1, transform: 'translateX(0)' },
@@ -100,7 +100,7 @@ class MotionPreset {
       this._combineOPtions(options)
     );
   }
-  public fadeOutRight<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public fadeOutRight<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       [
         { opacity: 1, transform: 'translateX(0)' },
@@ -112,41 +112,41 @@ class MotionPreset {
   /**
    * slide effects
    */
-  public slideInLeft<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public slideInLeft<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate({ transform: ['translateX(-100%)', 'translateX(0)'] }, this._combineOPtions(options));
   }
-  public slideInRight<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public slideInRight<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate({ transform: ['translateX(100%)', 'translateX(0)'] }, this._combineOPtions(options));
   }
-  public slideInUp<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public slideInUp<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate({ transform: ['translateY(100%)', 'translateY(0)'] }, this._combineOPtions(options));
   }
-  public slideInDown<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public slideInDown<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate({ transform: ['translateY(-100%)', 'translateY(0)'] }, this._combineOPtions(options));
   }
-  public slideOutLeft<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public slideOutLeft<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate({ transform: ['translateX(0)', 'translateX(-100%)'] }, this._combineOPtions(options));
   }
-  public slideOutRight<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public slideOutRight<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate({ transform: ['translateX(0)', 'translateX(100%)'] }, this._combineOPtions(options));
   }
-  public slideOutUp<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public slideOutUp<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate({ transform: ['translateY(0)', 'translateY(-100%)'] }, this._combineOPtions(options));
   }
-  public slideOutDown<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public slideOutDown<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate({ transform: ['translateY(0)', 'translateY(100%)'] }, this._combineOPtions(options));
   }
   /**
    * zoom effects
    */
-  public zoomIn<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public zoomIn<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate([{ transform: 'scale(0)' }, { transform: 'scale(1)' }], this._combineOPtions(options));
   }
-  public zoomOut<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public zoomOut<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate([{ transform: 'scale(1)' }, { transform: 'scale(0)' }], this._combineOPtions(options));
   }
   // special effects
-  public flash<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public flash<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       {
         opacity: [1, 0, 1, 0, 1],
@@ -155,11 +155,11 @@ class MotionPreset {
       this._combineOPtions(options)
     );
   }
-  public pulse<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public pulse<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate({ transform: ['scale(1)', 'scale(1.1)', 'scale(1)'] }, this._combineOPtions(options));
   }
 
-  public heartBeat<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public heartBeat<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       {
         transform: ['scale(1)', 'scale(1.2)', 'scale(1)', 'scale(1.2)', 'scale(1)'],
@@ -171,7 +171,7 @@ class MotionPreset {
       }
     );
   }
-  public breath<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public breath<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       {
         opacity: [1, 0.3, 1]
@@ -179,7 +179,7 @@ class MotionPreset {
       this._combineOPtions(options)
     );
   }
-  public swing<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public swing<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     ref.current!.style.cssText += 'transform-origin: top center;';
     return ref.current!.animate(
       {
@@ -190,7 +190,7 @@ class MotionPreset {
     );
   }
 
-  public shakeX<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public shakeX<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       {
         transform: [
@@ -211,7 +211,7 @@ class MotionPreset {
       this._combineOPtions(options)
     );
   }
-  public shakeY<T extends HTMLElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+  public shakeY<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(
       {
         transform: [
@@ -249,7 +249,7 @@ export const presetMotionNames = allMethodNames.filter((key) => {
 
 // hooks
 const animationPreset = new MotionPreset();
-export function useMotion<T extends HTMLElement>(): [
+export function useMotion<T extends DOMElement>(): [
   React.RefObject<T>,
   (name: MotionName, options?: AnimationOptions) => Animation
 ] {

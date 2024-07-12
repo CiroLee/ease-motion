@@ -4,7 +4,7 @@
 import { useRef, useEffect, useCallback } from 'react';
 import * as controller from './controller';
 import { getType, combine } from './utils';
-import type { AnimationOptions, AnimateController } from './types';
+import type { AnimationOptions, AnimateController, DOMElement } from './types';
 interface MultipleConfig<T> {
   ref: React.MutableRefObject<T | null>;
   keyframes?: Keyframe[] | PropertyIndexedKeyframes;
@@ -57,7 +57,7 @@ function combineKeyframes(
   }
   return keyframes || [];
 }
-export function useMultiple<T extends HTMLElement>(props: useMultipleProps<T>, deps: any[]): AnimateController {
+export function useMultiple<T extends DOMElement>(props: useMultipleProps<T>, deps: any[]): AnimateController {
   const { baseKeyframes, baseOptions, config, onStart, onCancel, onComplete, onPause, onResume } = props;
   const animations = useRef<(Animation | undefined)[]>([]);
   const animationTimes = useRef<CSSNumberish[]>([]);

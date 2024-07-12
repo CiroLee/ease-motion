@@ -76,7 +76,7 @@ export default function UseAnimateDoc() {
       <Heading as="h4" className="my-4">
         Signature
       </Heading>
-      <CodeBlock code="function useAnimate<T extends HTMLElement>(): [React.RefObject<T>, AnimationController]" />
+      <CodeBlock code="function useAnimate<T extends DOMElement>(): [React.RefObject<T>, AnimationController]" />
       <Heading as="h4" className="my-4">
         ReturnType
       </Heading>

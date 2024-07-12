@@ -1,3 +1,4 @@
+export type DOMElement = HTMLElement | SVGElement | MathMLElement;
 export type AnimationOptions = number | KeyframeAnimationOptions;
 export type SpecialAnimationOptions = number | SpecialKeyframeAnimationOptions;
 export type Animations = (Animation | undefined)[];
@@ -16,4 +17,4 @@ type SpecialKeyframeAnimationOptions = Omit<KeyframeAnimationOptions, 'delay' | 
   delay?: number | DelayFunction;
   endDelay?: number | DelayFunction;
 };
-type DelayFunction = <T extends HTMLElement>(el: T, index: number, length: number) => number;
+type DelayFunction = <T extends DOMElement>(el: T, index: number, length: number) => number;

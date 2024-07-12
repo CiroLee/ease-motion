@@ -1,4 +1,6 @@
-export function checkRef(ref: React.RefObject<HTMLElement>) {
+import { DOMElement } from './types';
+
+export function checkRef(ref: React.RefObject<DOMElement>) {
   if (!ref.current) {
     throw new Error('ref is not valid');
   }

@@ -44,7 +44,7 @@ export default function CodeBlock(props: CodeBlockProps) {
       />
       <CopyButton text={code} className="absolute right-2 top-2" />
       {showExpandButton ? (
-        <div className="absolute bottom-0 left-0 flex h-[88px] w-full flex-center">
+        <div className="absolute bottom-0 left-0 flex h-[64px] w-full flex-center">
           <Button size="sm" onClick={() => setExpanded(!expanded)}>
             {expanded ? 'collapse' : 'expand'}
           </Button>

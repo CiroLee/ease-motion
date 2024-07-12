@@ -29,8 +29,6 @@ export default function Home() {
           ref={ref}
           className="absolute -top-1/2 z-[1] size-[50px] rounded-full bg-streamer blur-sm offset-rect"></div>
       </div>
-      <div className="absolute size-[440px] rounded-full bg-[#809FB4]/40 blur-[60px]"></div>
-      <div className="fixed -bottom-[80px] left-[300px] -z-[1] size-[430px] rounded-full bg-[#FB3706]/30 blur-[60px]"></div>
       <div className="z-10 mt-12 space-x-4">
         <Link to="docs">
           <Button size="lg">VIEW DOCS</Button>

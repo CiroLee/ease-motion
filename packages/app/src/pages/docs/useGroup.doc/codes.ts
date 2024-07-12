@@ -38,16 +38,16 @@ export default function App() {
       <div ref={ballRef2} className="size-[40px] bg-blue-500"></div>
       <div ref={ballRef3} className="size-[40px] bg-blue-500"></div>
       <div className="absolute bottom-2 right-2 space-x-2">
-        <button size="sm" onClick={() => controller.play()}>
+        <button onClick={() => controller.play()}>
           play
         </button>
-        <button size="sm" onClick={() => controller.reverse()}>
+        <button onClick={() => controller.reverse()}>
           reverse
         </button>
-        <button size="sm" onClick={() => controller.pause()}>
+        <button onClick={() => controller.pause()}>
           pause
         </button>
-        <button size="sm" onClick={() => controller.resume()}>
+        <button onClick={() => controller.resume()}>
           resume
         </button>
       </div>
@@ -98,7 +98,7 @@ export default function App() {
       <div ref={ballRef5} className="size-[40px] bg-blue-500"></div>
       <div ref={ballRef6} className="size-[40px] bg-blue-500"></div>
       <div className="absolute bottom-2 right-2 space-x-2">
-        <button size="sm" onClick={() => controller.play()}>
+        <button onClick={() => controller.play()}>
           play
         </button>
       </div>
@@ -112,4 +112,4 @@ type SpecialKeyframeAnimationOptions = Omit<KeyframeAnimationOptions, 'delay' | 
   delay?: number | DelayFunction;
   endDelay?: number | DelayFunction;
 };
-type DelayFunction = <T extends HTMLElement>(el: T, index: number, length: number) => number;`;
+type DelayFunction = <T extends DOMElement>(el: T, index: number, length: number) => number;`;

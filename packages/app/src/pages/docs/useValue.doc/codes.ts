@@ -12,16 +12,16 @@ export default function App() {
       <div className="my-4 flex size-[120px] rounded-xl border bg-white text-3xl font-bold flex-center">{value}</div>
       <p>isPlaying: {controller.isPlaying.toString()}</p>
       <div className="mt-4 space-x-2">
-        <button size="sm" onClick={() => controller.play()}>
+        <button onClick={() => controller.play()}>
           play
         </button>
-        <button size="sm" onClick={() => controller.pause()}>
+        <button onClick={() => controller.pause()}>
           pause
         </button>
-        <button size="sm" onClick={() => controller.resume()}>
+        <button onClick={() => controller.resume()}>
           resume
         </button>
-        <button size="sm" onClick={() => controller.cancel()}>
+        <button onClick={() => controller.cancel()}>
           cancel
         </button>
       </div>

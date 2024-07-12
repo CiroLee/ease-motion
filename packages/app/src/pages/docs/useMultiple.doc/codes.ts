@@ -56,7 +56,7 @@ export default function App() {
       <div ref={ballRef1} className="size-[40px] bg-blue-500"></div>
       <div ref={ballRef2} className="size-[40px] bg-blue-500"></div>
       <div ref={ballRef3} className="size-[40px] bg-blue-500"></div>
-      <button size="sm" className="absolute bottom-3 right-3" onClick={() => controller.play()}>
+      <button className="absolute bottom-3 right-3" onClick={() => controller.play()}>
         play
       </button>
     </div>

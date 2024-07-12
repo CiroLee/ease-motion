@@ -4,9 +4,9 @@
 import { useRef, useEffect, useCallback } from 'react';
 import * as controller from './controller';
 import { getType } from './utils';
-import type { AnimateController, SpecialAnimationOptions } from './types';
+import type { AnimateController, DOMElement, SpecialAnimationOptions } from './types';
 
-interface useGroupProps<T extends HTMLElement> {
+interface useGroupProps<T extends DOMElement> {
   refs: React.MutableRefObject<T | null>[];
   keyframes: Keyframe[] | PropertyIndexedKeyframes;
   options?: SpecialAnimationOptions;
@@ -17,7 +17,7 @@ interface useGroupProps<T extends HTMLElement> {
   onResume?: () => void;
 }
 
-function combineOptions<T extends HTMLElement>(options: SpecialAnimationOptions, el: T, index: number, length: number) {
+function combineOptions<T extends DOMElement>(options: SpecialAnimationOptions, el: T, index: number, length: number) {
   if (typeof options === 'number') {
     return options;
   }
@@ -30,7 +30,7 @@ function combineOptions<T extends HTMLElement>(options: SpecialAnimationOptions,
   }
 }
 
-export function useGroup<T extends HTMLElement>(props: useGroupProps<T>, deps: any[]): AnimateController {
+export function useGroup<T extends DOMElement>(props: useGroupProps<T>, deps: any[]): AnimateController {
   const { refs, keyframes, options = 0, onComplete, onStart, onPause, onCancel, onResume } = props;
   const animations = useRef<(Animation | undefined)[]>([]);
   const animationTimes = useRef<CSSNumberish[]>([]);

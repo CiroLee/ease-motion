@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import * as easeAlgorithm from './ease-algorithm';
+import * as easeAlgorithm from './easingAlgorithm';
 
 type EaseAlgorithmTypes = keyof typeof easeAlgorithm;
 

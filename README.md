@@ -112,16 +112,16 @@ export default function App() {
       <div ref={ballRef2} className="size-[40px] bg-blue-500"></div>
       <div ref={ballRef3} className="size-[40px] bg-blue-500"></div>
       <div className="absolute bottom-2 right-2 space-x-2">
-        <button size="sm" onClick={() => controller.play()}>
+        <button onClick={() => controller.play()}>
           play
         </button>
-        <button size="sm" onClick={() => controller.reverse()}>
+        <button onClick={() => controller.reverse()}>
           reverse
         </button>
-        <button size="sm" onClick={() => controller.pause()}>
+        <button onClick={() => controller.pause()}>
           pause
         </button>
-        <button size="sm" onClick={() => controller.resume()}>
+        <button onClick={() => controller.resume()}>
           resume
         </button>
       </div>
@@ -193,7 +193,7 @@ export default function App() {
       <div ref={ballRef1} className="size-[40px] bg-blue-500"></div>
       <div ref={ballRef2} className="size-[40px] bg-blue-500"></div>
       <div ref={ballRef3} className="size-[40px] bg-blue-500"></div>
-      <button size="sm" className="absolute bottom-3 right-3" onClick={() => controller.play()}>
+      <button className="absolute bottom-3 right-3" onClick={() => controller.play()}>
         play
       </button>
     </div>
@@ -220,16 +220,16 @@ export default function App() {
       <div className="my-4 flex size-[120px] rounded-xl border bg-white text-3xl font-bold flex-center">{value}</div>
       <p>isPlaying: {controller.isPlaying.toString()}</p>
       <div className="mt-4 space-x-2">
-        <button size="sm" onClick={() => controller.play()}>
+        <button onClick={() => controller.play()}>
           play
         </button>
-        <button size="sm" onClick={() => controller.pause()}>
+        <button onClick={() => controller.pause()}>
           pause
         </button>
-        <button size="sm" onClick={() => controller.resume()}>
+        <button onClick={() => controller.resume()}>
           resume
         </button>
-        <button size="sm" onClick={() => controller.cancel()}>
+        <button onClick={() => controller.cancel()}>
           cancel
         </button>
       </div>

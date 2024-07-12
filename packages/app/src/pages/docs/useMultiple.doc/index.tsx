@@ -82,10 +82,7 @@ export default function UseMultipleDoc() {
       <Heading as="h4" className="my-4">
         Signature
       </Heading>
-      <CodeBlock
-        code="function useMultiple<T extends HTMLElement>(props: useMultipleProps<T>, deps: any[]): AnimateController"
-        highlightRange={[[0, 1]]}
-      />
+      <CodeBlock code="function useMultiple<T extends DOMElement>(props: useMultipleProps<T>, deps: any[]): AnimateController" />
       <Heading as="h4" className="my-4">
         Props
       </Heading>
