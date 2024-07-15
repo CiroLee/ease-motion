@@ -17,7 +17,8 @@ export default {
           700: '#0b7a7a',
           800: '#0e6061',
           900: '#022e31'
-        }
+        },
+        secondary: '#f9fefe'
       },
       spacing: {
         nav: '64px',

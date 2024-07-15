@@ -14,7 +14,7 @@ export default function Overview() {
       <Heading as="h4" className="my-4">
         Install
       </Heading>
-      <CodeBlock className="w-[60%]" lang="bash" code="npm install animate-motion" />
+      <CodeBlock className="sm:w-[60%]" lang="bash" code="npm install animate-motion" />
       <div className="my-12 flex justify-end">
         <PageNavigate direction="next" path="/docs/use-animate">
           useAnimate

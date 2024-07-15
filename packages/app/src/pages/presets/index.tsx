@@ -6,6 +6,7 @@ import MotionList from '@/components/MotionList';
 import PropertyList from '@/components/PropertyList';
 import CodeModal from '@/components/CodeModal';
 import img from '@/assets/images/dog-photo.jpg';
+import { Link } from 'react-router-dom';
 
 export default function Presets() {
   const [ref, motion] = useMotion<HTMLDivElement>();
@@ -101,6 +102,16 @@ export default function Presets() {
         onSetFill={setFill}
         onSetIterations={setIterations}
       />
+      <div className="absolute flex h-full w-full flex-col bg-brand-50 flex-center lg:hidden">
+        <span>preset playground is unavailable under 1024 screen</span>
+        <div>
+          you can change screen size or visit{' '}
+          <Link className="text-blue-500 underline" to="/docs">
+            Docs
+          </Link>{' '}
+          page
+        </div>
+      </div>
     </div>
   );
 }

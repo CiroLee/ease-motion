@@ -4,7 +4,7 @@
   },
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "editor.formatOnSave": true,
-  "cSpell.words": ["tailwindcss", "commitlint", "clsx", "tsup", "tabler", "shiki", "WAAPI", "Numberish"],
+  "cSpell.words": ["tailwindcss", "commitlint", "clsx", "tsup", "tabler", "shiki", "WAAPI", "Numberish", "usehooks"],
   "typescript.tsdk": "node_modules/typescript/lib",
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],

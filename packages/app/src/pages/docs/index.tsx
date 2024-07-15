@@ -10,9 +10,9 @@ export default function Documents() {
     }
   }, [location.pathname]);
   return (
-    <div className="flex h-full">
+    <div className="relative flex h-full">
       <MenuList />
-      <div className="scrollbar w-full overflow-x-hidden p-4 px-[12%]">
+      <div className="scrollbar w-full overflow-x-hidden p-4 sm:px-[12%]">
         <Outlet />
       </div>
     </div>
