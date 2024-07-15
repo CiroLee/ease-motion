@@ -80,14 +80,14 @@ export default function UseGroupDoc() {
           <Button size="sm" onClick={() => controller.play()}>
             play
           </Button>
-          <Button size="sm" onClick={() => controller.reverse()}>
-            reverse
-          </Button>
           <Button size="sm" onClick={() => controller.pause()}>
             pause
           </Button>
           <Button size="sm" onClick={() => controller.resume()}>
             resume
+          </Button>
+          <Button size="sm" onClick={() => controller.reverse()}>
+            reverse
           </Button>
         </div>
       </Playground>

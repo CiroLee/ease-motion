@@ -33,7 +33,6 @@ function combineOptions<T extends DOMElement>(options: SpecialAnimationOptions, 
 export function useGroup<T extends DOMElement>(props: useGroupProps<T>, deps: any[]): AnimateController {
   const { refs, keyframes, options = 0, onComplete, onStart, onPause, onCancel, onResume } = props;
   const animations = useRef<(Animation | undefined)[]>([]);
-  const animationTimes = useRef<CSSNumberish[]>([]);
 
   useEffect(() => {
     animations.current = refs.map((ref, index, arr) => {
@@ -59,7 +58,7 @@ export function useGroup<T extends DOMElement>(props: useGroupProps<T>, deps: an
 
   const pause = useCallback(() => {
     onPause?.();
-    animationTimes.current = controller.pause(animations.current);
+    controller.pause(animations.current);
   }, []);
 
   const cancel = useCallback(() => {
@@ -73,7 +72,7 @@ export function useGroup<T extends DOMElement>(props: useGroupProps<T>, deps: an
 
   const resume = useCallback(() => {
     onResume?.();
-    controller.resume(animations.current, animationTimes.current);
+    controller.resume(animations.current);
   }, [onResume]);
 
   return { play, pause, cancel, reverse, resume };

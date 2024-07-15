@@ -60,7 +60,6 @@ function combineKeyframes(
 export function useMultiple<T extends DOMElement>(props: useMultipleProps<T>, deps: any[]): AnimateController {
   const { baseKeyframes, baseOptions, config, onStart, onCancel, onComplete, onPause, onResume } = props;
   const animations = useRef<(Animation | undefined)[]>([]);
-  const animationTimes = useRef<CSSNumberish[]>([]);
 
   useEffect(() => {
     animations.current = config.map(({ ref, keyframes, options }) => {
@@ -88,7 +87,7 @@ export function useMultiple<T extends DOMElement>(props: useMultipleProps<T>, de
 
   const pause = useCallback(() => {
     onPause?.();
-    animationTimes.current = controller.pause(animations.current);
+    controller.pause(animations.current);
   }, []);
 
   const cancel = useCallback(() => {
@@ -102,7 +101,7 @@ export function useMultiple<T extends DOMElement>(props: useMultipleProps<T>, de
 
   const resume = useCallback(() => {
     onResume?.();
-    controller.resume(animations.current, animationTimes.current);
+    controller.resume(animations.current);
   }, [onResume]);
 
   return { play, pause, cancel, reverse, resume };
