@@ -5,6 +5,8 @@
 
 The high-performance extension of Web Animation API for React Hooks
 
+![npm bundle size](https://img.shields.io/bundlephobia/min/animate-motion?style=flat) ![GitHub package.json version](https://img.shields.io/github/package-json/v/cirolee/animate-motion) ![GitHub License](https://img.shields.io/github/license/cirolee/animate-motion)
+
 # Install
 
 ```bash
