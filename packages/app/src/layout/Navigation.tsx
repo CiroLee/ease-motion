@@ -23,7 +23,9 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [ref, motion] = useMotion<HTMLDivElement>();
   const children = router.routes.filter((item) => item.id === 'root')[0].children as CustomRouteObject[];
-  const list = children?.filter((item) => item.meta?.visible);
+  const list = children
+    ?.filter((item) => item.meta?.visible)
+    .sort((a, b) => (a.meta!.order! > b.meta!.order! ? 1 : -1));
 
   const handleOnOpen = (isOpen: boolean) => {
     setIsOpen(isOpen);

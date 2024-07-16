@@ -5,6 +5,7 @@ export type CustomRouteObject = RouteObject & {
   meta?: {
     name: string;
     visible?: boolean;
+    order?: number;
   };
 };
 export const router = createBrowserRouter([
@@ -74,7 +75,18 @@ export const router = createBrowserRouter([
         ],
         meta: {
           name: 'docs',
-          visible: true
+          visible: true,
+          order: 1
+        }
+      },
+      {
+        path: 'examples',
+        id: 'examples',
+        Component: lazy(() => import('../pages/examples')),
+        meta: {
+          name: 'examples',
+          visible: true,
+          order: 3
         }
       },
       {
@@ -83,7 +95,8 @@ export const router = createBrowserRouter([
         Component: lazy(() => import('../pages/presets')),
         meta: {
           name: 'presets',
-          visible: true
+          visible: true,
+          order: 2
         }
       }
     ]
