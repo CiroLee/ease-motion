@@ -12,42 +12,49 @@ export const propsRows: ApiTableRow[] = [
     name: 'baseKeyframes',
     desc: `the base keyframes for all elements's keyframes, it will be combined with element's keyframes. It will be useful when they have some common keyframes, like opacity and transform, BUT they must be the same type.`,
     type: 'tag: Keyframe[] | PropertyIndexedKeyframes',
-    required: false
+    required: false,
+    default: ''
   },
   {
     name: 'config',
     desc: `hook config, it contains each element's animation information`,
     type: 'MultipleConfig<T>[]',
-    required: true
+    required: true,
+    default: ''
   },
   {
     name: 'onStart',
     type: '() => void',
     desc: 'callback when the animation starts',
-    required: false
+    required: false,
+    default: ''
   },
   {
     name: 'onPause',
     type: '() => void',
     desc: 'callback when the animation pauses',
-    required: false
+    required: false,
+    default: ''
   },
   {
     name: 'onCancel',
     type: '() => void',
     desc: 'callback when the animation cancels',
-    required: false
+    required: false,
+    default: ''
   },
   {
     name: 'onComplete',
     type: '(trigger: "play" | "reverse") => void',
     desc: 'callback when the animation completes',
-    required: false
+    required: false,
+    default: ''
   },
   {
     name: 'onResume',
     type: '() => void',
     desc: 'callback when the animation resumes',
-    required: false
+    required: false,
+    default: ''
   }
 ];

@@ -7,6 +7,8 @@ import BurgerButton from '@/components/BurgerButton';
 import logoSvg from '@/assets/logo.svg';
 import { useMotion } from 'animate-motion';
 import { router, type CustomRouteObject } from '@/router';
+import { useMobile } from '@/hooks';
+
 const navRest = cva(
   `flex flex-1 items-center transition border-b border-brand-600/40 ease-linear duration-300 z-10 gap-3 w-full text-black px-3 sm:border-none opacity-0 invisible sm:px-0 sm:text-white flex-col overflow-hidden
   sm:justify-end sm:flex-row sm:relative bg-brand-50/80 backdrop-blur-sm sm:bg-transparent fixed top-[var(--nav-height)] left-0 sm:top-0 sm:left-[unset] sm:visible sm:opacity-100`,
@@ -22,8 +24,11 @@ const navRest = cva(
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [ref, motion] = useMotion<HTMLDivElement>();
+  const isMobile = useMobile();
   const children = router.routes.filter((item) => item.id === 'root')[0].children as CustomRouteObject[];
-  const list = children?.filter((item) => item.meta?.visible);
+  const list = children
+    ?.filter((item) => item.meta?.visible)
+    .sort((a, b) => (a.meta!.order! > b.meta!.order! ? 1 : -1));
 
   const handleOnOpen = (isOpen: boolean) => {
     setIsOpen(isOpen);
@@ -51,7 +56,11 @@ export default function Navigation() {
               }
               to={nav.path || ''}
               key={nav.path}
-              onClick={() => handleOnOpen(false)}>
+              onClick={() => {
+                if (isMobile) {
+                  handleOnOpen(false);
+                }
+              }}>
               {nav.meta?.name}
             </NavLink>
           ))}
