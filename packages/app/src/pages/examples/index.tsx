@@ -7,7 +7,7 @@ export default function Examples() {
       <Heading as="h2" className="my-4">
         Examples
       </Heading>
-      <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
+      <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5">
         {exampleList.map((item) => (
           <ExampleCard key={item.id} {...item} />
         ))}
