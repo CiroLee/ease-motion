@@ -6,7 +6,7 @@ import Heading from '@/ui/Heading';
 import { useGroup, EASING_FUNCTIONS } from 'animate-motion';
 import CodeBlock from '@/components/CodeBlock';
 import Tag from '@/ui/Tag';
-import { demoCode, demoCode2, types } from './codes';
+import { demoCode, demoCode2, selectorsCode, types } from './codes';
 import ApiTable from '@/components/ApiTable';
 import { propsRows } from './api';
 import { controllerRows } from '../common.api';
@@ -23,7 +23,7 @@ export default function UseGroupDoc() {
     {
       refs: [ballRef1, ballRef2, ballRef3],
       keyframes: {
-        transform: ['translateX(0) rotate(0)', 'translateX(500px) rotate(2turn)']
+        transform: ['translateX(300px) rotate(2turn)']
       },
       options: {
         duration: 3000,
@@ -50,7 +50,7 @@ export default function UseGroupDoc() {
     {
       refs: [ballRef4, ballRef5, ballRef6],
       keyframes: {
-        transform: ['translateX(0) rotate(0)', 'translateX(500px) rotate(2turn)']
+        transform: ['translateX(0) rotate(0)', 'translateX(300px) rotate(2turn)']
       },
       options: {
         duration: 3000,
@@ -59,6 +59,21 @@ export default function UseGroupDoc() {
         delay: (el, index) => {
           return index * 200;
         }
+      }
+    },
+    []
+  );
+
+  const controller3 = useGroup(
+    {
+      selectors: ['.square'],
+      options: {
+        duration: 3000,
+        fill: 'forwards',
+        easing: EASING_FUNCTIONS.easeInOutBack
+      },
+      keyframes: {
+        transform: ['translateX(300px) rotate(2turn)']
       }
     },
     []
@@ -112,6 +127,26 @@ export default function UseGroupDoc() {
         </div>
       </Playground>
       <CodeBlock code={demoCode2} diffAddLines={[18, 19, 20]} />
+      <Heading as="h4" className="my-4">
+        selectors
+      </Heading>
+      <p className="mb-2">
+        <Tag size="sm" variant="code">
+          useGroup
+        </Tag>{' '}
+        also supports selectors, it is easer to select same type elements to animate
+      </p>
+      <Playground className="mb-4 flex flex-col justify-center gap-2 px-8">
+        <div className="square size-[40px] bg-blue-500"></div>
+        <div className="square size-[40px] bg-blue-500"></div>
+        <div className="square size-[40px] bg-blue-500"></div>
+        <div className="absolute bottom-2 right-2 space-x-2">
+          <Button size="sm" onClick={() => controller3.play()}>
+            play
+          </Button>
+        </div>
+      </Playground>
+      <CodeBlock code={selectorsCode} highlightLines={[7]} />
       <Heading as="h4" className="my-4">
         Signature
       </Heading>
