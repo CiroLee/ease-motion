@@ -7,7 +7,8 @@ import { getType } from './utils';
 import type { AnimateController, DOMElement, SpecialAnimationOptions } from './types';
 
 interface useGroupProps<T extends DOMElement> {
-  refs: React.MutableRefObject<T | null>[];
+  selectors?: string[];
+  refs?: React.MutableRefObject<T | null>[];
   keyframes: Keyframe[] | PropertyIndexedKeyframes;
   options?: SpecialAnimationOptions;
   onComplete?: (trigger?: 'play' | 'reverse') => void;
@@ -31,12 +32,30 @@ function combineOptions<T extends DOMElement>(options: SpecialAnimationOptions, 
 }
 
 export function useGroup<T extends DOMElement>(props: useGroupProps<T>, deps: any[]): AnimateController {
-  const { refs, keyframes, options = 0, onComplete, onStart, onPause, onCancel, onResume } = props;
+  const { selectors = [], refs, keyframes, options = 0, onComplete, onStart, onPause, onCancel, onResume } = props;
   const animations = useRef<(Animation | undefined)[]>([]);
+  const targets = useRef<T[]>();
+
+  const getTargets = useCallback(() => {
+    if (refs) {
+      return refs.map((ref) => ref.current as T);
+    }
+    if (Array.isArray(selectors)) {
+      const list: T[] = [];
+      selectors.forEach((selector) => {
+        list.push(...document.querySelectorAll<T>(selector));
+      });
+      return list;
+    }
+  }, [refs, selectors]);
 
   useEffect(() => {
-    animations.current = refs.map((ref, index, arr) => {
-      const animation = ref.current!.animate(keyframes, combineOptions(options, ref.current!, index, arr.length));
+    targets.current = getTargets();
+    if (!targets.current) {
+      throw new Error('useGroup: selectors or refs is required');
+    }
+    animations.current = targets.current!.map((el, index, arr) => {
+      const animation = el.animate(keyframes, combineOptions(options, el, index, arr.length));
       animation.cancel();
       return animation;
     });
@@ -45,8 +64,8 @@ export function useGroup<T extends DOMElement>(props: useGroupProps<T>, deps: an
   }, deps);
 
   const clear = () => {
-    refs.forEach((ref) => {
-      ref.current?.getAnimations().forEach((animation) => animation.cancel());
+    targets.current?.forEach((el) => {
+      el?.getAnimations().forEach((animation) => animation.cancel());
     });
   };
 

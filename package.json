@@ -1,6 +1,6 @@
 {
   "name": "animate-motion",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "The high-performance extension of Web Animation API for React Hooks",
   "browser": "packages/lib/dist/index.js",
   "types": "packages/lib/dist/index.d.ts",

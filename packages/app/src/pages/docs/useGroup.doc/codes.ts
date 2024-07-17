@@ -9,7 +9,7 @@ export default function App() {
     {
       refs: [ballRef1, ballRef2, ballRef3],
       keyframes: {
-        transform: ['translateX(0) rotate(0)', 'translateX(500px) rotate(2turn)']
+        transform: ['translateX(300px) rotate(2turn)']
       },
       options: {
         duration: 3000,
@@ -66,7 +66,7 @@ export default function App() {
     {
       refs: [ballRef4, ballRef5, ballRef6],
       keyframes: {
-        transform: ['translateX(0) rotate(0)', 'translateX(500px) rotate(2turn)']
+        transform: ['translateX(300px) rotate(2turn)']
       },
       options: {
         duration: 3000,
@@ -113,3 +113,36 @@ type SpecialKeyframeAnimationOptions = Omit<KeyframeAnimationOptions, 'delay' | 
   endDelay?: number | DelayFunction;
 };
 type DelayFunction = <T extends DOMElement>(el: T, index: number, length: number) => number;`;
+
+export const selectorsCode = `import { useGroup, EASING_FUNCTIONS } from 'animate-motion';
+
+export default function App() {
+
+  const controller = useGroup(
+    {
+      selectors: ['.square'],
+      keyframes: {
+        transform: ['translateX(300px) rotate(2turn)']
+      },
+      options: {
+        duration: 3000,
+        fill: 'forwards',
+        easing: EASING_FUNCTIONS.easeInOutBack
+      },
+    },
+    []
+  );
+
+  return (
+    <div className="flex flex-col justify-center gap-2 px-8">
+      <div className="square size-[40px] bg-blue-500"></div>
+      <div className="square size-[40px] bg-blue-500"></div>
+      <div className="square size-[40px] bg-blue-500"></div>
+      <div className="absolute bottom-2 right-2 space-x-2">
+        <button onClick={() => controller.play()}>
+          play
+        </button>
+      </div>
+    </div>
+  )
+}`;

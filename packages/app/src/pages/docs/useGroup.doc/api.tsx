@@ -1,12 +1,17 @@
-import Tag from '@/ui/Tag';
 import type { ApiTableRow } from '@/components/ApiTable';
 
 export const propsRows: ApiTableRow[] = [
   {
     name: 'refs',
-    type: <Tag size="sm">{`React.MutableRefObject<T | null>[]`}</Tag>,
+    type: 'React.MutableRefObject<T | null>[]',
     desc: 'ref array to the elements to animate',
-    required: true
+    required: false
+  },
+  {
+    name: 'selectors',
+    type: 'string[]',
+    desc: 'element selectors',
+    required: false
   },
   {
     name: 'keyframes',
@@ -16,37 +21,37 @@ export const propsRows: ApiTableRow[] = [
   },
   {
     name: 'options',
-    type: 'tag: SpecialAnimationOptions',
+    type: 'SpecialAnimationOptions',
     desc: 'options for the animation',
     required: false
   },
   {
     name: 'onStart',
-    type: 'tag: () => void',
+    type: '() => void',
     desc: 'callback when the animation starts',
     required: false
   },
   {
     name: 'onPause',
-    type: 'tag: () => void',
+    type: '() => void',
     desc: 'callback when the animation pauses',
     required: false
   },
   {
     name: 'onCancel',
-    type: 'tag: () => void',
+    type: '() => void',
     desc: 'callback when the animation cancels',
     required: false
   },
   {
     name: 'onComplete',
-    type: <Tag>{`(trigger: "play" | "reverse") => void`}</Tag>,
+    type: '(trigger: "play" | "reverse") => void',
     desc: 'callback when the animation completes',
     required: false
   },
   {
     name: 'onResume',
-    type: 'tag: () => void',
+    type: '() => void',
     desc: 'callback when the animation resumes',
     required: false
   }
