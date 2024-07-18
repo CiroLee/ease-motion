@@ -1,10 +1,13 @@
 import { cn } from '@/utils/utils';
+import { IconAlertCircleFilled } from '@tabler/icons-react';
 import { EASING_FUNCTIONS, type EaseFunctionType } from 'animate-motion';
 import { useRef, useState } from 'react';
 import EaseIcon from '@/components/EaseIcon';
 import { cva } from 'class-variance-authority';
+import Tooltip from '@/ui/Tooltip';
+import Tag from '@/ui/Tag';
 
-const item = cva('cursor-pointer rounded-sm border border-brand/20 px-2 py-3 transition hover:bg-brand/10', {
+const item = cva('relative cursor-pointer rounded-sm border border-brand/20 px-2 py-3 transition hover:bg-brand/10', {
   variants: {
     active: {
       true: 'border-brand text-brand-600'
@@ -80,7 +83,23 @@ export default function PropertyList({
   return (
     <div className="relative ml-auto box-border flex h-full w-sidebar flex-col overflow-hidden bg-white py-3 shadow-[-2px_0_16px_4px] shadow-black/5">
       <div className="mb-2 flex justify-between px-3">
-        <span className="text-gray-300">easing</span>
+        <div className="flex items-center">
+          <span className="text-gray-300">Easing</span>
+          <Tooltip
+            className="max-w-[240px]"
+            text={
+              <>
+                easing width <div className="inline-block size-[8px] rounded-full bg-orange-300"></div> symbol means
+                that the effect is achieved by{' '}
+                <Tag className="bg-brand-400" size="sm">
+                  linear()
+                </Tag>{' '}
+                function, it is available on Chrome 113+, Safari 17.2+, Firefox 112+
+              </>
+            }>
+            <IconAlertCircleFilled size="1em" className="ml-2 cursor-pointer text-orange-300" />
+          </Tooltip>
+        </div>
         <span className="cursor-pointer text-brand" onClick={handleResetAll}>
           reset all
         </span>
@@ -94,6 +113,9 @@ export default function PropertyList({
               onClick={() => {
                 handleOnSetEasing(key, value as EaseFunctionType);
               }}>
+              {value.includes('linear(') ? (
+                <div className="absolute right-2 top-2 size-[8px] rounded-full bg-orange-300"></div>
+              ) : null}
               <EaseIcon className="size-[36px] text-gray-400" name={key as EaseFunctionType} key={key} />
               <span className="mt-2 text-[12px]">{key}</span>
             </div>
