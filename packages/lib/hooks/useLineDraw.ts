@@ -1,15 +1,12 @@
-/**
- * @description advanced use. manage a group of elements using the same animation parameters
- */
-import { useRef, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import * as controller from './controller';
+import { SpecialAnimationOptions } from './types';
 import { combineOptions } from './utils';
-import type { AnimateController, DOMElement, Keyframes, SpecialAnimationOptions } from './types';
 
-interface useGroupProps<T> {
+interface UseLineDrawProps<T> {
   selectors?: string[];
   refs?: React.MutableRefObject<T | null>[];
-  keyframes: Keyframes;
+  drawType?: 'appear' | 'disappear';
   options?: SpecialAnimationOptions;
   onComplete?: (trigger?: 'play' | 'reverse') => void;
   onStart?: () => void;
@@ -17,9 +14,18 @@ interface useGroupProps<T> {
   onCancel?: () => void;
   onResume?: () => void;
 }
-
-export function useGroup<T extends DOMElement>(props: useGroupProps<T>, deps: any[]): AnimateController {
-  const { selectors = [], refs, keyframes, options = 0, onComplete, onStart, onPause, onCancel, onResume } = props;
+export function useLineDraw<T extends SVGGeometryElement>(props: UseLineDrawProps<T>, deps: any[]) {
+  const {
+    selectors = [],
+    refs,
+    drawType = 'appear',
+    options = 0,
+    onComplete,
+    onStart,
+    onPause,
+    onCancel,
+    onResume
+  } = props;
   const animations = useRef<(Animation | undefined)[]>([]);
   const targets = useRef<T[]>();
 
@@ -42,7 +48,14 @@ export function useGroup<T extends DOMElement>(props: useGroupProps<T>, deps: an
       throw new Error('useGroup: selectors or refs is required');
     }
     animations.current = targets.current!.map((el, index, arr) => {
-      const animation = el.animate(keyframes, combineOptions(options, el, index, arr.length));
+      const length = el.getTotalLength();
+      el.setAttribute('stroke-dasharray', length + ' ' + length);
+      const animation = el.animate(
+        {
+          strokeDashoffset: drawType === 'appear' ? [length, 0] : [0, length]
+        },
+        combineOptions(options, el, index, arr.length)
+      );
       animation.cancel();
       return animation;
     });

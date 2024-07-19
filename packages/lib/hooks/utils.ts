@@ -1,6 +1,7 @@
-import { DOMElement } from './types';
+import { RefObject } from 'react';
+import { DOMElement, SpecialAnimationOptions } from './types';
 
-export function checkRef(ref: React.RefObject<DOMElement>) {
+export function checkRef(ref: RefObject<DOMElement>) {
   if (!ref.current) {
     throw new Error('ref is not valid');
   }
@@ -30,5 +31,23 @@ export function combine(...args: any[]): any {
   }
   if (typeof param1 === 'object') {
     return { ...param1, ...param2 };
+  }
+}
+
+export function combineOptions<T extends DOMElement>(
+  options: SpecialAnimationOptions,
+  el: T,
+  index: number,
+  length: number
+) {
+  if (typeof options === 'number') {
+    return options;
+  }
+  if (getType(options) === 'object') {
+    return {
+      ...options,
+      delay: typeof options.delay === 'number' ? options.delay : options.delay?.(el, index, length),
+      endDelay: typeof options.endDelay === 'number' ? options.endDelay : options.endDelay?.(el, index, length)
+    };
   }
 }

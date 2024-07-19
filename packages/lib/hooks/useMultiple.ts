@@ -4,16 +4,16 @@
 import { useRef, useEffect, useCallback } from 'react';
 import * as controller from './controller';
 import { getType, combine } from './utils';
-import type { AnimationOptions, AnimateController, DOMElement } from './types';
+import type { AnimationOptions, AnimateController, DOMElement, Keyframes } from './types';
 interface MultipleConfig<T> {
   ref: React.MutableRefObject<T | null>;
-  keyframes?: Keyframe[] | PropertyIndexedKeyframes;
+  keyframes?: Keyframes;
   options?: AnimationOptions;
 }
 
 interface useMultipleProps<T> {
   baseOptions?: AnimationOptions;
-  baseKeyframes?: Keyframe[] | PropertyIndexedKeyframes;
+  baseKeyframes?: Keyframes;
   config: MultipleConfig<T>[];
   onComplete?: (trigger?: 'play' | 'reverse') => void;
   onStart?: () => void;
@@ -45,10 +45,7 @@ function combineOptions(baseOptions?: AnimationOptions, options?: AnimationOptio
   return baseOptions || options || {};
 }
 
-function combineKeyframes(
-  baseKeyframes?: Keyframe[] | PropertyIndexedKeyframes,
-  keyframes?: Keyframe[] | PropertyIndexedKeyframes
-) {
+function combineKeyframes(baseKeyframes?: Keyframes, keyframes?: Keyframes) {
   if (!baseKeyframes && !keyframes) {
     return [];
   }

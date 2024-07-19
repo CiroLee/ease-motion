@@ -1,6 +1,7 @@
 export type DOMElement = HTMLElement | SVGElement | MathMLElement;
 export type AnimationOptions = number | KeyframeAnimationOptions;
 export type SpecialAnimationOptions = number | SpecialKeyframeAnimationOptions;
+export type Keyframes = Keyframe[] | PropertyIndexedKeyframes;
 export type Animations = (Animation | undefined)[];
 export type AnimationController = (
   keyframes: Keyframe[] | PropertyIndexedKeyframes,
