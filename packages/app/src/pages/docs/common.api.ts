@@ -1,4 +1,12 @@
 import type { ApiTableRow } from '@/components/ApiTable';
+export const animationControllerCode = `// used for useGroup, useMultiple, useLineDraw hooks
+interface AnimateController {
+  play: () => void;
+  pause: () => void;
+  cancel: () => void;
+  reverse: () => void;
+  resume: () => void;
+}`;
 
 export const controllerRows: ApiTableRow[] = [
   {

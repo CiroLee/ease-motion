@@ -9,7 +9,7 @@ import { code1 } from './codes';
 import ApiTable from '@/components/ApiTable';
 import { propsRows } from './api';
 import Tag from '@/ui/Tag';
-import { controllerRows } from '../common.api';
+import { Link } from 'react-router-dom';
 
 export default function UseMultipleDoc() {
   const ballRef1 = useRef<HTMLDivElement>(null);
@@ -97,10 +97,15 @@ export default function UseMultipleDoc() {
       <Heading as="h4" className="my-4">
         ReturnType
       </Heading>
-      <Tag className="mb-2" size="sm" variant="code">
-        AnimateController
-      </Tag>
-      <ApiTable rows={controllerRows} omitHeads={['Required', 'Default']} />
+      <div>
+        <Tag className="mb-2" size="sm" variant="code">
+          AnimateController
+        </Tag>{' '}
+        see{' '}
+        <Link className="text-blue-600 underline" to="/docs/overview">
+          here
+        </Link>
+      </div>
       <div className="my-12 flex justify-between">
         <PageNavigate direction="prev" path="/docs/use-group">
           useGroup

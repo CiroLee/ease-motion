@@ -1,15 +1,13 @@
-/**
- * @description advanced use. manage a group of elements using the same animation parameters
- */
-import { useRef, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import * as controller from './controller';
-import { combineOptions } from './utils';
-import type { AnimateController, DOMElement, Keyframes, SpecialAnimationOptions } from './types';
-
-interface useGroupProps<T> {
+import { Keyframes, SpecialAnimationOptions, AnimateController } from './types';
+import { combineOptions, getType } from './utils';
+type DrawType = 'appear' | 'disappear';
+interface UseLineDrawProps<T> {
   selectors?: string[];
   refs?: React.MutableRefObject<T | null>[];
-  keyframes: Keyframes;
+  keyframes?: Keyframes;
+  drawType?: DrawType;
   options?: SpecialAnimationOptions;
   onComplete?: (trigger?: 'play' | 'reverse') => void;
   onStart?: () => void;
@@ -18,8 +16,35 @@ interface useGroupProps<T> {
   onResume?: () => void;
 }
 
-export function useGroup<T extends DOMElement>(props: useGroupProps<T>, deps: any[]): AnimateController {
-  const { selectors = [], refs, keyframes, options = 0, onComplete, onStart, onPause, onCancel, onResume } = props;
+function combineKeyframes(drawType: DrawType, length: number, keyframes?: Keyframes) {
+  if (getType(keyframes) === 'object') {
+    return {
+      ...keyframes,
+      strokeDashoffset: drawType === 'appear' ? [length, 0] : [0, length]
+    };
+  }
+  if (Array.isArray(keyframes)) {
+    return [
+      ...keyframes,
+      { strokeDashoffset: drawType === 'appear' ? length : 0 },
+      { strokeDashoffset: drawType === 'appear' ? 0 : length }
+    ];
+  }
+  return { strokeDashoffset: drawType === 'appear' ? [length, 0] : [0, length] };
+}
+export function useLineDraw<T extends SVGGeometryElement>(props: UseLineDrawProps<T>, deps: any[]): AnimateController {
+  const {
+    selectors = [],
+    refs,
+    drawType = 'appear',
+    keyframes,
+    options = 0,
+    onComplete,
+    onStart,
+    onPause,
+    onCancel,
+    onResume
+  } = props;
   const animations = useRef<(Animation | undefined)[]>([]);
   const targets = useRef<T[]>();
 
@@ -42,7 +67,12 @@ export function useGroup<T extends DOMElement>(props: useGroupProps<T>, deps: an
       throw new Error('useGroup: selectors or refs is required');
     }
     animations.current = targets.current!.map((el, index, arr) => {
-      const animation = el.animate(keyframes, combineOptions(options, el, index, arr.length));
+      const length = el.getTotalLength();
+      el.setAttribute('stroke-dasharray', length + ' ' + length);
+      const animation = el.animate(
+        combineKeyframes(drawType, length, keyframes),
+        combineOptions(options, el, index, arr.length)
+      );
       animation.cancel();
       return animation;
     });
