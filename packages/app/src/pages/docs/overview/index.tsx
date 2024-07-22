@@ -1,6 +1,7 @@
 import Heading from '@/ui/Heading';
 import CodeBlock from '@/components/CodeBlock';
 import PageNavigate from '@/components/PageNavigate';
+import { animationControllerCode } from '../common.api';
 export default function Overview() {
   return (
     <div>
@@ -15,6 +16,10 @@ export default function Overview() {
         Install
       </Heading>
       <CodeBlock className="sm:w-[60%]" lang="bash" code="npm install animate-motion" />
+      <Heading as="h4" className="my-4">
+        Types
+      </Heading>
+      <CodeBlock code={animationControllerCode} />
       <div className="my-12 flex justify-end">
         <PageNavigate direction="next" path="/docs/use-animate">
           useAnimate

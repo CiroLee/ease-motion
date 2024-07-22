@@ -29,7 +29,7 @@ export default function MenuList() {
         'absolute z-10 flex h-full w-[260px] shrink-0 -translate-x-full flex-col border-r bg-secondary transition duration-300 sm:relative sm:translate-x-0',
         { 'translate-x-0': !hidden }
       )}>
-      <p className="p-3 text-zinc-400">documents</p>
+      <p className="p-3 text-zinc-400">Hooks</p>
       {docsChildren.map((menu) => (
         <NavLink to={menu.path || ''} key={menu.id} className={({ isActive }) => cn(menuItem({ active: isActive }))}>
           {menu.meta?.name}

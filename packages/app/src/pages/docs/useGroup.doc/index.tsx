@@ -9,7 +9,7 @@ import Tag from '@/ui/Tag';
 import { demoCode, demoCode2, selectorsCode, types } from './codes';
 import ApiTable from '@/components/ApiTable';
 import { propsRows } from './api';
-import { controllerRows } from '../common.api';
+import { Link } from 'react-router-dom';
 
 export default function UseGroupDoc() {
   const ballRef1 = useRef<HTMLDivElement>(null);
@@ -169,10 +169,15 @@ export default function UseGroupDoc() {
       <Heading as="h4" className="mb-2 mt-4">
         ReturnType
       </Heading>
-      <Tag className="mb-2" size="sm" variant="code">
-        AnimateController
-      </Tag>
-      <ApiTable rows={controllerRows} omitHeads={['Required', 'Default']} />
+      <div>
+        <Tag className="mb-2" size="sm" variant="code">
+          AnimateController
+        </Tag>{' '}
+        see{' '}
+        <Link className="text-blue-600 underline" to="/docs/overview">
+          here
+        </Link>
+      </div>
       <div className="my-12 flex justify-between">
         <PageNavigate direction="prev" path="/docs/use-animate">
           useAnimate

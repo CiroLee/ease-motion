@@ -4,8 +4,11 @@ import { useLineDraw } from 'animate-motion';
 import Button from '@/ui/Button';
 import Heading from '@/ui/Heading';
 import CodeBlock from '@/components/CodeBlock';
-import { code1 } from './codes';
+import { code1, code2, code3 } from './codes';
 import Tag from '@/ui/Tag';
+import ApiTable from '@/components/ApiTable';
+import { rows } from './api';
+import { Link } from 'react-router-dom';
 
 export default function UseLineDrawDoc() {
   const path1Ref = useRef<SVGPathElement>(null);
@@ -26,7 +29,7 @@ export default function UseLineDrawDoc() {
   const controller2 = useLineDraw(
     {
       selectors: ['#json path'],
-      drawType: 'disappear',
+      drawType: 'appear',
       options: {
         duration: 1000,
         fill: 'forwards',
@@ -34,6 +37,21 @@ export default function UseLineDrawDoc() {
         delay: (e, index) => {
           return index * 1000;
         }
+      }
+    },
+    []
+  );
+
+  const controller3 = useLineDraw(
+    {
+      selectors: ['#smile path', '#smile circle'],
+      keyframes: {
+        stroke: ['transparent', '#ffae03']
+      },
+      options: {
+        duration: 2000,
+        fill: 'forwards',
+        easing: 'ease-in-out'
       }
     },
     []
@@ -93,6 +111,50 @@ export default function UseLineDrawDoc() {
           play
         </Button>
       </Playground>
+      <CodeBlock code={code2} highlightLines={[9]} />
+      <p className="my-4">you can also add keyframes</p>
+      <Playground className="mb-4 flex flex-col px-8 flex-center">
+        <svg
+          id="smile"
+          width="120"
+          height="120"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+          stroke="black"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="11" />
+          <path d="M17 8V8" />
+          <path d="M7 8V8" />
+          <path d="M7 13.4571C8.61278 16.5791 15 17 17 13" />
+        </svg>
+        <Button size="sm" className="absolute bottom-3 right-3" onClick={() => controller3.play()}>
+          play
+        </Button>
+      </Playground>
+      <CodeBlock code={code3} highlightLines={[10, 11, 12]} />
+      <Heading as="h4" className="my-4">
+        Signature
+      </Heading>
+      <CodeBlock code="function useLineDraw<T extends SVGGeometryElement>(props: UseLineDrawProps<T>, deps: any[]):AnimateController" />
+      <Heading as="h4" className="my-4">
+        Props
+      </Heading>
+      <ApiTable rows={rows} />
+      <Heading as="h4" className="my-4">
+        ReturnType
+      </Heading>
+      <div>
+        <Tag className="mb-2" size="sm" variant="code">
+          AnimateController
+        </Tag>{' '}
+        see{' '}
+        <Link className="text-blue-600 underline" to="/docs/overview">
+          here
+        </Link>
+      </div>
     </>
   );
 }

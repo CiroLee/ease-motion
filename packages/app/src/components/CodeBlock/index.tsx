@@ -27,7 +27,7 @@ export default function CodeBlock(props: CodeBlockProps) {
   return (
     <div
       className={cn(
-        'scrollbar relative max-h-[220px] w-full overflow-hidden rounded-md',
+        'scrollbar relative max-h-[220px] w-full overflow-hidden',
         { 'max-h-[unset]': expanded },
         className
       )}>

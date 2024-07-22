@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useRef } from 'react';
 import * as controller from './controller';
-import { SpecialAnimationOptions } from './types';
-import { combineOptions } from './utils';
-
+import { Keyframes, SpecialAnimationOptions, AnimateController } from './types';
+import { combineOptions, getType } from './utils';
+type DrawType = 'appear' | 'disappear';
 interface UseLineDrawProps<T> {
   selectors?: string[];
   refs?: React.MutableRefObject<T | null>[];
-  drawType?: 'appear' | 'disappear';
+  keyframes?: Keyframes;
+  drawType?: DrawType;
   options?: SpecialAnimationOptions;
   onComplete?: (trigger?: 'play' | 'reverse') => void;
   onStart?: () => void;
@@ -14,11 +15,29 @@ interface UseLineDrawProps<T> {
   onCancel?: () => void;
   onResume?: () => void;
 }
-export function useLineDraw<T extends SVGGeometryElement>(props: UseLineDrawProps<T>, deps: any[]) {
+
+function combineKeyframes(drawType: DrawType, length: number, keyframes?: Keyframes) {
+  if (getType(keyframes) === 'object') {
+    return {
+      ...keyframes,
+      strokeDashoffset: drawType === 'appear' ? [length, 0] : [0, length]
+    };
+  }
+  if (Array.isArray(keyframes)) {
+    return [
+      ...keyframes,
+      { strokeDashoffset: drawType === 'appear' ? length : 0 },
+      { strokeDashoffset: drawType === 'appear' ? 0 : length }
+    ];
+  }
+  return { strokeDashoffset: drawType === 'appear' ? [length, 0] : [0, length] };
+}
+export function useLineDraw<T extends SVGGeometryElement>(props: UseLineDrawProps<T>, deps: any[]): AnimateController {
   const {
     selectors = [],
     refs,
     drawType = 'appear',
+    keyframes,
     options = 0,
     onComplete,
     onStart,
@@ -51,9 +70,7 @@ export function useLineDraw<T extends SVGGeometryElement>(props: UseLineDrawProp
       const length = el.getTotalLength();
       el.setAttribute('stroke-dasharray', length + ' ' + length);
       const animation = el.animate(
-        {
-          strokeDashoffset: drawType === 'appear' ? [length, 0] : [0, length]
-        },
+        combineKeyframes(drawType, length, keyframes),
         combineOptions(options, el, index, arr.length)
       );
       animation.cancel();
