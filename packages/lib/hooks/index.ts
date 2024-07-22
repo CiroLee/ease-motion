@@ -5,4 +5,5 @@ export * from './useMultiple';
 export * from './easingFunction';
 export * from './useValue';
 export * from './useLineDraw';
+export * from './useSpring';
 export * from './types';

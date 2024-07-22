@@ -19,3 +19,8 @@ type SpecialKeyframeAnimationOptions = Omit<KeyframeAnimationOptions, 'delay' | 
   endDelay?: number | DelayFunction;
 };
 type DelayFunction = <T extends DOMElement>(el: T, index: number, length: number) => number;
+
+export interface ValueController extends Omit<AnimateController, 'reverse'> {
+  isPlaying: boolean;
+  isPaused: boolean;
+}

@@ -5,6 +5,7 @@ export type CustomRouteObject = RouteObject & {
   meta?: {
     name: string;
     visible?: boolean;
+    level?: string;
     order?: number;
   };
 };
@@ -29,7 +30,8 @@ export const router = createBrowserRouter([
             id: 'overview',
             Component: lazy(() => import('../pages/docs/overview')),
             meta: {
-              name: 'overview'
+              name: 'overview',
+              level: 'basic'
             }
           },
           {
@@ -37,7 +39,8 @@ export const router = createBrowserRouter([
             id: 'use-animate',
             Component: lazy(() => import('../pages/docs/useAnimate.doc')),
             meta: {
-              name: 'useAnimate'
+              name: 'useAnimate',
+              level: 'basic'
             }
           },
           {
@@ -45,7 +48,8 @@ export const router = createBrowserRouter([
             id: 'use-motion',
             Component: lazy(() => import('../pages/docs/useMotion.doc')),
             meta: {
-              name: 'useMotion'
+              name: 'useMotion',
+              level: 'basic'
             }
           },
           {
@@ -53,7 +57,8 @@ export const router = createBrowserRouter([
             id: 'use-group',
             Component: lazy(() => import('../pages/docs/useGroup.doc')),
             meta: {
-              name: 'useGroup'
+              name: 'useGroup',
+              level: 'basic'
             }
           },
           {
@@ -61,15 +66,8 @@ export const router = createBrowserRouter([
             id: 'use-multiple',
             Component: lazy(() => import('../pages/docs/useMultiple.doc')),
             meta: {
-              name: 'useMultiple'
-            }
-          },
-          {
-            path: 'use-value',
-            id: 'use-value',
-            Component: lazy(() => import('../pages/docs/useValue.doc')),
-            meta: {
-              name: 'useValue'
+              name: 'useMultiple',
+              level: 'basic'
             }
           },
           {
@@ -77,7 +75,26 @@ export const router = createBrowserRouter([
             id: 'use-line-draw',
             Component: lazy(() => import('../pages/docs/useLineDraw.doc')),
             meta: {
-              name: 'useLineDraw'
+              name: 'useLineDraw',
+              level: 'basic'
+            }
+          },
+          {
+            path: 'use-value',
+            id: 'use-value',
+            Component: lazy(() => import('../pages/docs/useValue.doc')),
+            meta: {
+              name: 'useValue',
+              level: 'Advanced'
+            }
+          },
+          {
+            path: 'use-spring',
+            id: 'use-spring',
+            Component: lazy(() => import('../pages/docs/useSpring.doc')),
+            meta: {
+              name: 'useSpring',
+              level: 'Advanced'
             }
           }
         ],
