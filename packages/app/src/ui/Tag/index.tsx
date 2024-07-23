@@ -20,14 +20,14 @@ const tag = cva('inline-flex items-center rounded border', {
 });
 
 type TagVariants = VariantProps<typeof tag>;
-interface TagProps extends TagVariants, React.HTMLAttributes<HTMLDivElement> {
+interface TagProps extends TagVariants, React.HTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
 }
-const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
+const Tag = forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
   const { size, className, variant, ...rest } = props;
-  return <span ref={ref} className={cn(tag({ size, variant, className }))} {...rest}></span>;
+  return <button ref={ref} className={cn(tag({ size, variant, className }))} {...rest}></button>;
 });
 
 Tag.displayName = 'Tag';

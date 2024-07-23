@@ -29,7 +29,7 @@ export default function App() {
   )
 }`;
 
-export const typesCode = `interface UseValueOptions {
+export const typesCode = `interface ValueOptions {
   duration?: number;
   precision?: number;
   autoPlay?: boolean;

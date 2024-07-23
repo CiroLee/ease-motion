@@ -6,7 +6,15 @@ interface AnimateController {
   cancel: () => void;
   reverse: () => void;
   resume: () => void;
-}`;
+}
+// used for useValue and useSpring hooks
+interface ValueController extends Omit<AnimateController, 'reverse'> {
+  isPlaying: boolean;
+  isPaused: boolean;
+}
+`;
+
+export const valueControllerCode = ``;
 
 export const controllerRows: ApiTableRow[] = [
   {

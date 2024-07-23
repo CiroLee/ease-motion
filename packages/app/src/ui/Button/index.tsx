@@ -4,12 +4,13 @@ import { cva } from 'class-variance-authority';
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   className?: string;
   block?: boolean;
+  disabled?: boolean;
   size?: 'default' | 'sm' | 'lg';
   children?: React.ReactNode;
 }
 
 const button = cva(
-  'inline-flex flex-center  bg-brand text-white transition rounded hover:opacity-90 active:bg-brand-600',
+  'inline-flex flex-center  bg-brand text-white transition rounded [&:not(:disabled)]:hover:opacity-90 active:bg-brand-600',
   {
     variants: {
       block: {
@@ -19,8 +20,12 @@ const button = cva(
         default: 'px-3 h-9',
         sm: 'px-2 h-7 text-sm rounded-[3px]',
         lg: 'px-4 h-12 text-lg rounded'
+      },
+      disabled: {
+        true: 'opacity-80 cursor-not-allowed'
       }
     },
+
     defaultVariants: {
       block: false,
       size: 'default'
@@ -29,9 +34,9 @@ const button = cva(
 );
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const { className, size, children, block, ...rest } = props;
+  const { className, size, children, block, disabled, ...rest } = props;
   return (
-    <button ref={ref} className={cn(button({ size, block, className }))} {...rest}>
+    <button ref={ref} disabled={disabled} className={cn(button({ size, disabled, block, className }))} {...rest}>
       {children}
     </button>
   );

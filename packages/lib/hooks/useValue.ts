@@ -1,25 +1,17 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import * as easeAlgorithm from './easingAlgorithm';
+import type { ValueController } from './types';
 
 type EaseAlgorithmTypes = keyof typeof easeAlgorithm;
 
-interface UseValueOptions {
+interface ValueOptions {
   duration?: number;
   precision?: number;
   autoPlay?: boolean;
   easing?: EaseAlgorithmTypes;
 }
 
-interface AnimateValueController {
-  play: () => void;
-  cancel: () => void;
-  pause: () => void;
-  resume: () => void;
-  isPlaying: boolean;
-  isPaused: boolean;
-}
-
-export function useValue(from: number, to: number, options: UseValueOptions = {}): [number, AnimateValueController] {
+export function useValue(from: number, to: number, options: ValueOptions = {}): [number, ValueController] {
   const { duration = 1000, precision = 0, autoPlay = true, easing = 'easeOutCubic' } = options;
 
   const [value, setValue] = useState(from);
@@ -71,7 +63,7 @@ export function useValue(from: number, to: number, options: UseValueOptions = {}
     };
   }, [animate, isPlaying, isPaused]);
 
-  const control: AnimateValueController = {
+  const control: ValueController = {
     play: () => {
       setIsPlaying(true);
       setIsPaused(false);

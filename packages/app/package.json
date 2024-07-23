@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-slider": "^1.2.0",
     "@tabler/icons-react": "^3.9.0",
     "animate-motion": "workspace:*",
     "class-variance-authority": "^0.7.0",
@@ -34,7 +35,7 @@
     "prettier-plugin-tailwindcss": "^0.6.5",
     "shiki": "^1.10.1",
     "tailwindcss": "^3.4.4",
-    "tailwindcss-extra": "^1.0.0",
+    "tailwindcss-extra": "^1.0.1",
     "typescript": "^5.5.3",
     "vite": "^5.3.3",
     "vite-plugin-svg-icons": "^2.0.1"

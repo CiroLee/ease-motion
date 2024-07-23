@@ -18,39 +18,6 @@ export const propsRows: ApiTableRow[] = [
     desc: 'useValue hook options',
     type: 'tag: UseValueOptions',
     required: false,
-    default: '{}'
-  }
-];
-
-export const controllerRows: ApiTableRow[] = [
-  {
-    name: 'play',
-    desc: 'function to play animation',
-    type: '() => void'
-  },
-  {
-    name: 'pause',
-    desc: 'function to pause animation',
-    type: '() => void'
-  },
-  {
-    name: 'cancel',
-    desc: 'function to cancel animation',
-    type: '() => void'
-  },
-  {
-    name: 'resume',
-    desc: 'function to resume animation if it paused',
-    type: '() => void'
-  },
-  {
-    name: 'isPlaying',
-    desc: 'boolean value to check if animation is playing',
-    type: 'boolean'
-  },
-  {
-    name: 'isPaused',
-    desc: 'boolean value to check if animation is paused',
-    type: 'boolean'
+    default: '{ duration: 1000, precision: 0, autoPlay: true, easing: "easeOutCubic" }'
   }
 ];
