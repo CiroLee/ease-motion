@@ -4,14 +4,14 @@ import type { ValueController } from './types';
 
 type EaseAlgorithmTypes = keyof typeof easeAlgorithm;
 
-interface UseValueOptions {
+interface ValueOptions {
   duration?: number;
   precision?: number;
   autoPlay?: boolean;
   easing?: EaseAlgorithmTypes;
 }
 
-export function useValue(from: number, to: number, options: UseValueOptions = {}): [number, ValueController] {
+export function useValue(from: number, to: number, options: ValueOptions = {}): [number, ValueController] {
   const { duration = 1000, precision = 0, autoPlay = true, easing = 'easeOutCubic' } = options;
 
   const [value, setValue] = useState(from);

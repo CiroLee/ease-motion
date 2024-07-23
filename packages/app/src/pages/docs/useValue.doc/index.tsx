@@ -6,7 +6,9 @@ import { useValue } from 'animate-motion';
 import CodeBlock from '@/components/CodeBlock';
 import { code, typesCode } from './codes';
 import ApiTable from '@/components/ApiTable';
-import { propsRows, controllerRows } from './api';
+import { propsRows } from './api';
+import Tag from '@/ui/Tag';
+import { Link } from 'react-router-dom';
 export default function UseValueDoc() {
   const [value, controller] = useValue(0, 100, {
     duration: 5000,
@@ -41,7 +43,7 @@ export default function UseValueDoc() {
       <Heading as="h4" className="my-4">
         Signature
       </Heading>
-      <CodeBlock code="function useValue(from: number, to: number, options: UseValueOptions = {}): [number, AnimateValueController]" />
+      <CodeBlock code="function useValue(from: number, to: number, options: ValueOptions = {}): [number, ValueController]" />
       <Heading as="h4" className="my-4">
         Types
       </Heading>
@@ -49,11 +51,19 @@ export default function UseValueDoc() {
       <Heading as="h4" className="my-4">
         Props
       </Heading>
-      <ApiTable rows={propsRows} />
+      <ApiTable rows={propsRows} styles={{ default: { width: '260px' } }} />
       <Heading as="h4" className="my-4">
         ReturnType
       </Heading>
-      <ApiTable rows={controllerRows} omitHeads={['Required', 'Default']} />
+      <div>
+        <Tag className="mb-2" size="sm" variant="code">
+          ValueController
+        </Tag>{' '}
+        see{' '}
+        <Link className="text-blue-600 underline" to="/docs/overview">
+          here
+        </Link>
+      </div>
       <div className="my-12 flex">
         <PageNavigate direction="prev" path="/docs/use-multiple">
           useMultiple

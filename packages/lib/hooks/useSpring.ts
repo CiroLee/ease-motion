@@ -1,17 +1,15 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createSpring } from './createSpring';
 import type { ValueController } from './types';
-interface SpringConfig {
-  from: number; // start value
-  to: number; // end value
+interface SpringOptions {
   mass?: number; // affect the inertia of the spring
-  stiffness?: number; // higher values make the spring“Tighter”
+  stiffness?: number; // higher value makes the spring motion faster and stronger
   damping?: number; // higher values cause the spring to stop faster
   velocity?: number; // initial speed
   autoPlay?: boolean;
 }
-export function useSpring(config: SpringConfig): [number, ValueController] {
-  const { from, to, mass = 1, stiffness = 100, damping = 10, velocity = 0, autoPlay = true } = config;
+export function useSpring(from: number, to: number, options: SpringOptions = {}): [number, ValueController] {
+  const { mass = 1, stiffness = 100, damping = 10, velocity = 0, autoPlay = true } = options;
 
   const [value, setValue] = useState<number>(from);
   const [isPlaying, setIsPlaying] = useState<boolean>(autoPlay);
