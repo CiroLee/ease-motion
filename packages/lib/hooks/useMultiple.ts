@@ -50,6 +50,9 @@ function combineKeyframes(baseKeyframes?: Keyframes, keyframes?: Keyframes) {
     return [];
   }
   if (getType(baseKeyframes) === getType(keyframes)) {
+    return combine(baseKeyframes, keyframes);
+  }
+  if (baseKeyframes && !keyframes) {
     return baseKeyframes;
   }
   return keyframes || [];
