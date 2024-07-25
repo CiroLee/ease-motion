@@ -1,6 +1,6 @@
 export const code1 = `import { useSpring } from 'ease-motion';
 export default function App() {
-  const [y, controller] = useSpring({ from: 0, to: 240, autoPlay: false });
+  const [y, controller] = useSpring(0, 240, { autoPlay: false });
 
   return (
     <div className="h-[440px] px-8">
