@@ -1,16 +1,18 @@
 {
   "name": "animate-motion",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "The high-performance extension of Web Animation API for React Hooks",
-  "browser": "packages/lib/dist/index.js",
-  "types": "packages/lib/dist/index.d.ts",
-  "type": "module",
+  "main": "dist/index.js",
+  "browser": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev:app": "pnpm --filter app run dev",
     "dev:lib": "pnpm --filter lib run dev",
     "build:app": "pnpm --filter app run build",
     "build:lib": "pnpm --filter lib run build",
-    "prepare": "husky"
+    "prepare": "husky",
+    "copy": "bun script/mv.ts",
+    "publish": "npm run copy && npm publish"
   },
   "workspaces": [
     "packages/*"
@@ -23,7 +25,7 @@
     "animate-motion"
   ],
   "files": [
-    "packages/lib/dist"
+    "dist"
   ],
   "author": "CiroLee<https://github.com/CiroLee>",
   "homepage": "https://github.com/CiroLee/animate-motion",
@@ -37,6 +39,7 @@
   "license": "MIT",
   "devDependencies": {
     "@commitlint/config-conventional": "^19.2.2",
+    "@types/node": "^20.14.12",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@typescript-eslint/parser": "^7.8.0",
     "commitlint": "^19.3.0",
@@ -46,6 +49,7 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.3.2",
+    "rimraf": "5",
     "typescript": "^5"
   }
 }
