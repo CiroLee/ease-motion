@@ -1,10 +1,17 @@
 {
   "name": "ease-motion",
   "description": "The high-performance extension of Web Animation API for React Hooks",
-  "version": "0.0.9",
-  "browser": "dist/index.js",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",

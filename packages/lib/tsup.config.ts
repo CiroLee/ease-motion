@@ -4,7 +4,7 @@ export default defineConfig((options: Options) => {
   return {
     entry: ['hooks/index.ts'],
     outDir: 'dist',
-    format: ['esm'],
+    format: ['esm', 'cjs'],
     dts: true,
     minify: !options.watch,
     watch: options.watch,
