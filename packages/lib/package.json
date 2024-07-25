@@ -1,5 +1,5 @@
 {
-  "name": "animate-motion",
+  "name": "ease-motion",
   "description": "The high-performance extension of Web Animation API for React Hooks",
   "version": "0.0.9",
   "browser": "dist/index.js",
@@ -18,16 +18,16 @@
     "hooks",
     "Web Animation API",
     "motion",
-    "animate-motion"
+    "ease-motion"
   ],
   "author": "CiroLee<https://github.com/CiroLee>",
-  "homepage": "https://github.com/CiroLee/animate-motion",
+  "homepage": "https://github.com/CiroLee/ease-motion",
   "bugs": {
-    "url": "https://github.com/CiroLee/animate-motion/issues"
+    "url": "https://github.com/CiroLee/ease-motion/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/CiroLee/animate-motion.git"
+    "url": "https://github.com/CiroLee/ease-motion.git"
   },
   "peerDependencies": {
     "react": "^18",

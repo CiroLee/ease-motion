@@ -5,7 +5,7 @@ import { cn } from '@/utils/utils';
 import { IconBrandGithubFilled } from '@tabler/icons-react';
 import BurgerButton from '@/components/BurgerButton';
 import logoSvg from '@/assets/logo.svg';
-import { useMotion } from 'animate-motion';
+import { useMotion } from 'ease-motion';
 import { router, type CustomRouteObject } from '@/router';
 import { useMobile } from '@/hooks';
 
@@ -45,7 +45,7 @@ export default function Navigation() {
     <nav className="flex h-nav items-center justify-between bg-brand px-4 text-white">
       <Link to="/" className="flex items-center">
         <img src={logoSvg} className="size-[32px]" alt="logo" />
-        <span className="ml-2 text-xl font-semibold">animate-motion</span>
+        <span className="ml-2 text-xl font-semibold">ease-motion</span>
       </Link>
       <div ref={ref} className={navRest()}>
         <div className={cn('flex w-full flex-col sm:w-fit sm:flex-row sm:space-x-3')}>
@@ -66,8 +66,8 @@ export default function Navigation() {
           ))}
         </div>
         <a
-          href="https://github.com/CiroLee/animate-motion"
-          title="https://github.com/CiroLee/animate-motion"
+          href="https://github.com/CiroLee/ease-motion"
+          title="https://github.com/CiroLee/ease-motion"
           className="w-full py-3 sm:w-fit sm:p-0"
           target="_blank">
           <IconBrandGithubFilled size={20} className="ml-auto" />

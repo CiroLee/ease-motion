@@ -2,7 +2,7 @@ import Heading from '@/ui/Heading';
 import { Link } from 'react-router-dom';
 import CodeBlock from '@/components/CodeBlock';
 
-const code = `import { useMotion } from 'animate-motion';
+const code = `import { useMotion } from 'ease-motion';
 
 export default function App() {
   /** 
@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <div>
-      <div ref={ref} className="text-3xl">animate-motion</div>
+      <div ref={ref} className="text-3xl">ease-motion</div>
       <button onClick={() => motion('swing')}>play</button>
     </div>
   )

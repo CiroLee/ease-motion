@@ -1,4 +1,4 @@
-import type { EaseFunctionType } from 'animate-motion';
+import type { EaseFunctionType } from 'ease-motion';
 interface SvgIconProps {
   name: EaseFunctionType;
   fill?: string;

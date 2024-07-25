@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { cn } from '@/utils/utils';
-import { useMultiple } from 'animate-motion';
+import { useMultiple } from 'ease-motion';
 interface BurgerButtonProps {
   open?: boolean;
   size?: number;

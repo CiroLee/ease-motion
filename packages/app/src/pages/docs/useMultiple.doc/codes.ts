@@ -1,5 +1,5 @@
 export const code1 = `import { useRef } from 'react';
-import { useMultiple } from 'animate-motion';
+import { useMultiple } from 'ease-motion';
 
 export default function App() {
   const ballRef1 = useRef<HTMLDivElement>(null);

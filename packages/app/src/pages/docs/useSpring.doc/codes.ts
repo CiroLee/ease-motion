@@ -1,4 +1,4 @@
-export const code1 = `import { useSpring } from 'animate-motion';
+export const code1 = `import { useSpring } from 'ease-motion';
 export default function App() {
   const [y, controller] = useSpring({ from: 0, to: 240, autoPlay: false });
 

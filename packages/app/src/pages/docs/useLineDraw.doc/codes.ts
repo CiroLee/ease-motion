@@ -1,5 +1,5 @@
 export const code1 = `import { useRef } from 'react';
-import { useLineDraw } from 'animate-motion';
+import { useLineDraw } from 'ease-motion';
 
 export default function App() {
   const path1Ref = useRef<SVGPathElement>(null);
@@ -38,7 +38,7 @@ export default function App() {
   )
 }`;
 export const code2 = `import { useRef } from 'react';
-import { useLineDraw } from 'animate-motion';
+import { useLineDraw } from 'ease-motion';
 
 export default function App() {
   const path1Ref = useRef<SVGPathElement>(null);
@@ -84,7 +84,7 @@ export default function App() {
 }`;
 
 export const code3 = `import { useRef } from 'react';
-import { useLineDraw } from 'animate-motion';
+import { useLineDraw } from 'ease-motion';
 
 export default function App() {
   const path1Ref = useRef<SVGPathElement>(null);

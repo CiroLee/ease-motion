@@ -1,6 +1,6 @@
 import { cn } from '@/utils/utils';
 import { IconAlertCircleFilled } from '@tabler/icons-react';
-import { EASING_FUNCTIONS, type EaseFunctionType } from 'animate-motion';
+import { EASING_FUNCTIONS, type EaseFunctionType } from 'ease-motion';
 import { useRef, useState } from 'react';
 import EaseIcon from '@/components/EaseIcon';
 import { cva } from 'class-variance-authority';

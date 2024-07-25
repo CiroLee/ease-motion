@@ -50,7 +50,7 @@ importers:
       '@tabler/icons-react':
         specifier: ^3.9.0
         version: 3.9.0(react@18.3.1)
-      animate-motion:
+      ease-motion:
         specifier: workspace:*
         version: link:../..
       class-variance-authority:

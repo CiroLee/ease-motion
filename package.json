@@ -1,14 +1,14 @@
 {
-  "name": "animate-motion",
+  "name": "ease-motion",
   "description": "The high-performance extension of Web Animation API for React Hooks",
   "browser": "packages/lib/dist/index.js",
   "types": "packages/lib/dist/index.d.ts",
   "type": "module",
   "scripts": {
     "dev:app": "pnpm --filter app run dev",
-    "dev:lib": "pnpm --filter animate-motion run dev",
+    "dev:lib": "pnpm --filter ease-motion run dev",
     "build:app": "pnpm --filter app run build",
-    "build:lib": "pnpm --filter animate-motion run build",
+    "build:lib": "pnpm --filter ease-motion run build",
     "prepare": "husky",
     "publish": "pnpm run build:lib && cd packages/lib && npm run publish"
   },

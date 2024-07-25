@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/utils/utils';
 import { cva } from 'class-variance-authority';
-import { useMotion } from 'animate-motion';
+import { useMotion } from 'ease-motion';
 const loading = cva('z-loading size-full inset-0 bg-white/60 backdrop-blur-sm flex flex-center', {
   variants: {
     fullscreen: {

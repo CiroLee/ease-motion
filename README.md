@@ -1,16 +1,16 @@
 <div align="center">
-  <img src="images/animate-motion-logo.svg" width="256" height="256" alt="logo">
-  <h1 style="margin-top:20px">animate-motion</h1>
+  <img src="images/ease-motion-logo.svg" width="256" height="256" alt="logo">
+  <h1 style="margin-top:20px">ease-motion</h1>
 </div>
 
 The high-performance extension of Web Animation API for React Hooks
 
-![npm bundle size](https://img.shields.io/bundlephobia/min/animate-motion?style=flat) ![GitHub package.json version](https://img.shields.io/github/package-json/v/cirolee/animate-motion) ![GitHub License](https://img.shields.io/github/license/cirolee/animate-motion)
+![npm bundle size](https://img.shields.io/bundlephobia/min/ease-motion?style=flat) ![GitHub package.json version](https://img.shields.io/github/package-json/v/cirolee/ease-motion) ![GitHub License](https://img.shields.io/github/license/cirolee/ease-motion)
 
 # Install
 
 ```bash
-npm install animate-motion
+npm install ease-motion
 ```
 
 # Usage
@@ -21,14 +21,14 @@ the preset motions
 
 ```ts
 // App.tsx
-import { useMotion } from 'animate-motion';
+import { useMotion } from 'ease-motion';
 
 export default function App() {
   const [ ref, motion ] = useMotion<HTMLDivElement>()
 
   return (
     <div>
-      <div ref={ref} className="text-3xl">animate-motion</div>
+      <div ref={ref} className="text-3xl">ease-motion</div>
       <button onClick={() => motion('swing')}>play</button>
     </div>
   )
@@ -40,7 +40,7 @@ export default function App() {
 basic wrap of [Web Animation API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)
 
 ```ts
-import { useAnimate} from 'animate-motion;'
+import { useAnimate} from 'ease-motion;'
 export default function App() {
   const [ ref, animate ] = useAnimate<HTMLDivElement>();
   return (
@@ -74,7 +74,7 @@ export default function App() {
 useGroup is used to control multiple elements to animate with the same parameters
 
 ```ts
-import { useGroup, EASING_FUNCTIONS } from 'animate-motion';
+import { useGroup, EASING_FUNCTIONS } from 'ease-motion';
 
 export default function App() {
   const ballRef1 = useRef<HTMLDivElement>(null);
@@ -138,7 +138,7 @@ useMultiple is used to control the animation of multiple elements using independ
 
 ```ts
 import { useRef } from 'react';
-import { useMultiple } from 'animate-motion';
+import { useMultiple } from 'ease-motion';
 
 export default function App() {
   const ballRef1 = useRef<HTMLDivElement>(null);
@@ -209,7 +209,7 @@ used to make svg elements(such as path, circle) to have a line animation effect
 
 ```ts
 import { useRef } from 'react';
-import { useLineDraw } from 'animate-motion';
+import { useLineDraw } from 'ease-motion';
 
 export default function App() {
   const path1Ref = useRef<SVGPathElement>(null);
@@ -254,7 +254,7 @@ export default function App() {
 useValue is used to animate numbers
 
 ```ts
-import { useValue } from 'animate-motion';
+import { useValue } from 'ease-motion';
 
 export default function App() {
   const [value, controller] = useValue(0, 100 {
@@ -291,7 +291,7 @@ export default function App() {
 used to simulate the real physical spring motion effect
 
 ```ts
-import { useSpring } from 'animate-motion';
+import { useSpring } from 'ease-motion';
 
 export default function App() {
   const [y, controller] = useSpring({ from: 0, to: 240, autoPlay: false });

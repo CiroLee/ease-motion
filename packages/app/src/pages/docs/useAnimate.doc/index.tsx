@@ -4,10 +4,10 @@ import CodeBlock from '@/components/CodeBlock';
 import Button from '@/ui/Button';
 import ApiTable from '@/components/ApiTable';
 import { returnRows } from './api';
-import { useAnimate } from 'animate-motion';
+import { useAnimate } from 'ease-motion';
 import PageNavigate from '@/components/PageNavigate';
 
-const useAnimateUsageCode = `import { useAnimate} from 'animate-motion;'
+const useAnimateUsageCode = `import { useAnimate} from 'ease-motion;'
 export default function App() {
   const [ ref, animate ] = useAnimate<HTMLDivElement>();
   return (

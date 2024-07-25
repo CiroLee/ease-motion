@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { presetMotionNames, type MotionName } from 'animate-motion';
+import { presetMotionNames, type MotionName } from 'ease-motion';
 import { cn } from '@/utils/utils';
 import { cva } from 'class-variance-authority';
 const prefixes = ['fade', 'slide', 'zoom', 'flip'];

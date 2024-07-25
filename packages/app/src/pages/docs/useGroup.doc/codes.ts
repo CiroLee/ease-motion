@@ -1,4 +1,4 @@
-export const demoCode = `import { useGroup, EASING_FUNCTIONS } from 'animate-motion';
+export const demoCode = `import { useGroup, EASING_FUNCTIONS } from 'ease-motion';
 
 export default function App() {
   const ballRef1 = useRef<HTMLDivElement>(null);
@@ -55,7 +55,7 @@ export default function App() {
   )
 }`;
 
-export const demoCode2 = `import { useGroup, EASING_FUNCTIONS } from 'animate-motion';
+export const demoCode2 = `import { useGroup, EASING_FUNCTIONS } from 'ease-motion';
 
 export default function App() {
   const ballRef4 = useRef<HTMLDivElement>(null);
@@ -114,7 +114,7 @@ type SpecialKeyframeAnimationOptions = Omit<KeyframeAnimationOptions, 'delay' | 
 };
 type DelayFunction = <T extends DOMElement>(el: T, index: number, length: number) => number;`;
 
-export const selectorsCode = `import { useGroup, EASING_FUNCTIONS } from 'animate-motion';
+export const selectorsCode = `import { useGroup, EASING_FUNCTIONS } from 'ease-motion';
 
 export default function App() {
 

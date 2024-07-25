@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { IconXboxXFilled } from '@tabler/icons-react';
-import { type AnimationOptions, useMultiple } from 'animate-motion';
+import { type AnimationOptions, useMultiple } from 'ease-motion';
 import { cn } from '@/utils/utils';
 import Code from '../Code';
 import CopyButton from '../CopyButton';
@@ -76,12 +76,12 @@ const CodeDrawer = (props: CodeDrawerProps) => {
             />
             <div className="relative mb-2 w-full overflow-hidden rounded-md">
               <CopyButton
-                text={`import { EASING_FUNCTIONS } from 'animate-motion';`}
+                text={`import { EASING_FUNCTIONS } from 'ease-motion';`}
                 className="absolute right-2 top-1/2 -translate-y-1/2"
               />
               <Code
                 className="size-full text-sm [&_pre]:min-w-fit [&_pre]:p-3"
-                code={`import { EASING_FUNCTIONS } from 'animate-motion';`}
+                code={`import { EASING_FUNCTIONS } from 'ease-motion';`}
                 lang={lang}
               />
             </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useMemo } from 'react';
 import { IconCode, IconSquareFilled, IconH1, IconPhotoFilled } from '@tabler/icons-react';
-import { useMotion, presetMotionNames, type EaseFunctionType } from 'animate-motion';
+import { useMotion, presetMotionNames, type EaseFunctionType } from 'ease-motion';
 import Button from '@/ui/Button';
 import MotionList from '@/components/MotionList';
 import PropertyList from '@/components/PropertyList';
@@ -59,7 +59,7 @@ export default function Presets() {
       <MotionList onClick={setMotionName} />
       <div className="flex flex-1 items-center justify-center overflow-hidden">
         <div ref={ref}>
-          {target === 'text' && <span className="text-6xl font-bold">animate-motion</span>}
+          {target === 'text' && <span className="text-6xl font-bold">ease-motion</span>}
           {target === 'cube' && <div className="size-[200px] rounded-xl bg-brand"></div>}
           {target === 'image' && <img src={img} className="aspect-[3/2] w-[340px] rounded-md" />}
         </div>

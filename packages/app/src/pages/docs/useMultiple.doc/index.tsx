@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useMultiple } from 'animate-motion';
+import { useMultiple } from 'ease-motion';
 import PageNavigate from '@/components/PageNavigate';
 import Playground from '@/components/Playground';
 import Heading from '@/ui/Heading';

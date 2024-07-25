@@ -9,13 +9,13 @@ export default function Overview() {
         Overview
       </Heading>
       <p>
-        animate-motion is a high-performance extension of Web Animation API(WAAPI) for react hooks. It's easy to get
+        ease-motion is a high-performance extension of Web Animation API(WAAPI) for react hooks. It's easy to get
         started. More controls over animations.
       </p>
       <Heading as="h4" className="my-4">
         Install
       </Heading>
-      <CodeBlock className="sm:w-[60%]" lang="bash" code="npm install animate-motion" />
+      <CodeBlock className="sm:w-[60%]" lang="bash" code="npm install ease-motion" />
       <Heading as="h4" className="my-4">
         Types
       </Heading>
