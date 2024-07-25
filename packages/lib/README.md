@@ -2,8 +2,6 @@
 
 The high-performance extension of Web Animation API for React Hooks
 
-![npm bundle size](https://img.shields.io/bundlephobia/min/ease-motion?style=flat) ![GitHub package.json version](https://img.shields.io/github/package-json/v/cirolee/ease-motion) ![GitHub License](https://img.shields.io/github/license/cirolee/ease-motion)
-
 # Install
 
 ```bash
