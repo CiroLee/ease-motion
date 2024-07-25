@@ -1,13 +1,35 @@
 {
-  "name": "lib",
+  "name": "animate-motion",
+  "description": "The high-performance extension of Web Animation API for React Hooks",
+  "version": "0.0.9",
   "browser": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
     "dev": "tsup --watch",
-    "build": "tsup"
+    "build": "tsup",
+    "publish": "npm publish"
   },
-  "dependencies": {
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "animation",
+    "hooks",
+    "Web Animation API",
+    "motion",
+    "animate-motion"
+  ],
+  "author": "CiroLee<https://github.com/CiroLee>",
+  "homepage": "https://github.com/CiroLee/animate-motion",
+  "bugs": {
+    "url": "https://github.com/CiroLee/animate-motion/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CiroLee/animate-motion.git"
+  },
+  "peerDependencies": {
     "react": "^18",
     "react-dom": "^18"
   },

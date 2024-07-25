@@ -1,39 +1,20 @@
 {
   "name": "animate-motion",
-  "version": "0.0.8",
   "description": "The high-performance extension of Web Animation API for React Hooks",
   "browser": "packages/lib/dist/index.js",
   "types": "packages/lib/dist/index.d.ts",
   "type": "module",
   "scripts": {
     "dev:app": "pnpm --filter app run dev",
-    "dev:lib": "pnpm --filter lib run dev",
+    "dev:lib": "pnpm --filter animate-motion run dev",
     "build:app": "pnpm --filter app run build",
-    "build:lib": "pnpm --filter lib run build",
-    "prepare": "husky"
+    "build:lib": "pnpm --filter animate-motion run build",
+    "prepare": "husky",
+    "publish": "pnpm run build:lib && cd packages/lib && npm run publish"
   },
   "workspaces": [
     "packages/*"
   ],
-  "keywords": [
-    "animation",
-    "hooks",
-    "Web Animation API",
-    "motion",
-    "animate-motion"
-  ],
-  "files": [
-    "packages/lib/dist"
-  ],
-  "author": "CiroLee<https://github.com/CiroLee>",
-  "homepage": "https://github.com/CiroLee/animate-motion",
-  "bugs": {
-    "url": "https://github.com/CiroLee/animate-motion/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/CiroLee/animate-motion.git"
-  },
   "license": "MIT",
   "devDependencies": {
     "@commitlint/config-conventional": "^19.2.2",
