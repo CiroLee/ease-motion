@@ -11,9 +11,14 @@ export function play(animations: Animations, cb?: (...args: any[]) => void) {
 
 export function allFinish(animations: Animations, trigger: 'play' | 'reverse', cb?: (...args: any[]) => void) {
   if (animations.every(Boolean)) {
-    Promise.all(animations.map((animation) => animation!.finished)).then(() => {
-      cb?.(trigger);
-    });
+    Promise.all(animations.map((animation) => animation!.finished))
+      .then(() => {
+        cb?.(trigger);
+      })
+      .catch((error) => {
+        // TODO maybe there are some other kinds of errors
+        console.warn('[animations maybe aborted]', error);
+      });
   }
 }
 
