@@ -4,16 +4,20 @@
 import { useRef, useEffect, useCallback } from 'react';
 import * as controller from './controller';
 import { getType, combine } from './utils';
+import * as presets from './presets';
 import type { AnimationOptions, AnimateController, DOMElement, Keyframes } from './types';
+import type { MotionName } from './useMotion';
 interface MultipleConfig<T> {
   ref: React.MutableRefObject<T | null>;
   keyframes?: Keyframes;
   options?: AnimationOptions;
+  motion?: MotionName;
 }
 
 interface useMultipleProps<T> {
   baseOptions?: AnimationOptions;
   baseKeyframes?: Keyframes;
+  baseMotion?: MotionName;
   config: MultipleConfig<T>[];
   onComplete?: (trigger?: 'play' | 'reverse') => void;
   onStart?: () => void;
@@ -45,9 +49,26 @@ function combineOptions(baseOptions?: AnimationOptions, options?: AnimationOptio
   return baseOptions || options || {};
 }
 
-function combineKeyframes(baseKeyframes?: Keyframes, keyframes?: Keyframes) {
+function combineMotion(baseMotion?: MotionName, motion?: MotionName) {
+  if (motion) {
+    return presets[motion];
+  }
+  return baseMotion && presets[baseMotion] ? presets[baseMotion] : undefined;
+}
+
+function combineKeyframes({
+  baseKeyframes,
+  keyframes,
+  baseMotion,
+  motion
+}: {
+  baseKeyframes?: Keyframes;
+  keyframes?: Keyframes;
+  baseMotion?: MotionName;
+  motion?: MotionName;
+}) {
   if (!baseKeyframes && !keyframes) {
-    return [];
+    return combineMotion(baseMotion, motion);
   }
   if (getType(baseKeyframes) === getType(keyframes)) {
     return combine(baseKeyframes, keyframes);
@@ -55,15 +76,15 @@ function combineKeyframes(baseKeyframes?: Keyframes, keyframes?: Keyframes) {
   if (baseKeyframes && !keyframes) {
     return baseKeyframes;
   }
-  return keyframes || [];
+  return keyframes;
 }
 export function useMultiple<T extends DOMElement>(props: useMultipleProps<T>, deps: any[]): AnimateController {
-  const { baseKeyframes, baseOptions, config, onStart, onCancel, onComplete, onPause, onResume } = props;
+  const { baseKeyframes, baseOptions, baseMotion, config, onStart, onCancel, onComplete, onPause, onResume } = props;
   const animations = useRef<(Animation | undefined)[]>([]);
 
   useEffect(() => {
-    animations.current = config.map(({ ref, keyframes, options }) => {
-      const _keyframes = combineKeyframes(baseKeyframes, keyframes);
+    animations.current = config.map(({ ref, keyframes, options, motion }) => {
+      const _keyframes = combineKeyframes({ baseKeyframes, keyframes, baseMotion, motion });
       const _options = combineOptions(baseOptions, options);
       const animation = ref.current?.animate(_keyframes || [], _options);
       animation?.cancel();

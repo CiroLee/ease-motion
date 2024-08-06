@@ -85,7 +85,7 @@ export default function UseSpringDoc() {
       </Heading>
       <CodeBlock code="function useSpring(from: number, to: number, options?: SpringOptions): [number, ValueController]" />
       <Heading as="h4" className="my-4">
-        Type
+        Types
       </Heading>
       <CodeBlock code={typeCode} />
       <Heading as="h4" className="my-4">

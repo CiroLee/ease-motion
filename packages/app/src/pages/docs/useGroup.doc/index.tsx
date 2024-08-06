@@ -6,7 +6,7 @@ import Heading from '@/ui/Heading';
 import { useGroup, EASING_FUNCTIONS } from 'ease-motion';
 import CodeBlock from '@/components/CodeBlock';
 import Tag from '@/ui/Tag';
-import { demoCode, demoCode2, selectorsCode, types } from './codes';
+import { demoCode, demoCode2, demoCode3, selectorsCode, types } from './codes';
 import ApiTable from '@/components/ApiTable';
 import { propsRows } from './api';
 import { Link } from 'react-router-dom';
@@ -74,6 +74,17 @@ export default function UseGroupDoc() {
       },
       keyframes: {
         transform: ['translateX(300px) rotate(2turn)']
+      }
+    },
+    []
+  );
+  const controller4 = useGroup(
+    {
+      selectors: ['.square2'],
+      motion: 'breath',
+      options: {
+        duration: 1000,
+        fill: 'forwards'
       }
     },
     []
@@ -147,6 +158,25 @@ export default function UseGroupDoc() {
         </div>
       </Playground>
       <CodeBlock code={selectorsCode} highlightLines={[7]} />
+      <Heading as="h4" className="mt-4">
+        presets
+      </Heading>
+      <p className="mb-4">
+        you can also use{' '}
+        <Link to="/motion-presets" className="text-blue-500 underline">
+          presets
+        </Link>{' '}
+        in useGroup
+      </p>
+      <Playground className="mb-4 flex flex-col items-center justify-center gap-2 px-8">
+        <div className="square2 size-[40px] bg-blue-500"></div>
+        <div className="square2 size-[40px] bg-blue-500"></div>
+        <div className="square2 size-[40px] bg-blue-500"></div>
+        <Button size="sm" className="absolute bottom-2 right-2" onClick={() => controller4.play()}>
+          play
+        </Button>
+      </Playground>
+      <CodeBlock code={demoCode3} highlightLines={[7]} />
       <Heading as="h4" className="my-4">
         Signature
       </Heading>
