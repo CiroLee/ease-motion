@@ -16,6 +16,13 @@ export const propsRows: ApiTableRow[] = [
     default: ''
   },
   {
+    name: 'baseMotion',
+    type: 'tag: MotionName',
+    desc: 'preset motion name',
+    required: false,
+    default: ''
+  },
+  {
     name: 'config',
     desc: `hook config, it contains each element's animation information`,
     type: 'MultipleConfig<T>[]',

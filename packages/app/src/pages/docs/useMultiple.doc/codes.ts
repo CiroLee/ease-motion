@@ -62,3 +62,46 @@ export default function App() {
     </div>
   )
 }`;
+
+export const code2 = `import { useRef } from 'react';
+import { useMultiple } from 'ease-motion';
+
+export default function App() {
+  const ballRef1 = useRef<HTMLDivElement>(null);
+  const ballRef2 = useRef<HTMLDivElement>(null);
+  const ballRef3 = useRef<HTMLDivElement>(null);
+
+  const controller = useMultiple(
+    {
+      baseMotion: 'breath',
+      baseOptions: {
+        duration: 1000,
+        fill: 'forwards'
+      },
+      config: [
+        { ref: ballRef4, motion: 'flipX' }, 
+        { ref: ballRef5, motion: 'flipY' }, 
+        { ref: ballRef6 }
+      ]
+    },
+    []
+  );
+
+  return (
+    <div className="mb-4 flex flex-col justify-center gap-2 px-8">
+      <div ref={ballRef1} className="size-[40px] bg-blue-500"></div>
+      <div ref={ballRef2} className="size-[40px] bg-blue-500"></div>
+      <div ref={ballRef3} className="size-[40px] bg-blue-500"></div>
+      <button className="absolute bottom-3 right-3" onClick={() => controller.play()}>
+        play
+      </button>
+    </div>
+  )
+}`;
+
+export const types = `interface MultipleConfig<T> {
+  ref: React.MutableRefObject<T | null>;
+  keyframes?: Keyframes;
+  options?: AnimationOptions;
+  motion?: MotionName;
+}`;

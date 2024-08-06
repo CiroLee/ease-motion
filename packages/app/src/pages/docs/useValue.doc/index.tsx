@@ -39,7 +39,7 @@ export default function UseValueDoc() {
           </Button>
         </div>
       </Playground>
-      <CodeBlock code={code} highlightLines={[1]} highlightRange={[[4, 8]]} />
+      <CodeBlock code={code} highlightRange={[[4, 8]]} />
       <Heading as="h4" className="my-4">
         Signature
       </Heading>

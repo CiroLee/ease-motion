@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { checkRef } from './utils';
+import * as presets from './presets';
 import type { AnimationOptions, DOMElement } from './types';
 
 // preset class
@@ -24,243 +25,119 @@ class MotionPreset {
    * fade effects
    */
   public fadeIn<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate({ opacity: [0, 1] }, this._combineOPtions(options));
+    return ref.current!.animate(presets.fadeIn, this._combineOPtions(options));
   }
   public fadeInDown<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      [
-        { opacity: 0, transform: 'translateY(-100%)' },
-        { opacity: 1, transform: 'translateY(0)' }
-      ],
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.fadeInDown, this._combineOPtions(options));
   }
   public fadeInUp<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      [
-        { opacity: 0, transform: 'translateY(100%)' },
-        { opacity: 1, transform: 'translateY(0)' }
-      ],
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.fadeInUp, this._combineOPtions(options));
   }
 
   public fadeInLeft<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      [
-        { opacity: 0, transform: 'translateX(-100%)' },
-        { opacity: 1, transform: 'translateX(0)' }
-      ],
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.fadeInLeft, this._combineOPtions(options));
   }
   public fadeInRight<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      [
-        { opacity: 0, transform: 'translateX(100%)' },
-        { opacity: 1, transform: 'translateX(0)' }
-      ],
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.fadeInRight, this._combineOPtions(options));
   }
   public fadeOut<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate({ opacity: [1, 0] }, this._combineOPtions(options));
+    return ref.current!.animate(presets.fadeOut, this._combineOPtions(options));
   }
-
   public fadeOutDown<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      [
-        { opacity: 1, transform: 'translateY(0)' },
-        { opacity: 0, transform: 'translateY(100%)' }
-      ],
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.fadeInDown, this._combineOPtions(options));
   }
 
   public fadeOutUp<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      [
-        { opacity: 1, transform: 'translateY(0)' },
-        { opacity: 0, transform: 'translateY(-100%)' }
-      ],
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.fadeOutUp, this._combineOPtions(options));
   }
   public fadeOutLeft<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      [
-        { opacity: 1, transform: 'translateX(0)' },
-        { opacity: 0, transform: 'translateX(-100%)' }
-      ],
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.fadeOutLeft, this._combineOPtions(options));
   }
   public fadeOutRight<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      [
-        { opacity: 1, transform: 'translateX(0)' },
-        { opacity: 0, transform: 'translateX(100%)' }
-      ],
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.fadeOutRight, this._combineOPtions(options));
   }
   /**
    * slide effects
    */
   public slideInLeft<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate({ transform: ['translateX(-100%)', 'translateX(0)'] }, this._combineOPtions(options));
+    return ref.current!.animate(presets.slideInLeft, this._combineOPtions(options));
   }
   public slideInRight<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate({ transform: ['translateX(100%)', 'translateX(0)'] }, this._combineOPtions(options));
+    return ref.current!.animate(presets.slideInRight, this._combineOPtions(options));
   }
   public slideInUp<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate({ transform: ['translateY(100%)', 'translateY(0)'] }, this._combineOPtions(options));
+    return ref.current!.animate(presets.slideInUp, this._combineOPtions(options));
   }
   public slideInDown<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate({ transform: ['translateY(-100%)', 'translateY(0)'] }, this._combineOPtions(options));
+    return ref.current!.animate(presets.slideInDown, this._combineOPtions(options));
   }
   public slideOutLeft<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate({ transform: ['translateX(0)', 'translateX(-100%)'] }, this._combineOPtions(options));
+    return ref.current!.animate(presets.slideOutLeft, this._combineOPtions(options));
   }
   public slideOutRight<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate({ transform: ['translateX(0)', 'translateX(100%)'] }, this._combineOPtions(options));
+    return ref.current!.animate(presets.slideOutRight, this._combineOPtions(options));
   }
   public slideOutUp<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate({ transform: ['translateY(0)', 'translateY(-100%)'] }, this._combineOPtions(options));
+    return ref.current!.animate(presets.slideOutUp, this._combineOPtions(options));
   }
   public slideOutDown<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate({ transform: ['translateY(0)', 'translateY(100%)'] }, this._combineOPtions(options));
+    return ref.current!.animate(presets.slideOutDown, this._combineOPtions(options));
   }
   /**
    * zoom effects
    */
   public zoomIn<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate([{ transform: 'scale(0)' }, { transform: 'scale(1)' }], this._combineOPtions(options));
+    return ref.current!.animate(presets.zoomIn, this._combineOPtions(options));
   }
   public zoomOut<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate([{ transform: 'scale(1)' }, { transform: 'scale(0)' }], this._combineOPtions(options));
+    return ref.current!.animate(presets.zoomOut, this._combineOPtions(options));
   }
   /**
    * flip effects
    */
   public flipX<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate({ transform: ['rotateX(0deg)', 'rotateX(180deg)'] }, this._combineOPtions(options));
+    return ref.current!.animate(presets.flipX, this._combineOPtions(options));
   }
   public flipY<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate({ transform: ['rotateY(0deg)', 'rotateY(180deg)'] }, this._combineOPtions(options));
+    return ref.current!.animate(presets.flipY, this._combineOPtions(options));
   }
   public flipXTop<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      { transform: ['rotateX(0deg)', 'rotateX(180deg)'], transformOrigin: 'top' },
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.flipXTop, this._combineOPtions(options));
   }
   public flipXBottom<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      { transform: ['rotateX(0deg)', 'rotateX(180deg)'], transformOrigin: 'bottom' },
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.flipXBottom, this._combineOPtions(options));
   }
   public flipYLeft<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      { transform: ['rotateY(0deg)', 'rotateY(180deg)'], transformOrigin: 'left' },
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.flipYLeft, this._combineOPtions(options));
   }
   public flipYRight<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      { transform: ['rotateY(0deg)', 'rotateY(180deg)'], transformOrigin: 'right' },
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.flipYRight, this._combineOPtions(options));
   }
   /**
    * special effects
    */
   public flash<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      {
-        opacity: [1, 0, 1, 0, 1],
-        offset: [0, 0.25, 0.5, 0.75, 1]
-      },
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.flash, this._combineOPtions(options));
   }
   public pulse<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate({ transform: ['scale(1)', 'scale(1.1)', 'scale(1)'] }, this._combineOPtions(options));
+    return ref.current!.animate(presets.pulse, this._combineOPtions(options));
   }
 
   public heartBeat<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      {
-        transform: ['scale(1)', 'scale(1.2)', 'scale(1)', 'scale(1.2)', 'scale(1)'],
-        offset: [0, 0.14, 0.28, 0.48, 0.8]
-      },
-      {
-        ...this._combineOPtions(options),
-        easing: 'ease-in-out'
-      }
-    );
+    return ref.current!.animate(presets.heartBeat, this._combineOPtions(options));
   }
   public breath<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      {
-        opacity: [1, 0.3, 1]
-      },
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.breath, this._combineOPtions(options));
   }
   public swing<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     ref.current!.style.cssText += 'transform-origin: top center;';
-    return ref.current!.animate(
-      {
-        transform: ['rotate(0)', 'rotate(12deg)', 'rotate(-8deg)', 'rotate(5deg)', 'rotate(-5deg)', 'rotate(0)'],
-        offset: [0, 0.2, 0.4, 0.6, 0.8]
-      },
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.swing, this._combineOPtions(options));
   }
-
   public shakeX<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      {
-        transform: [
-          'translateX(0)',
-          'translateX(-10px)',
-          'translateX(10px)',
-          'translateX(-10px)',
-          'translateX(10px)',
-          'translateX(-10px)',
-          'translateX(10px)',
-          'translateX(-10px)',
-          'translateX(10px)',
-          'translateX(-10px)',
-          'translateX(0)'
-        ],
-        offset: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
-      },
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.shakeX, this._combineOPtions(options));
   }
   public shakeY<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
-    return ref.current!.animate(
-      {
-        transform: [
-          'translateY(0)',
-          'translateY(-8px)',
-          'translateY(8px)',
-          'translateY(-8px)',
-          'translateY(8px)',
-          'translateY(-8px)',
-          'translateY(8px)',
-          'translateY(-8px)',
-          'translateY(8px)',
-          'translateY(-8px)',
-          'translateY(0)'
-        ],
-        offset: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
-      },
-      this._combineOPtions(options)
-    );
+    return ref.current!.animate(presets.shakeY, this._combineOPtions(options));
   }
 }
 

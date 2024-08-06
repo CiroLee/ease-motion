@@ -56,6 +56,7 @@ export default function App() {
 }`;
 
 export const demoCode2 = `import { useGroup, EASING_FUNCTIONS } from 'ease-motion';
+import { useRef } from 'react';
 
 export default function App() {
   const ballRef4 = useRef<HTMLDivElement>(null);
@@ -97,6 +98,35 @@ export default function App() {
       <div ref={ballRef4} className="size-[40px] bg-blue-500"></div>
       <div ref={ballRef5} className="size-[40px] bg-blue-500"></div>
       <div ref={ballRef6} className="size-[40px] bg-blue-500"></div>
+      <div className="absolute bottom-2 right-2 space-x-2">
+        <button onClick={() => controller.play()}>
+          play
+        </button>
+      </div>
+    </div>
+  )
+}`;
+
+export const demoCode3 = `import { useGroup, EASING_FUNCTIONS } from 'ease-motion';
+
+export default function App() {
+  const controller = useGroup(
+    {
+      selectors: ['.square2'],
+      motion: 'breath',
+      options: {
+        duration: 1000,
+        fill: 'forwards'
+      }
+    },
+    []
+  );
+
+  return (
+    <div className="flex flex-col justify-center gap-2 px-8">
+      <div className="square2 size-[40px] bg-blue-500"></div>
+      <div className="square2 size-[40px] bg-blue-500"></div>
+      <div className="square2 size-[40px] bg-blue-500"></div>
       <div className="absolute bottom-2 right-2 space-x-2">
         <button onClick={() => controller.play()}>
           play

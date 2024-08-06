@@ -4,12 +4,15 @@
 import { useRef, useEffect, useCallback } from 'react';
 import * as controller from './controller';
 import { combineOptions } from './utils';
+import * as presets from './presets';
 import type { AnimateController, DOMElement, Keyframes, SpecialAnimationOptions } from './types';
+import type { MotionName } from './useMotion';
 
 interface useGroupProps<T> {
   selectors?: string[];
   refs?: React.MutableRefObject<T | null>[];
-  keyframes: Keyframes;
+  keyframes?: Keyframes;
+  motion?: MotionName;
   options?: SpecialAnimationOptions;
   onComplete?: (trigger?: 'play' | 'reverse') => void;
   onStart?: () => void;
@@ -18,8 +21,24 @@ interface useGroupProps<T> {
   onResume?: () => void;
 }
 
+function combineKeyframes(keyframes?: Keyframes, motion?: MotionName) {
+  if (keyframes) return keyframes;
+  return motion ? presets[motion] : [];
+}
+
 export function useGroup<T extends DOMElement>(props: useGroupProps<T>, deps: any[]): AnimateController {
-  const { selectors = [], refs, keyframes, options = 0, onComplete, onStart, onPause, onCancel, onResume } = props;
+  const {
+    selectors = [],
+    refs,
+    keyframes,
+    motion,
+    options = 0,
+    onComplete,
+    onStart,
+    onPause,
+    onCancel,
+    onResume
+  } = props;
   const animations = useRef<(Animation | undefined)[]>([]);
   const targets = useRef<T[]>();
 
@@ -41,8 +60,9 @@ export function useGroup<T extends DOMElement>(props: useGroupProps<T>, deps: an
     if (!targets.current) {
       throw new Error('useGroup: selectors or refs is required');
     }
+    const _keyframes = combineKeyframes(keyframes, motion);
     animations.current = targets.current!.map((el, index, arr) => {
-      const animation = el.animate(keyframes, combineOptions(options, el, index, arr.length));
+      const animation = el.animate(_keyframes, combineOptions(options, el, index, arr.length));
       animation.cancel();
       return animation;
     });
