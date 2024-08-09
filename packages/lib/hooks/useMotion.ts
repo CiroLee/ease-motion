@@ -92,6 +92,18 @@ class MotionPreset {
   public zoomOut<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
     return ref.current!.animate(presets.zoomOut, this._combineOPtions(options));
   }
+  public zoomFadeIn<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate(presets.zoomFadeIn, this._combineOPtions(options));
+  }
+  public zoomFadeOut<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate(presets.zoomFadeOut, this._combineOPtions(options));
+  }
+  public zoomOverIn<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate(presets.zoomOverIn, this._combineOPtions(options));
+  }
+  public zoomOverOut<T extends DOMElement>(ref: React.RefObject<T>, options?: AnimationOptions) {
+    return ref.current!.animate(presets.zoomOverOut, this._combineOPtions(options));
+  }
   /**
    * flip effects
    */

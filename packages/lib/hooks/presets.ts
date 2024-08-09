@@ -59,6 +59,22 @@ export const slideOutDown: PropertyIndexedKeyframes = { transform: ['translateY(
 // zoom
 export const zoomIn: PropertyIndexedKeyframes = { transform: ['scale(0)', 'scale(1)'] };
 export const zoomOut: PropertyIndexedKeyframes = { transform: ['scale(1)', 'scale(0)'] };
+export const zoomFadeIn: PropertyIndexedKeyframes = {
+  transform: ['scale(0)', 'scale(1)'],
+  opacity: [0, 1]
+};
+export const zoomFadeOut: PropertyIndexedKeyframes = {
+  transform: ['scale(1)', 'scale(0)'],
+  opacity: [1, 0]
+};
+export const zoomOverIn: PropertyIndexedKeyframes = {
+  transform: ['scale(0.94)', 'scale(1)'],
+  opacity: [0, 1]
+};
+export const zoomOverOut: PropertyIndexedKeyframes = {
+  transform: ['scale(1)', 'scale(0.94)'],
+  opacity: [1, 0]
+};
 
 // flip
 export const flipX: PropertyIndexedKeyframes = { transform: ['rotateX(0deg)', 'rotateX(180deg)'] };
