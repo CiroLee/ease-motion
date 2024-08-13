@@ -27,7 +27,7 @@ export default function CodeBlock(props: CodeBlockProps) {
   return (
     <div
       className={cn(
-        'scrollbar relative max-h-[220px] w-full overflow-hidden',
+        'relative max-h-[220px] w-full overflow-hidden rounded-md',
         { 'max-h-[unset]': expanded },
         className
       )}>
@@ -40,15 +40,13 @@ export default function CodeBlock(props: CodeBlockProps) {
         highlightRange={highlightRange}
         diffAddLines={diffAddLines}
         diffRemoveLines={diffRemoveLines}
-        className="scrollbar overflow-x-auto text-sm [&_pre]:min-w-fit [&_pre]:p-3"
+        className="scrollbar overflow-hidden text-sm [&_pre]:scrollbar [&_pre]:w-full [&_pre]:overflow-auto [&_pre]:p-3 [&_pre_code]:block [&_pre_code]:min-w-fit"
       />
       <CopyButton text={code} className="absolute right-2 top-2" />
       {showExpandButton ? (
-        <div className="absolute bottom-0 left-0 flex h-[64px] w-full flex-center">
-          <Button size="sm" onClick={() => setExpanded(!expanded)}>
-            {expanded ? 'collapse' : 'expand'}
-          </Button>
-        </div>
+        <Button size="sm" className="absolute bottom-5 absolute-center-x" onClick={() => setExpanded(!expanded)}>
+          {expanded ? 'collapse' : 'expand'}
+        </Button>
       ) : null}
     </div>
   );
