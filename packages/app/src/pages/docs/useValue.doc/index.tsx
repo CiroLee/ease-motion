@@ -20,7 +20,7 @@ export default function UseValueDoc() {
       <Heading as="h2" className="mb-2">
         useValue
       </Heading>
-      <p className="mb-4 text-zinc-400">useValue is used to animate numbers</p>
+      <p className="mb-4 text-zinc-400">useValue is used to animate any number you want</p>
       <Playground className="mb-4 flex h-[260px] flex-col items-center">
         <div className="my-4 flex size-[120px] rounded-xl border bg-white text-3xl font-bold flex-center">{value}</div>
         <p>isPlaying: {controller.isPlaying.toString()}</p>

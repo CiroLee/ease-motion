@@ -36,7 +36,8 @@ export const typesCode = `interface ValueOptions {
   easing?: EaseAlgorithmTypes;
 }
 // support easing algorithm types
-type EasingAlgorithmTypes = 
+type EasingAlgorithmTypes =
+  | linear
   | easeOutCubic
   | easeInCubic
   | easeInOutCubic
