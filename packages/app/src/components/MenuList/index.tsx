@@ -33,7 +33,11 @@ export default function MenuList() {
       )}>
       <p className="p-3 text-zinc-400">Hooks</p>
       {docsChildren.map((menu) => (
-        <NavLink to={menu.path || ''} key={menu.id} className={({ isActive }) => cn(menuItem({ active: isActive }))}>
+        <NavLink
+          to={menu.path || ''}
+          key={menu.id}
+          className={({ isActive }) => cn(menuItem({ active: isActive }))}
+          onClick={() => setHidden(true)}>
           {menu.meta?.name}
           {menu.meta?.level !== 'basic' ? (
             <Tag size="sm" className="ml-1">

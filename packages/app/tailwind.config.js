@@ -61,6 +61,7 @@ export default {
           '&::-webkit-scrollbar-thumb': {
             background: '#adadad',
             borderRadius: '8px',
+            zIndex: 999,
             '&:hover': {
               background: '#838383'
             }

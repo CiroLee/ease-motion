@@ -18,7 +18,7 @@ export default function Home() {
   }, []);
   return (
     <div className="flex h-full flex-col overflow-hidden flex-center">
-      <h1 className="z-10 text-[40px] font-bold sm:text-6xl">ease-motion</h1>
+      <h1 className="text-[40px] font-bold sm:text-6xl">ease-motion</h1>
       <p className="mt-4 px-4 text-center sm:px-0">
         The high-performance extension of Web Animation API for React Hooks
       </p>
