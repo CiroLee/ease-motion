@@ -85,8 +85,8 @@ export default function UseAnimateDoc() {
         <PageNavigate direction="prev" path="/docs/overview">
           overview
         </PageNavigate>
-        <PageNavigate direction="next" path="/docs/use-group">
-          useGroup
+        <PageNavigate direction="next" path="/docs/use-motion">
+          useMotion
         </PageNavigate>
       </div>
     </div>

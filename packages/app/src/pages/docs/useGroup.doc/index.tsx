@@ -209,8 +209,8 @@ export default function UseGroupDoc() {
         </Link>
       </div>
       <div className="my-12 flex justify-between">
-        <PageNavigate direction="prev" path="/docs/use-animate">
-          useAnimate
+        <PageNavigate direction="prev" path="/docs/use-motion">
+          useMotion
         </PageNavigate>
         <PageNavigate direction="next" path="/docs/use-multiple">
           useMultiple

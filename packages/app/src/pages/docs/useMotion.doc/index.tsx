@@ -1,6 +1,7 @@
 import Heading from '@/ui/Heading';
 import { Link } from 'react-router-dom';
 import CodeBlock from '@/components/CodeBlock';
+import PageNavigate from '@/components/PageNavigate';
 
 const code = `import { useMotion } from 'ease-motion';
 
@@ -43,6 +44,14 @@ export default function UseMotionDoc() {
         <Link className="text-blue-600 underline" to="/motion-presets">
           here
         </Link>
+      </div>
+      <div className="my-12 flex justify-between">
+        <PageNavigate direction="prev" path="/docs/use-animate">
+          useAnimate
+        </PageNavigate>
+        <PageNavigate direction="next" path="/docs/use-group">
+          useGroup
+        </PageNavigate>
       </div>
     </div>
   );

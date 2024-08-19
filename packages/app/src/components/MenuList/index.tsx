@@ -7,7 +7,7 @@ import { IconLayoutSidebarFilled } from '@tabler/icons-react';
 import { useOnClickOutside } from 'usehooks-ts';
 import Tag from '@/ui/Tag';
 
-const menuItem = cva('py-2 px-1 transition relative flex items-center indent-2 hover:bg-brand/10', {
+const menuItem = cva('py-2 px-1 transition relative flex items-center pl-3 hover:bg-brand/10', {
   variants: {
     active: {
       true: 'text-brand flex items-center before:absolute before:left-1 before:h-[60%] before:inline-block before:w-[2px] before:bg-brand'

@@ -64,9 +64,12 @@ export default function UseValueDoc() {
           here
         </Link>
       </div>
-      <div className="my-12 flex">
-        <PageNavigate direction="prev" path="/docs/use-multiple">
-          useMultiple
+      <div className="my-12 flex justify-between">
+        <PageNavigate direction="prev" path="/docs/use-line-draw">
+          useLineDraw
+        </PageNavigate>
+        <PageNavigate direction="next" path="/docs/use-spring">
+          useSpring
         </PageNavigate>
       </div>
     </div>

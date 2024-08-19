@@ -149,8 +149,8 @@ export default function UseMultipleDoc() {
         <PageNavigate direction="prev" path="/docs/use-group">
           useGroup
         </PageNavigate>
-        <PageNavigate direction="next" path="/docs/use-value">
-          useValue
+        <PageNavigate direction="next" path="/docs/use-line-draw">
+          useLineDraw
         </PageNavigate>
       </div>
     </div>

@@ -9,6 +9,7 @@ import Tag from '@/ui/Tag';
 import ApiTable from '@/components/ApiTable';
 import { rows } from './api';
 import { Link } from 'react-router-dom';
+import PageNavigate from '@/components/PageNavigate';
 
 export default function UseLineDrawDoc() {
   const path1Ref = useRef<SVGPathElement>(null);
@@ -154,6 +155,14 @@ export default function UseLineDrawDoc() {
         <Link className="text-blue-600 underline" to="/docs/overview">
           here
         </Link>
+      </div>
+      <div className="my-12 flex justify-between">
+        <PageNavigate direction="prev" path="/docs/use-multiple">
+          useMultiple
+        </PageNavigate>
+        <PageNavigate direction="next" path="/docs/use-value">
+          useValue
+        </PageNavigate>
       </div>
     </>
   );

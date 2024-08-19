@@ -10,6 +10,7 @@ import Tag from '@/ui/Tag';
 import { Link } from 'react-router-dom';
 import ApiTable from '@/components/ApiTable';
 import { propsRow } from './api';
+import PageNavigate from '@/components/PageNavigate';
 
 export default function UseSpringDoc() {
   const [springConf, setSpringConf] = useState({ mass: 1, stiffness: 100, damping: 10, velocity: 0 });
@@ -103,6 +104,11 @@ export default function UseSpringDoc() {
         <Link className="text-blue-600 underline" to="/docs/overview">
           here
         </Link>
+      </div>
+      <div className="my-12">
+        <PageNavigate direction="prev" path="/docs/use-value">
+          useValue
+        </PageNavigate>
       </div>
     </div>
   );
