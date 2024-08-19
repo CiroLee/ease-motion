@@ -15,7 +15,7 @@ export default function ExampleCard(props: ExampleCardProps) {
         <div className="z-10 flex w-full flex-1 flex-col border-t bg-white p-2">
           <p className="font-semibold">{name}</p>
           <p className="line-clamp-2 text-sm leading-4 text-zinc-400">{desc}</p>
-          <div className="absolute bottom-2">
+          <div className="absolute bottom-2 space-x-2 space-y-2">
             {tags?.map((item, index) => (
               <Tag key={index} size="sm">
                 {item}

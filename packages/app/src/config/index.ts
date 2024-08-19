@@ -2,6 +2,7 @@ import noticeBarImg from '@/assets/images/noticeBar@2x.webp';
 import drawerImg from '@/assets/images/drawer@2x.webp';
 import tabBarImg from '@/assets/images/tabbar@2x.webp';
 import pulseImg from '@/assets/images/pulse@2x.webp';
+import letterUpImg from '@/assets/images/letterUp@2x.webp';
 import type { ExampleCard } from '@/types';
 
 export const exampleList: ExampleCard[] = [
@@ -36,5 +37,13 @@ export const exampleList: ExampleCard[] = [
     desc: 'pulse like animation',
     url: 'https://codesandbox.io/p/sandbox/pulse-9w4cj8',
     tags: ['useAnimate', 'svg']
+  },
+  {
+    id: 'letterUp',
+    name: 'LetterUp',
+    cover: letterUpImg,
+    desc: 'letter up animation with blur effect',
+    url: 'https://codesandbox.io/p/sandbox/letterup-fvz894',
+    tags: ['letter', 'useGroup']
   }
 ];
