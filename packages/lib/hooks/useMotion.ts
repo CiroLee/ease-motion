@@ -1,25 +1,29 @@
 import { useRef } from 'react';
-import { checkRef } from './utils';
+import { checkDuration, checkRef } from './utils';
 import * as presets from './presets';
-import type { AnimationOptions, DOMElement } from './types';
+import type { _KeyframeAnimationOptions, AnimationOptions, DOMElement } from './types';
 
 // preset class
 class MotionPreset {
-  public defaultOptions: KeyframeAnimationOptions = {
+  public defaultOptions: _KeyframeAnimationOptions = {
     duration: 500,
     fill: 'forwards'
   };
   private _combineOPtions(options: AnimationOptions = {}) {
+    let opt: AnimationOptions = {};
     if (typeof options === 'number') {
-      return {
+      opt = {
         ...this.defaultOptions,
         duration: options
       };
+    } else {
+      opt = {
+        ...this.defaultOptions,
+        ...options
+      };
     }
-    return {
-      ...this.defaultOptions,
-      ...options
-    };
+    checkDuration(opt);
+    return opt;
   }
   /**
    * fade effects

@@ -3,9 +3,9 @@
  */
 import { useRef, useEffect, useCallback } from 'react';
 import * as controller from './controller';
-import { getType, combine } from './utils';
+import { getType, combine, checkDuration } from './utils';
 import * as presets from './presets';
-import type { AnimationOptions, AnimateController, DOMElement, Keyframes } from './types';
+import type { AnimationOptions, AnimateController, DOMElement, Keyframes, _KeyframeAnimationOptions } from './types';
 import type { MotionName } from './useMotion';
 interface MultipleConfig<T> {
   ref: React.MutableRefObject<T | null>;
@@ -33,12 +33,12 @@ function combineOptions(baseOptions?: AnimationOptions, options?: AnimationOptio
   if (typeof baseOptions === 'number' && getType(options) === 'object') {
     return {
       duration: baseOptions,
-      ...(options as KeyframeAnimationOptions)
+      ...(options as _KeyframeAnimationOptions)
     };
   }
   if (getType(baseOptions) === 'object' && typeof options === 'number') {
     return {
-      ...(baseOptions as KeyframeAnimationOptions),
+      ...(baseOptions as _KeyframeAnimationOptions),
       duration: options
     };
   }
@@ -86,6 +86,7 @@ export function useMultiple<T extends DOMElement>(props: useMultipleProps<T>, de
     animations.current = config.map(({ ref, keyframes, options, motion }) => {
       const _keyframes = combineKeyframes({ baseKeyframes, keyframes, baseMotion, motion });
       const _options = combineOptions(baseOptions, options);
+      checkDuration(_options);
       const animation = ref.current?.animate(_keyframes || [], _options);
       animation?.cancel();
       return animation;

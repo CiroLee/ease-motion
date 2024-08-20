@@ -14,6 +14,10 @@ interface ValueOptions {
 export function useValue(from: number, to: number, options: ValueOptions = {}): [number, ValueController] {
   const { duration = 1000, precision = 0, autoPlay = true, easing = 'easeOutCubic' } = options;
 
+  if (duration <= 0) {
+    throw new Error('useValue: duration must be greater than 0');
+  }
+
   const [value, setValue] = useState(from);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [isPaused, setIsPaused] = useState(false);

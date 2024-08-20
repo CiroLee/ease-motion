@@ -1,9 +1,34 @@
 import { RefObject } from 'react';
-import { DOMElement, SpecialAnimationOptions } from './types';
+import { AnimationOptions, DOMElement, SpecialAnimationOptions } from './types';
 
 export function checkRef(ref: RefObject<DOMElement>) {
   if (!ref.current) {
     throw new Error('ref is not valid');
+  }
+}
+function isCSSNumericValueLessThanZero(value: CSSNumericValue) {
+  const zero = CSS.number(0);
+  const result = value.sub(zero) as CSSUnitValue;
+
+  return result.value <= 0;
+}
+/**
+ * @explain if duration is set to zero or undefined, if will not trigger animation
+ * it may cause some unexpected behavior,so this function will check duration and
+ * throw error if duration is less than or equals to zero
+ */
+export function checkDuration(options?: AnimationOptions | SpecialAnimationOptions) {
+  if (typeof options === 'number' && options <= 0) {
+    throw new Error('options is a number and must be greater than 0');
+  } else if (typeof options === 'object') {
+    if (
+      [
+        typeof options.duration === 'number' && options.duration <= 0,
+        options.duration instanceof CSSNumericValue && isCSSNumericValueLessThanZero(options.duration)
+      ].some(Boolean)
+    ) {
+      throw new Error('options.duration must be greater than 0');
+    }
   }
 }
 export function getType(v?: any): string {
@@ -40,6 +65,7 @@ export function combineOptions<T extends DOMElement>(
   index: number,
   length: number
 ) {
+  checkDuration(options);
   if (typeof options === 'number') {
     return options;
   }
