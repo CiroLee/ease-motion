@@ -1,7 +1,7 @@
 {
   "name": "ease-motion",
   "description": "The high-performance extension of Web Animation API for React Hooks",
-  "version": "0.1.6",
+  "version": "0.1.61",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -29,7 +29,7 @@
     "ease-motion"
   ],
   "author": "CiroLee<https://github.com/CiroLee>",
-  "homepage": "https://github.com/CiroLee/ease-motion",
+  "homepage": "https://ease-motion.vercel.app",
   "bugs": {
     "url": "https://github.com/CiroLee/ease-motion/issues"
   },
