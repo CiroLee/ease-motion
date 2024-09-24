@@ -3,8 +3,7 @@
  */
 import { useRef, useEffect, useCallback } from 'react';
 import * as controller from './controller';
-import { combineOptions } from './utils';
-import * as presets from './presets';
+import { combineKeyframeByMotion, combineOptions } from './utils';
 import type { AnimateController, DOMElement, Keyframes, SpecialAnimationOptions } from './types';
 import type { MotionName } from './useMotion';
 
@@ -19,11 +18,6 @@ interface useGroupProps<T> {
   onPause?: () => void;
   onCancel?: () => void;
   onResume?: () => void;
-}
-
-function combineKeyframes(keyframes?: Keyframes, motion?: MotionName) {
-  if (keyframes) return keyframes;
-  return motion ? presets[motion] : [];
 }
 
 export function useGroup<T extends DOMElement>(props: useGroupProps<T>, deps: any[]): AnimateController {
@@ -60,7 +54,7 @@ export function useGroup<T extends DOMElement>(props: useGroupProps<T>, deps: an
     if (!targets.current) {
       throw new Error('useGroup: selectors or refs is required');
     }
-    const _keyframes = combineKeyframes(keyframes, motion);
+    const _keyframes = combineKeyframeByMotion(keyframes, motion);
     animations.current = targets.current!.map((el, index, arr) => {
       const animation = el.animate(_keyframes, combineOptions(options, el, index, arr.length));
       animation.cancel();

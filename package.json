@@ -21,7 +21,7 @@
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@typescript-eslint/parser": "^7.8.0",
     "commitlint": "^19.3.0",
-    "eslint": "^8",
+    "eslint": "8",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.34.1",
     "husky": "^9.0.11",

@@ -71,6 +71,15 @@ export const router = createBrowserRouter([
             }
           },
           {
+            path: 'use-in-view',
+            id: 'use-in-view',
+            Component: lazy(() => import('../pages/docs/useInView.doc')),
+            meta: {
+              name: 'useInView',
+              level: 'basic'
+            }
+          },
+          {
             path: 'use-line-draw',
             id: 'use-line-draw',
             Component: lazy(() => import('../pages/docs/useLineDraw.doc')),
