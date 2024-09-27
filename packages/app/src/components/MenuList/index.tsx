@@ -20,6 +20,10 @@ export default function MenuList() {
   const [hidden, setHidden] = useState(true);
   const children = router.routes.find((item) => item.id === 'root')?.children;
   const docsChildren = children?.find((item) => item.id === 'documents')?.children as CustomRouteObject[];
+  const hookList = docsChildren.filter((item) => item.meta?.type === 'hook');
+  const universalList = docsChildren.filter((item) => item.meta?.type === 'universal');
+
+  console.log(universalList);
 
   useOnClickOutside(ref, () => {
     setHidden(true);
@@ -32,7 +36,22 @@ export default function MenuList() {
         { 'translate-x-0': !hidden }
       )}>
       <p className="p-3 text-zinc-400">Hooks</p>
-      {docsChildren.map((menu) => (
+      {hookList.map((menu) => (
+        <NavLink
+          to={menu.path || ''}
+          key={menu.id}
+          className={({ isActive }) => cn(menuItem({ active: isActive }))}
+          onClick={() => setHidden(true)}>
+          {menu.meta?.name}
+          {menu.meta?.level !== 'basic' ? (
+            <Tag size="sm" className="ml-1">
+              {menu.meta?.level}
+            </Tag>
+          ) : null}
+        </NavLink>
+      ))}
+      <p className="p-3 text-zinc-400">universal</p>
+      {universalList.map((menu) => (
         <NavLink
           to={menu.path || ''}
           key={menu.id}

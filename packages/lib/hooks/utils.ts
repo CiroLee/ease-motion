@@ -1,5 +1,7 @@
 import { RefObject } from 'react';
-import { AnimationOptions, DOMElement, SpecialAnimationOptions } from './types';
+import * as presets from './presets';
+import { AnimationOptions, DOMElement, Keyframes, SpecialAnimationOptions } from './types';
+import { MotionName } from './useMotion';
 
 export function checkRef(ref: RefObject<DOMElement>) {
   if (!ref.current) {
@@ -76,4 +78,9 @@ export function combineOptions<T extends DOMElement>(
       endDelay: typeof options.endDelay === 'number' ? options.endDelay : options.endDelay?.(el, index, length)
     };
   }
+}
+
+export function combineKeyframeByMotion(keyframes?: Keyframes, motion?: MotionName) {
+  if (keyframes) return keyframes;
+  return motion ? presets[motion] : [];
 }

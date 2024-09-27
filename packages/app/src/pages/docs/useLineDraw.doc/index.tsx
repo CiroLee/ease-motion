@@ -157,8 +157,8 @@ export default function UseLineDrawDoc() {
         </Link>
       </div>
       <div className="my-12 flex justify-between">
-        <PageNavigate direction="prev" path="/docs/use-multiple">
-          useMultiple
+        <PageNavigate direction="prev" path="/docs/use-in-view">
+          useInView
         </PageNavigate>
         <PageNavigate direction="next" path="/docs/use-value">
           useValue
