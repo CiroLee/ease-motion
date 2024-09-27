@@ -21,7 +21,7 @@ importers:
         specifier: ^19.3.0
         version: 19.3.0(@types/node@20.14.9)(typescript@5.5.2)
       eslint:
-        specifier: ^8
+        specifier: '8'
         version: 8.57.0
       eslint-config-prettier:
         specifier: ^9.1.0
@@ -50,15 +50,15 @@ importers:
       '@tabler/icons-react':
         specifier: ^3.9.0
         version: 3.9.0(react@18.3.1)
-      ease-motion:
-        specifier: workspace:*
-        version: link:../..
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      ease-motion:
+        specifier: workspace:*
+        version: link:../lib
       react:
         specifier: ^18.3.1
         version: 18.3.1
