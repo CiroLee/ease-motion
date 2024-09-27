@@ -6,8 +6,9 @@ import ApiTable from '@/components/ApiTable';
 import { returnRows } from './api';
 import { useAnimate } from 'ease-motion';
 import PageNavigate from '@/components/PageNavigate';
+import Playground from '@/components/Playground';
 
-const useAnimateUsageCode = `import { useAnimate} from 'ease-motion;'
+const useAnimateUsageCode = `import { useAnimate } from 'ease-motion;'
 export default function App() {
   const [ ref, animate ] = useAnimate<HTMLDivElement>();
   return (
@@ -50,7 +51,7 @@ export default function UseAnimateDoc() {
       <Heading as="h5" className="mb-3">
         Usage
       </Heading>
-      <div className="relative mb-3 flex h-[240px] overflow-hidden rounded-md border flex-center bg-polka">
+      <Playground className="relative mb-3 flex h-[240px] overflow-hidden rounded-md border flex-center bg-polka">
         <div ref={ref} className="size-[120px] rounded-lg bg-blue-500"></div>
         <Button
           size="sm"
@@ -71,7 +72,7 @@ export default function UseAnimateDoc() {
           }}>
           play
         </Button>
-      </div>
+      </Playground>
       <CodeBlock code={useAnimateUsageCode} highlightLines={[3]} highlightRange={[[10, 20]]} />
       <Heading as="h4" className="my-4">
         Signature

@@ -73,24 +73,5 @@ export function useInView<T extends DOMElement>(props: UseInViewProps<T>) {
     return () => {
       observers.current.forEach((observer) => observer.disconnect());
     };
-    // checkRef(ref);
-    // const observer = new IntersectionObserver(
-    //   ([entities]) => {
-    //     if (options?.once && hasTriggered.current) return;
-    //     if (entities.isIntersecting) {
-    //       enter(ref);
-    //     } else {
-    //       leave(ref);
-    //       options?.once && observer.unobserve(ref.current!);
-    //     }
-    //     toggleTriggered(entities.isIntersecting, options?.once);
-    //   },
-    //   { threshold: options?.threshold }
-    // );
-    // observer.observe(ref.current!);
-    // return () => {
-    //   ref.current && observer.unobserve(ref.current);
-    //   observer.disconnect();
-    // };
-  }, [refs, selectors, enter, leave, options?.once, options?.threshold]);
+  }, [refs, selectors, enter, leave, options]);
 }

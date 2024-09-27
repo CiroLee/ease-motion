@@ -1,6 +1,6 @@
 import { AnimationOptions, DOMElement, Keyframes } from './types';
 import type { MotionName } from './useMotion';
-import { combineKeyframeByMotion } from './utils';
+import { checkDuration, combineKeyframeByMotion } from './utils';
 
 interface AnimationProps {
   target: DOMElement;
@@ -15,6 +15,7 @@ interface AnimationProps {
  */
 export function animate(props: AnimationProps): Animation {
   const { target, keyframes, motion, options } = props;
+  checkDuration(options);
   const _keyframes = combineKeyframeByMotion(keyframes, motion);
   return target.animate(_keyframes, options);
 }
